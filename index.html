@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOLUM ROI Simulator</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root {
+  --bg:#f5f6f8; --card:#fff; --border:#e2e5eb; --border-light:#eef0f4;
+  --accent:#0062ff; --accent-light:#e8f0ff; --accent2:#6c5ce7;
+  --green:#00b87a; --green-light:#e6f7f2;
+  --red:#e84040; --red-light:#fdf0f0;
+  --text:#1a1d23; --muted:#9ea8b8; --label:#5a6478;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Pretendard',-apple-system,sans-serif;font-size:15px;line-height:1.5;}
+
+/* HEADER */
+header{background:#fff;padding:0 48px;height:68px;display:flex;align-items:center;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.logo-block{display:flex;align-items:center;gap:16px;}
+.logo-block h1{font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.5px;}
+.logo-block h1 span{color:var(--accent);}
+.logo-divider{width:1px;height:20px;background:var(--border);}
+.logo-block p{font-size:13px;color:var(--muted);}
+
+/* LAYOUT */
+.main{display:grid;grid-template-columns:268px 1fr;min-height:calc(100vh - 68px);}
+
+/* SIDEBAR */
+.sidebar{background:#fff;border-right:1px solid var(--border);padding:28px 18px;display:flex;flex-direction:column;gap:28px;position:sticky;top:68px;height:calc(100vh - 68px);overflow-y:auto;}
+.sec-title{font-size:11px;font-weight:700;letter-spacing:1.2px;color:var(--muted);text-transform:uppercase;margin-bottom:12px;}
+
+/* SLIDER */
+.size-display{display:flex;align-items:baseline;gap:6px;}
+.size-val{font-size:40px;font-weight:800;color:var(--accent);line-height:1;letter-spacing:-1px;}
+.size-unit{font-size:16px;color:var(--muted);font-weight:500;}
+.size-tag{display:inline-block;font-size:12px;font-weight:600;color:var(--accent2);background:rgba(108,92,231,.08);border:1px solid rgba(108,92,231,.18);border-radius:5px;padding:4px 10px;margin-top:6px;}
+input[type=range]{-webkit-appearance:none;width:100%;height:3px;background:var(--border);border-radius:3px;outline:none;margin:14px 0 6px;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 2px 8px rgba(0,98,255,.3);border:2px solid #fff;}
+.range-labels{display:flex;justify-content:space-between;font-size:11px;font-weight:500;color:var(--muted);}
+
+/* HW ITEMS */
+.hw-grid{display:flex;flex-direction:column;gap:8px;}
+.hw-item{background:var(--bg);border:1px solid var(--border-light);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;}
+.hw-name{font-size:13px;font-weight:500;color:var(--label);}
+.hw-qty{font-size:18px;font-weight:700;color:var(--text);}
+.hw-qty span{font-size:12px;color:var(--muted);font-weight:400;margin-left:2px;}
+
+/* TABS */
+.tabs{display:flex;flex-direction:column;gap:6px;}
+.tab-btn{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;cursor:pointer;text-align:left;transition:all .18s;position:relative;overflow:hidden;}
+.tab-btn::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:transparent;transition:background .18s;}
+.tab-btn:hover,.tab-btn.active{border-color:var(--accent);background:var(--accent-light);}
+.tab-btn.active::before{background:var(--accent);}
+.tab-lbl{font-size:10px;font-weight:700;letter-spacing:1px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;}
+.tab-btn.active .tab-lbl{color:var(--accent);}
+.tab-ttl{font-size:13px;font-weight:600;color:var(--text);line-height:1.35;}
+.tab-btn.active .tab-ttl{color:var(--accent);}
+
+/* CONTENT */
+.content{padding:32px 36px;display:flex;flex-direction:column;gap:24px;}
+.panel{display:none;flex-direction:column;gap:24px;}
+.panel.active{display:flex;animation:fadeUp .25s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* PANEL HEADER */
+.panel-title{font-size:26px;font-weight:800;line-height:1.25;letter-spacing:-.5px;}
+.panel-title em{color:var(--accent);font-style:normal;}
+.panel-desc{font-size:14px;color:var(--label);margin-top:8px;line-height:1.65;}
+
+/* METRIC CARDS */
+.metrics-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.mcard{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.mcard.solum{border-color:rgba(0,184,122,.3);}
+.mcard.comp{border-color:rgba(232,64,64,.2);}
+.mbadge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.8px;padding:5px 12px;border-radius:100px;margin-bottom:12px;text-transform:uppercase;}
+.mcard.solum .mbadge{background:var(--green-light);border:1px solid rgba(0,184,122,.25);color:var(--green);}
+.mcard.comp .mbadge{background:var(--red-light);border:1px solid rgba(232,64,64,.2);color:var(--red);}
+.bdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.solum .bdot{background:var(--green);}
+.comp .bdot{background:var(--red);}
+.mcard-name{font-size:15px;font-weight:700;color:var(--text);margin-bottom:16px;}
+.mrow{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border-light);}
+.mrow:last-child{border-bottom:none;}
+.mrow-lbl{font-size:13px;font-weight:500;color:var(--label);}
+.mrow-val{font-size:14px;font-weight:600;color:var(--text);}
+.mrow-val.big{font-size:22px;font-weight:800;letter-spacing:-.5px;}
+.mcard.solum .mrow-val.big{color:var(--green);}
+.mcard.comp .mrow-val.big{color:var(--red);}
+
+/* BAR CHART */
+
+/* SAVINGS */
+.savings{background:linear-gradient(135deg,#f0fff9,#e8f0ff);border:1.5px solid rgba(0,184,122,.2);border-radius:16px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.savings-lbl{font-size:14px;color:var(--label);line-height:1.6;font-weight:500;}
+.savings-lbl strong{color:var(--text);font-weight:700;display:block;font-size:15px;}
+.savings-val{font-size:36px;font-weight:800;color:var(--green);white-space:nowrap;letter-spacing:-1px;}
+
+/* TABLE */
+.tbl-wrap{background:var(--card);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.tbl-head{padding:16px 24px;border-bottom:1px solid var(--border);font-size:12px;font-weight:700;color:var(--label);letter-spacing:.8px;text-transform:uppercase;background:var(--bg);}
+table{width:100%;border-collapse:collapse;}
+th{padding:12px 20px;background:var(--bg);font-size:13px;font-weight:600;color:var(--label);text-align:left;}
+td{padding:13px 20px;font-size:14px;font-weight:500;border-top:1px solid var(--border-light);color:var(--text);}
+td:first-child{color:var(--label);font-weight:600;}
+tr.total td{background:rgba(0,98,255,.04);font-weight:700;color:var(--accent);}
+tr.total td:first-child{color:var(--accent);}
+
+/* CMP WRAPPER - bar left + savings right */
+.cmp-wrapper{display:grid;grid-template-columns:2fr 1fr;gap:16px;align-items:stretch;}
+.cmp-block{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:24px 28px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.cmp-title{font-size:13px;font-weight:700;color:var(--label);letter-spacing:.5px;text-transform:uppercase;margin-bottom:22px;}
+.bar-row{display:flex;flex-direction:column;gap:18px;}
+.bar-item{display:flex;flex-direction:column;gap:7px;}
+.bar-hdr{display:flex;justify-content:space-between;align-items:center;}
+.bar-name{font-size:14px;font-weight:600;color:var(--text);}
+.bar-meta{display:flex;align-items:center;gap:12px;}
+.bar-pct{font-size:13px;font-weight:700;padding:2px 8px;border-radius:5px;}
+.bar-pct.s{color:var(--green);background:var(--green-light);}
+.bar-pct.c{color:var(--red);background:var(--red-light);}
+.bar-val{font-size:14px;font-weight:600;color:var(--text);}
+.bar-track{height:10px;background:var(--bg);border-radius:100px;overflow:hidden;border:1px solid var(--border-light);}
+.bar-fill{height:100%;border-radius:100px;transition:width .55s cubic-bezier(.4,0,.2,1);}
+.bar-fill.s{background:linear-gradient(90deg,#00b87a,#00e699);}
+.bar-fill.c{background:linear-gradient(90deg,#e84040,#ff7070);}
+
+/* TCO SAVINGS CARD */
+.tco-card{background:linear-gradient(160deg,#003d99 0%,#0055dd 50%,#0070f3 100%);border-radius:16px;padding:24px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;box-shadow:0 4px 20px rgba(0,98,255,.25);text-align:center;position:relative;overflow:hidden;}
+.tco-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.06);}
+.tco-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.04);}
+.tco-card-label{font-size:12px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.65);text-transform:uppercase;}
+.tco-card-pct{font-size:48px;font-weight:800;color:#fff;line-height:1;letter-spacing:-2px;}
+.tco-card-sub{font-size:13px;font-weight:600;color:rgba(255,255,255,.7);margin-top:2px;}
+.tco-card-amt{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:8px 18px;margin-top:4px;}
+.tco-card-amt span{font-size:15px;font-weight:700;color:#fff;}
+.tco-card-amt small{font-size:12px;color:rgba(255,255,255,.6);margin-left:4px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <h1>SOLUM <span>ROI</span> Simulator</h1>
+    <div class="logo-divider"></div>
+    <p>Retail Technology · Solution Comparison</p>
+  </div>
+</header>
+
+<div class="main">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div>
+      <div class="sec-title">Store Size</div>
+      <div class="size-display">
+        <div class="size-val" id="sizeVal">10,000</div>
+        <div class="size-unit">m²</div>
+      </div>
+      <div class="size-tag" id="sizeTag">Hypermarket</div>
+      <input type="range" id="slider" min="500" max="25000" value="10000" step="500">
+      <div class="range-labels"><span>500 m²</span><span>25,000 m²</span></div>
+    </div>
+
+    <div>
+      <div class="sec-title">HW 설치 수량 (자동 산출)</div>
+      <div class="hw-grid">
+        <div class="hw-item"><div class="hw-name">Wi-Fi HaLow AP</div><div class="hw-qty" id="q-halow">3 <span>대</span></div></div>
+        <div class="hw-item"><div class="hw-name">BLE AP</div><div class="hw-qty" id="q-ble">25 <span>대</span></div></div>
+        <div class="hw-item"><div class="hw-name">Core Gondola</div><div class="hw-qty" id="q-gondola">100 <span>개</span></div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-title">비교 시나리오 선택</div>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab(0)">
+          <div class="tab-lbl">SCENARIO 01</div>
+          <div class="tab-ttl">Wi-Fi HaLow vs BLE AP</div>
+        </button>
+        <button class="tab-btn" onclick="switchTab(1)">
+          <div class="tab-lbl">SCENARIO 02</div>
+          <div class="tab-ttl">Inventory Management<br>vs Camera Only (108MP)</div>
+        </button>
+        <button class="tab-btn" onclick="switchTab(2)">
+          <div class="tab-lbl">SCENARIO 03</div>
+          <div class="tab-ttl">SOLUM E-Paper POP<br>vs Normal POP</div>
+        </button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- ═══ SCENARIO 1 ═══ -->
+    <div class="panel active" id="panel-0">
+      <div>
+        <div class="panel-title"><em>Wi-Fi HaLow</em> vs BLE AP</div>
+        <div class="panel-desc">동일한 ESL 커버리지 목표 기준, Wi-Fi HaLow GW 기반 인프라와 BLE AP 기반 인프라의 5년 TCO를 비교합니다.<br>HaLow GW 2대 이상(중대형 매장)은 GW만으로 완전 커버되어 데이터 전송용 AP 비용이 $0입니다.</div>
+      </div>
+
+      <div class="metrics-row">
+        <div class="mcard solum">
+          <div class="mbadge"><span class="bdot"></span>SOLUM</div>
+          <div class="mcard-name">Wi-Fi HaLow GW</div>
+          <div class="mrow"><span class="mrow-lbl">설치 수량</span><span class="mrow-val" id="s1-h-qty">3대</span></div>
+          <div class="mrow"><span class="mrow-lbl">HW 가격 ($500 × 대수)</span><span class="mrow-val" id="s1-h-hw">$1,500</span></div>
+          <div class="mrow"><span class="mrow-lbl">HW 설치비 ($332.5 × 대수)</span><span class="mrow-val" id="s1-h-inst">$997</span></div>
+          <div class="mrow"><span class="mrow-lbl">데이터 전송용 AP ($3,833/대, 3대↑)</span><span class="mrow-val" id="s1-h-ap">$11,498</span></div>
+          <div class="mrow"><span class="mrow-lbl">CAPEX</span><span class="mrow-val" id="s1-h-capex">$13,995</span></div>
+          <div class="mrow"><span class="mrow-lbl">연간 OPEX ($342 × 대수)</span><span class="mrow-val" id="s1-h-opex">$1,026</span></div>
+          <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s1-h-tco">$19,125</span></div>
+        </div>
+        <div class="mcard comp">
+          <div class="mbadge"><span class="bdot"></span>COMPETITOR</div>
+          <div class="mcard-name">BLE AP</div>
+          <div class="mrow"><span class="mrow-lbl">설치 수량</span><span class="mrow-val" id="s1-b-qty">25대</span></div>
+          <div class="mrow"><span class="mrow-lbl">HW 가격 ($300 × 대수)</span><span class="mrow-val" id="s1-b-hw">$7,500</span></div>
+          <div class="mrow"><span class="mrow-lbl">HW 설치비 ($332.5 × 대수)</span><span class="mrow-val" id="s1-b-inst">$8,313</span></div>
+          <div class="mrow"><span class="mrow-lbl">데이터 전송용 AP ($1,533/대)</span><span class="mrow-val" id="s1-b-ap">$38,325</span></div>
+          <div class="mrow"><span class="mrow-lbl">CAPEX</span><span class="mrow-val" id="s1-b-capex">$54,138</span></div>
+          <div class="mrow"><span class="mrow-lbl">연간 OPEX ($342 × 대수)</span><span class="mrow-val" id="s1-b-opex">$8,550</span></div>
+          <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s1-b-tco">$96,888</span></div>
+        </div>
+      </div>
+
+      <div class="cmp-wrapper">
+        <div class="cmp-block">
+          <div class="cmp-title">5년 TCO 비교</div>
+          <div class="bar-row">
+            <div class="bar-item">
+              <div class="bar-hdr">
+                <span class="bar-name">Wi-Fi HaLow</span>
+                <div class="bar-meta"><span class="bar-pct s" id="s1-pct-h">20%</span><span class="bar-val" id="s1-bval-h">$19,125</span></div>
+              </div>
+              <div class="bar-track"><div class="bar-fill s" id="s1-bar-h" style="width:20%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-hdr">
+                <span class="bar-name">BLE AP</span>
+                <div class="bar-meta"><span class="bar-pct c" id="s1-pct-b">100%</span><span class="bar-val" id="s1-bval-b">$96,888</span></div>
+              </div>
+              <div class="bar-track"><div class="bar-fill c" id="s1-bar-b" style="width:100%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="tco-card">
+          <div class="tco-card-label">5년 TCO 절감</div>
+          <div class="tco-card-pct" id="s1-tco-pct">80%</div>
+          <div class="tco-card-sub">TCO -<span id="s1-tco-pct2">80</span>% 절감</div>
+          <div class="tco-card-amt"><span id="s1-save">$77,763</span><small>절감</small></div>
+        </div>
+      </div>
+
+      <div class="tbl-wrap">
+        <div class="tbl-head">연도별 TCO 누적 추이</div>
+        <table>
+          <thead><tr><th>구분</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th></tr></thead>
+          <tbody>
+            <tr><td>Wi-Fi HaLow</td><td id="s1-hy1"></td><td id="s1-hy2"></td><td id="s1-hy3"></td><td id="s1-hy4"></td><td id="s1-hy5"></td></tr>
+            <tr><td>BLE AP</td><td id="s1-by1"></td><td id="s1-by2"></td><td id="s1-by3"></td><td id="s1-by4"></td><td id="s1-by5"></td></tr>
+            <tr class="total"><td>절감액</td><td id="s1-dy1"></td><td id="s1-dy2"></td><td id="s1-dy3"></td><td id="s1-dy4"></td><td id="s1-dy5"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══ SCENARIO 2 ═══ -->
+    <div class="panel" id="panel-1">
+      <div>
+        <div class="panel-title"><em>Inventory Management</em> vs Camera Only (108MP)</div>
+        <div class="panel-desc">UWB Powerrail + Newton EYE + Load Cell 통합 솔루션과 108MP 선반 카메라 단독 운영의 5년 TCO 및 기회비용을 비교합니다.</div>
+      </div>
+
+      <div class="metrics-row">
+        <div class="mcard solum">
+          <div class="mbadge"><span class="bdot"></span>SOLUM</div>
+          <div class="mcard-name">Inventory Management (IM)</div>
+          <div class="mrow"><span class="mrow-lbl">Core Gondola 수</span><span class="mrow-val" id="s2-i-shelf">100개</span></div>
+          <div class="mrow"><span class="mrow-lbl">HW 단가 ($180/매대)</span><span class="mrow-val">$180</span></div>
+          <div class="mrow"><span class="mrow-lbl">CAPEX ($180 × 매대 수)</span><span class="mrow-val" id="s2-i-capex">$18,000</span></div>
+          <div class="mrow"><span class="mrow-lbl">OOS 기회비용</span><span class="mrow-val" id="s2-i-oos">$37,091/yr</span></div>
+          <div class="mrow"><span class="mrow-lbl">인력 비용</span><span class="mrow-val" id="s2-i-labor">$5,592/yr</span></div>
+          <div class="mrow"><span class="mrow-lbl">연간 OPEX</span><span class="mrow-val" id="s2-i-opex">$42,683</span></div>
+          <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s2-i-tco">$231,415</span></div>
+        </div>
+        <div class="mcard comp">
+          <div class="mbadge"><span class="bdot"></span>COMPETITOR</div>
+          <div class="mcard-name">Camera Only (108MP)</div>
+          <div class="mrow"><span class="mrow-lbl">카메라 수</span><span class="mrow-val" id="s2-c-shelf">100대</span></div>
+          <div class="mrow"><span class="mrow-lbl">HW 단가 ($1,600/대)</span><span class="mrow-val">$1,600</span></div>
+          <div class="mrow"><span class="mrow-lbl">CAPEX ($1,600 × 카메라 수)</span><span class="mrow-val" id="s2-c-capex">$160,000</span></div>
+          <div class="mrow"><span class="mrow-lbl">OOS 기회비용</span><span class="mrow-val" id="s2-c-oos">$120,000/yr</span></div>
+          <div class="mrow"><span class="mrow-lbl">인력 비용</span><span class="mrow-val" id="s2-c-labor">$19,980/yr</span></div>
+          <div class="mrow"><span class="mrow-lbl">연간 OPEX</span><span class="mrow-val" id="s2-c-opex">$139,980</span></div>
+          <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s2-c-tco">$859,900</span></div>
+        </div>
+      </div>
+
+      <div class="cmp-wrapper">
+        <div class="cmp-block">
+          <div class="cmp-title">5년 TCO 비교</div>
+          <div class="bar-row">
+            <div class="bar-item">
+              <div class="bar-hdr">
+                <span class="bar-name">IM Solution</span>
+                <div class="bar-meta"><span class="bar-pct s" id="s2-pct-i">27%</span><span class="bar-val" id="s2-bval-i">$231,415</span></div>
+              </div>
+              <div class="bar-track"><div class="bar-fill s" id="s2-bar-i" style="width:27%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-hdr">
+                <span class="bar-name">Camera Only</span>
+                <div class="bar-meta"><span class="bar-pct c" id="s2-pct-c">100%</span><span class="bar-val" id="s2-bval-c">$859,900</span></div>
+              </div>
+              <div class="bar-track"><div class="bar-fill c" id="s2-bar-c" style="width:100%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="tco-card">
+          <div class="tco-card-label">5년 TCO 절감</div>
+          <div class="tco-card-pct" id="s2-tco-pct">73%</div>
+          <div class="tco-card-sub">TCO -<span id="s2-tco-pct2">73</span>% 절감</div>
+          <div class="tco-card-amt"><span id="s2-save">$628,485</span><small>절감</small></div>
+        </div>
+      </div>
+
+      <div class="tbl-wrap">
+        <div class="tbl-head">연도별 TCO 누적 추이</div>
+        <table>
+          <thead><tr><th>구분</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th></tr></thead>
+          <tbody>
+            <tr><td>IM Solution</td><td id="s2-iy1"></td><td id="s2-iy2"></td><td id="s2-iy3"></td><td id="s2-iy4"></td><td id="s2-iy5"></td></tr>
+            <tr><td>Camera Only</td><td id="s2-cy1"></td><td id="s2-cy2"></td><td id="s2-cy3"></td><td id="s2-cy4"></td><td id="s2-cy5"></td></tr>
+            <tr class="total"><td>절감액</td><td id="s2-dy1"></td><td id="s2-dy2"></td><td id="s2-dy3"></td><td id="s2-dy4"></td><td id="s2-dy5"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══ SCENARIO 3 ═══ -->
+    <div class="panel" id="panel-2">
+      <div>
+        <div class="panel-title"><em>SOLUM E-Paper POP</em> vs Normal POP</div>
+        <div class="panel-desc">단일 CMS 기반 SOLUM E-Paper POP과 3개 CMS 분리 운영 방식의 비용 및 광고 수익 창출 효과를 비교합니다.</div>
+      </div>
+
+      <div class="metrics-row">
+        <div class="mcard solum">
+          <div class="mbadge"><span class="bdot"></span>SOLUM</div>
+          <div class="mcard-name">SOLUM E-Paper POP (단일 CMS)</div>
+          <div class="mrow"><span class="mrow-lbl">설치 수량</span><span class="mrow-val" id="s3-s-qty">3대</span></div>
+          <div class="mrow"><span class="mrow-lbl">CAPEX</span><span class="mrow-val" id="s3-s-capex">$2,498</span></div>
+          <div class="mrow"><span class="mrow-lbl">CMS 라이선스</span><span class="mrow-val" id="s3-s-cms">$5,000/yr</span></div>
+          <div class="mrow"><span class="mrow-lbl">콘텐츠 운영</span><span class="mrow-val" id="s3-s-content">$4,333/yr</span></div>
+          <div class="mrow"><span class="mrow-lbl">연간 OPEX</span><span class="mrow-val" id="s3-s-opex">$9,333</span></div>
+          <div class="mrow"><span class="mrow-lbl">1년 광고 Revenue</span><span class="mrow-val" id="s3-s-rev">$78,000</span></div>
+          <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s3-s-tco">$49,163</span></div>
+        </div>
+        <div class="mcard comp">
+          <div class="mbadge"><span class="bdot"></span>COMPETITOR</div>
+          <div class="mcard-name">Normal POP (3개 CMS 분리)</div>
+          <div class="mrow"><span class="mrow-lbl">설치 수량</span><span class="mrow-val" id="s3-n-qty">29대</span></div>
+          <div class="mrow"><span class="mrow-lbl">CAPEX</span><span class="mrow-val" id="s3-n-capex">$18,343</span></div>
+          <div class="mrow"><span class="mrow-lbl">CMS 라이선스</span><span class="mrow-val" id="s3-n-cms">$15,000/yr</span></div>
+          <div class="mrow"><span class="mrow-lbl">콘텐츠 운영</span><span class="mrow-val" id="s3-n-content">$13,000/yr</span></div>
+          <div class="mrow"><span class="mrow-lbl">연간 OPEX</span><span class="mrow-val" id="s3-n-opex">$28,000</span></div>
+          <div class="mrow"><span class="mrow-lbl">1년 광고 Revenue</span><span class="mrow-val" id="s3-n-rev">$60,000</span></div>
+          <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s3-n-tco">$158,343</span></div>
+        </div>
+      </div>
+
+      <div class="cmp-wrapper">
+        <div class="cmp-block">
+          <div class="cmp-title">5년 TCO 비교</div>
+          <div class="bar-row">
+            <div class="bar-item">
+              <div class="bar-hdr">
+                <span class="bar-name">SOLUM E-Paper POP</span>
+                <div class="bar-meta"><span class="bar-pct s" id="s3-pct-s">31%</span><span class="bar-val" id="s3-bval-s">$49,163</span></div>
+              </div>
+              <div class="bar-track"><div class="bar-fill s" id="s3-bar-s" style="width:31%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-hdr">
+                <span class="bar-name">Normal POP</span>
+                <div class="bar-meta"><span class="bar-pct c" id="s3-pct-n">100%</span><span class="bar-val" id="s3-bval-n">$158,343</span></div>
+              </div>
+              <div class="bar-track"><div class="bar-fill c" id="s3-bar-n" style="width:100%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="tco-card">
+          <div class="tco-card-label">5년 TCO 절감</div>
+          <div class="tco-card-pct" id="s3-tco-pct">69%</div>
+          <div class="tco-card-sub">TCO -<span id="s3-tco-pct2">69</span>% 절감</div>
+          <div class="tco-card-amt"><span id="s3-save">$109,180</span><small>절감</small></div>
+        </div>
+      </div>
+
+      <div class="tbl-wrap">
+        <div class="tbl-head">연도별 TCO 누적 추이</div>
+        <table>
+          <thead><tr><th>구분</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th></tr></thead>
+          <tbody>
+            <tr><td>SOLUM E-Paper POP</td><td id="s3-sy1"></td><td id="s3-sy2"></td><td id="s3-sy3"></td><td id="s3-sy4"></td><td id="s3-sy5"></td></tr>
+            <tr><td>Normal POP</td><td id="s3-ny1"></td><td id="s3-ny2"></td><td id="s3-ny3"></td><td id="s3-ny4"></td><td id="s3-ny5"></td></tr>
+            <tr class="total"><td>절감액</td><td id="s3-dy1"></td><td id="s3-dy2"></td><td id="s3-dy3"></td><td id="s3-dy4"></td><td id="s3-dy5"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const BASE = 10000;
+// Summary 시트 기준 단가
+const H_HW   = 500;    // HaLow HW 단가
+const H_INST = 332.5;  // HaLow 설치비 단가
+const H_AP_UNIT = 3832.5; // HaLow 데이터전송AP 단가 (11497.5 / 3대)
+const H_MAINT= 342;    // HaLow 연간 유지보수 단가
+
+const B_HW   = 300;    // BLE HW 단가
+const B_INST = 332.5;  // BLE 설치비 단가
+const B_AP_UNIT = 1533;  // BLE 데이터전송AP 단가 (38325 / 25대)
+const B_MAINT= 342;    // BLE 연간 유지보수 단가
+
+// IM / Camera 단가 (매대 기준)
+const IM_HW    = 180;
+const IM_OOS   = 37091 / 100;
+const IM_LABOR = 5592  / 100;
+const CAM_HW   = 1600;
+const CAM_OOS  = 120000 / 100;
+const CAM_LABOR= 19980  / 100;
+
+// Display 단가
+const SD_HW   = 500;   const SD_INST = 332.5;
+const SD_CMS  = 5000;  const SD_CONT = 4333.33; const SD_REV = 78000;
+const ND_HW   = 300;   const ND_INST = 332.5;
+const ND_CMS  = 15000; const ND_CONT = 13000;   const ND_REV = 60000;
+const SD_BASE_QTY = 3; const ND_BASE_QTY = 29;
+
+let area = 10000;
+
+function fmt(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+function fmtN(n){ return Math.round(n).toLocaleString('en-US'); }
+function pct(a,max){ return Math.round(a/max*100)+'%'; }
+function set(id,v){ const el=document.getElementById(id); if(el) el.textContent=v; }
+function setW(id,w){ const el=document.getElementById(id); if(el) el.style.width=w; }
+
+function storeLabel(a){
+  if(a <= 1500)  return 'Small Format';
+  if(a <= 5000)  return 'Supermarket';
+  if(a <= 10000) return 'Hypermarket';
+  if(a <= 16000) return 'Large Hypermarket';
+  return 'Mega Hypermarket';
+}
+
+function calc(a){
+  const r = a / BASE;
+
+  // ── HW 대수 산출 ──
+  const hQty = Math.max(1, Math.round(3 * r));          // HaLow GW: 10,000m²당 3대
+  const bQty = Math.max(1, Math.round(2.5 * a / 1000)); // BLE: 1,000m²당 2.5대
+  const gondola = Math.max(1, Math.round(100 * r));      // Core Gondola
+  const sdQty = Math.max(1, Math.round(SD_BASE_QTY * r));
+  const ndQty = Math.max(1, Math.round(ND_BASE_QTY * r));
+
+  // 사이드바 수량 갱신
+  document.getElementById('q-halow').innerHTML   = hQty + ' <span>대</span>';
+  document.getElementById('q-ble').innerHTML     = bQty + ' <span>대</span>';
+  document.getElementById('q-gondola').innerHTML = gondola + ' <span>개</span>';
+
+  // ── SCENARIO 1 ──
+  // HaLow: GW 1대(소형) → 데이터전송AP $0, 2대 이상 → AP 추가 필요
+  const hAP = hQty >= 3 ? H_AP_UNIT * hQty : 0;
+  const h_capex = (H_HW + H_INST) * hQty + hAP;
+  const h_opex  = H_MAINT * hQty;
+  const h_tco5  = h_capex + h_opex * 5;
+
+  // BLE: 데이터전송AP는 대수 무관 고정
+  const bAP = B_AP_UNIT * bQty;
+  const b_capex = (B_HW + B_INST) * bQty + bAP;
+  const b_opex  = B_MAINT * bQty;
+  const b_tco5  = b_capex + b_opex * 5;
+
+  const hY = [1,2,3,4,5].map(y => h_capex + h_opex * y);
+  const bY = [1,2,3,4,5].map(y => b_capex + b_opex * y);
+  const mx1 = Math.max(h_tco5, b_tco5);
+
+  set('s1-h-qty',   hQty + '대');
+  set('s1-h-hw',    fmt(H_HW * hQty));
+  set('s1-h-inst',  fmt(H_INST * hQty));
+  set('s1-h-ap',    fmt(hAP));
+  set('s1-h-capex', fmt(h_capex));
+  set('s1-h-opex',  fmt(h_opex));
+  set('s1-h-tco',   fmt(h_tco5));
+
+  set('s1-b-qty',   bQty + '대');
+  set('s1-b-hw',    fmt(B_HW * bQty));
+  set('s1-b-inst',  fmt(B_INST * bQty));
+  set('s1-b-ap',    fmt(bAP));
+  set('s1-b-capex', fmt(b_capex));
+  set('s1-b-opex',  fmt(b_opex));
+  set('s1-b-tco',   fmt(b_tco5));
+
+  const s1_savings = b_tco5 - h_tco5;
+  const s1_pct_num = Math.round(s1_savings / b_tco5 * 100);
+  set('s1-save',      fmt(s1_savings));
+  set('s1-tco-pct',   s1_pct_num + '%');
+  set('s1-tco-pct2',  String(s1_pct_num));
+  set('s1-bval-h',  fmt(h_tco5));
+  set('s1-bval-b',  fmt(b_tco5));
+  set('s1-pct-h',   pct(h_tco5, mx1));
+  set('s1-pct-b',   pct(b_tco5, mx1));
+  setW('s1-bar-h',  (h_tco5/mx1*100)+'%');
+  setW('s1-bar-b',  (b_tco5/mx1*100)+'%');
+  [1,2,3,4,5].forEach(y => {
+    set('s1-hy'+y, fmt(hY[y-1]));
+    set('s1-by'+y, fmt(bY[y-1]));
+    set('s1-dy'+y, fmt(bY[y-1]-hY[y-1]));
+  });
+
+  // ── SCENARIO 2 ──
+  const im_capex = IM_HW * gondola;
+  const im_oos   = IM_OOS * gondola;
+  const im_labor = IM_LABOR * gondola;
+  const im_opex  = im_oos + im_labor;
+  const im_tco5  = im_capex + im_opex * 5;
+
+  const cam_capex = CAM_HW * gondola;
+  const cam_oos   = CAM_OOS * gondola;
+  const cam_labor = CAM_LABOR * gondola;
+  const cam_opex  = cam_oos + cam_labor;
+  const cam_tco5  = cam_capex + cam_opex * 5;
+
+  const imY  = [1,2,3,4,5].map(y => im_capex + im_opex * y);
+  const camY = [1,2,3,4,5].map(y => cam_capex + cam_opex * y);
+  const mx2  = Math.max(im_tco5, cam_tco5);
+
+  set('s2-i-shelf', gondola + '개');
+  set('s2-i-capex', fmt(im_capex));
+  set('s2-i-oos',   fmt(im_oos) + '/yr');
+  set('s2-i-labor', fmt(im_labor) + '/yr');
+  set('s2-i-opex',  fmt(im_opex));
+  set('s2-i-tco',   fmt(im_tco5));
+
+  set('s2-c-shelf', gondola + '대');
+  set('s2-c-capex', fmt(cam_capex));
+  set('s2-c-oos',   fmt(cam_oos) + '/yr');
+  set('s2-c-labor', fmt(cam_labor) + '/yr');
+  set('s2-c-opex',  fmt(cam_opex));
+  set('s2-c-tco',   fmt(cam_tco5));
+
+  const s2_savings = cam_tco5 - im_tco5;
+  const s2_pct_num = Math.round(s2_savings / cam_tco5 * 100);
+  set('s2-save',      fmt(s2_savings));
+  set('s2-tco-pct',   s2_pct_num + '%');
+  set('s2-tco-pct2',  String(s2_pct_num));
+  set('s2-bval-i',  fmt(im_tco5));
+  set('s2-bval-c',  fmt(cam_tco5));
+  set('s2-pct-i',   pct(im_tco5, mx2));
+  set('s2-pct-c',   pct(cam_tco5, mx2));
+  setW('s2-bar-i',  (im_tco5/mx2*100)+'%');
+  setW('s2-bar-c',  (cam_tco5/mx2*100)+'%');
+  [1,2,3,4,5].forEach(y => {
+    set('s2-iy'+y, fmt(imY[y-1]));
+    set('s2-cy'+y, fmt(camY[y-1]));
+    set('s2-dy'+y, fmt(camY[y-1]-imY[y-1]));
+  });
+
+  // ── SCENARIO 3 ──
+  const sd_capex = (SD_HW + SD_INST) * sdQty;
+  const sd_cms   = SD_CMS * (sdQty / SD_BASE_QTY);
+  const sd_cont  = SD_CONT * (sdQty / SD_BASE_QTY);
+  const sd_opex  = sd_cms + sd_cont;
+  const sd_rev   = SD_REV * (sdQty / SD_BASE_QTY);
+  const sd_tco5  = sd_capex + sd_opex * 5;
+
+  const nd_capex = (ND_HW + ND_INST) * ndQty;
+  const nd_cms   = ND_CMS * (ndQty / ND_BASE_QTY);
+  const nd_cont  = ND_CONT * (ndQty / ND_BASE_QTY);
+  const nd_opex  = nd_cms + nd_cont;
+  const nd_rev   = ND_REV * (ndQty / ND_BASE_QTY);
+  const nd_tco5  = nd_capex + nd_opex * 5;
+
+  const sdY = [1,2,3,4,5].map(y => sd_capex + sd_opex * y);
+  const ndY = [1,2,3,4,5].map(y => nd_capex + nd_opex * y);
+  const mx3 = Math.max(sd_tco5, nd_tco5);
+
+  set('s3-s-qty',     sdQty + '대');
+  set('s3-s-capex',   fmt(sd_capex));
+  set('s3-s-cms',     fmt(sd_cms) + '/yr');
+  set('s3-s-content', fmt(sd_cont) + '/yr');
+  set('s3-s-opex',    fmt(sd_opex));
+  set('s3-s-rev',     fmt(sd_rev));
+  set('s3-s-tco',     fmt(sd_tco5));
+
+  set('s3-n-qty',     ndQty + '대');
+  set('s3-n-capex',   fmt(nd_capex));
+  set('s3-n-cms',     fmt(nd_cms) + '/yr');
+  set('s3-n-content', fmt(nd_cont) + '/yr');
+  set('s3-n-opex',    fmt(nd_opex));
+  set('s3-n-rev',     fmt(nd_rev));
+  set('s3-n-tco',     fmt(nd_tco5));
+
+  const s3_savings = nd_tco5 - sd_tco5;
+  const s3_pct_num = Math.round(s3_savings / nd_tco5 * 100);
+  set('s3-save',      fmt(s3_savings));
+  set('s3-tco-pct',   s3_pct_num + '%');
+  set('s3-tco-pct2',  String(s3_pct_num));
+  set('s3-bval-s',  fmt(sd_tco5));
+  set('s3-bval-n',  fmt(nd_tco5));
+  set('s3-pct-s',   pct(sd_tco5, mx3));
+  set('s3-pct-n',   pct(nd_tco5, mx3));
+  setW('s3-bar-s',  (sd_tco5/mx3*100)+'%');
+  setW('s3-bar-n',  (nd_tco5/mx3*100)+'%');
+  [1,2,3,4,5].forEach(y => {
+    set('s3-sy'+y, fmt(sdY[y-1]));
+    set('s3-ny'+y, fmt(ndY[y-1]));
+    set('s3-dy'+y, fmt(ndY[y-1]-sdY[y-1]));
+  });
+}
+
+document.getElementById('slider').addEventListener('input', function(){
+  area = parseInt(this.value);
+  document.getElementById('sizeVal').textContent = area.toLocaleString('en-US');
+  document.getElementById('sizeTag').textContent = storeLabel(area);
+  calc(area);
+});
+
+function switchTab(idx){
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+  document.querySelectorAll('.panel').forEach((p,i) => p.classList.toggle('active', i===idx));
+  calc(area);
+}
+
+calc(10000);
+</script>
+</body>
+</html>
