@@ -243,7 +243,7 @@ tr.total td:first-child{color:var(--accent);}
             <div class="mrow mrow-sub"><span class="mrow-lbl">HW 가격</span><span class="mrow-val" id="s1-h-hw">$1,000</span></div>
             <div class="mrow mrow-sub"><span class="mrow-lbl">설치 수량</span><span class="mrow-val" id="s1-h-qty">2대</span></div>
             <div class="mrow mrow-sub"><span class="mrow-lbl">HW 설치비</span><span class="mrow-val" id="s1-h-inst">$665</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">데이터 전송용 AP</span><span class="mrow-val" id="s1-h-ap">$0</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">데이터 전송용 AP (BLE 설치수량 20%)</span><span class="mrow-val" id="s1-h-ap">$0</span></div>
           </div>
           <div class="mrow mrow-toggle" onclick="toggleSub('s1-h-opx-sub',this)">
             <span class="mrow-lbl">OPEX</span>
@@ -508,7 +508,7 @@ function calc(a){
   document.getElementById('q-ble').innerHTML=bQty+' <span>대</span>';
   document.getElementById('q-gondola').innerHTML=gondola+' <span>개</span>';
 
-  const hAP=0;
+  const hAP=B_AP_UNIT*Math.max(1,Math.round(bQty*0.2));
   const h_capex=(H_HW+H_INST)*hQty+hAP;
   const h_opex=H_MAINT*hQty;
   const h_tco5=h_capex+h_opex*5;
@@ -520,7 +520,7 @@ function calc(a){
   const bY=[1,2,3,4,5].map(y=>b_capex+b_opex*y);
   const mx1=Math.max(h_tco5,b_tco5);
 
-  set('s1-h-qty',hQty+'대'); set('s1-h-hw',fmt(H_HW*hQty)); set('s1-h-ap','$0');
+  set('s1-h-qty',hQty+'대'); set('s1-h-hw',fmt(H_HW*hQty)); set('s1-h-ap',fmt(hAP));
   set('s1-h-inst',fmt(H_INST*hQty)); set('s1-h-opex',fmt(h_opex)); set('s1-h-opex2',fmt(h_opex));
   set('s1-h-capex',fmt(h_capex)); set('s1-h-tco',fmt(h_tco5));
   set('s1-b-qty',bQty+'대'); set('s1-b-hw',fmt(B_HW*bQty)); set('s1-b-ap',fmt(bAP));
