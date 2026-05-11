@@ -324,28 +324,52 @@ tr.total td:first-child{color:var(--accent);}
       </div>
       <div class="metrics-row">
         <div class="mcard solum">
-          <div class="mbadge"><span class="bdot"></span>SOLUM</div>
-          <div class="mcard-name">Inventory Management (IM)</div>
-          <div class="mrow"><span class="mrow-lbl">설치 매대 수</span><span class="mrow-val" id="s2-i-shelf">100개</span></div>
-          <div class="mrow"><span class="mrow-lbl">CAPEX ($180/매대)</span><span class="mrow-val" id="s2-i-capex">$18,000</span></div>
-          <div class="mrow"><span class="mrow-lbl">┗ UWB Powerrail ($100)</span><span class="mrow-val" id="s2-i-powerrail">$10,000</span></div>
-          <div class="mrow"><span class="mrow-lbl">┗ Camera ($70)</span><span class="mrow-val" id="s2-i-cam">$7,000</span></div>
-          <div class="mrow"><span class="mrow-lbl">┗ Load Cell ($10)</span><span class="mrow-val" id="s2-i-loadcell">$1,000</span></div>
-          <div class="mrow"><span class="mrow-lbl">OOS 기회 비용</span><span class="mrow-val" id="s2-i-oos">$37,091</span></div>
-          <div class="mrow"><span class="mrow-lbl">보충 인력 비용</span><span class="mrow-val" id="s2-i-labor">$5,592</span></div>
-          <div class="mrow"><span class="mrow-lbl">연간 OPEX</span><span class="mrow-val" id="s2-i-opex">$42,683</span></div>
-          <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s2-i-tco">$231,415</span></div>
+          <div class="mcard-header">
+            <div class="mbadge"><span class="bdot"></span>SOLUM</div>
+            <div class="mcard-name">Inventory Management (IM)</div>
+          </div>
+          <div class="mrow mrow-toggle" onclick="toggleSub('s2-i-cap-sub',this)">
+            <span class="mrow-lbl">CAPEX</span>
+            <div class="mrow-right"><span class="mrow-val" id="s2-i-capex">$18,000</span><button class="expand-btn">+</button></div>
+          </div>
+          <div id="s2-i-cap-sub" class="mrow-sub-group" style="display:none">
+            <div class="mrow mrow-sub"><span class="mrow-lbl">설치 매대 수</span><span class="mrow-val" id="s2-i-shelf">100개</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">UWB Powerrail ($100)</span><span class="mrow-val" id="s2-i-powerrail">$10,000</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Camera ($70)</span><span class="mrow-val" id="s2-i-cam">$7,000</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Load Cell ($10)</span><span class="mrow-val" id="s2-i-loadcell">$1,000</span></div>
+          </div>
+          <div class="mrow mrow-toggle" onclick="toggleSub('s2-i-opx-sub',this)">
+            <span class="mrow-lbl">OPEX</span>
+            <div class="mrow-right"><span class="mrow-val" id="s2-i-opex">$42,683</span><button class="expand-btn">+</button></div>
+          </div>
+          <div id="s2-i-opx-sub" class="mrow-sub-group" style="display:none">
+            <div class="mrow mrow-sub"><span class="mrow-lbl">OOS 기회 비용</span><span class="mrow-val" id="s2-i-oos">$37,091</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">보충 인력 비용</span><span class="mrow-val" id="s2-i-labor">$5,592</span></div>
+          </div>
+          <div class="mrow mrow-final"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s2-i-tco">$231,415</span></div>
         </div>
         <div class="mcard comp">
-          <div class="mbadge"><span class="bdot"></span>COMPETITOR</div>
-          <div class="mcard-name">Camera Only (108MP)</div>
-          <div class="mrow"><span class="mrow-lbl">설치 매대 수</span><span class="mrow-val" id="s2-c-shelf">100대</span></div>
-          <div class="mrow"><span class="mrow-lbl">CAPEX ($1,600/대)</span><span class="mrow-val" id="s2-c-capex">$160,000</span></div>
-          <div class="mrow"><span class="mrow-lbl">┗ Camera ($1,600)</span><span class="mrow-val" id="s2-c-cam">$160,000</span></div>
-          <div class="mrow"><span class="mrow-lbl">OOS 기회 비용</span><span class="mrow-val" id="s2-c-oos">$120,000</span></div>
-          <div class="mrow"><span class="mrow-lbl">보충 인력 비용</span><span class="mrow-val" id="s2-c-labor">$19,980</span></div>
-          <div class="mrow"><span class="mrow-lbl">연간 OPEX</span><span class="mrow-val" id="s2-c-opex">$139,980</span></div>
-          <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s2-c-tco">$859,900</span></div>
+          <div class="mcard-header">
+            <div class="mbadge"><span class="bdot"></span>COMPETITOR</div>
+            <div class="mcard-name">Camera Only (108MP)</div>
+          </div>
+          <div class="mrow mrow-toggle" onclick="toggleSub('s2-c-cap-sub',this)">
+            <span class="mrow-lbl">CAPEX</span>
+            <div class="mrow-right"><span class="mrow-val" id="s2-c-capex">$160,000</span><button class="expand-btn">+</button></div>
+          </div>
+          <div id="s2-c-cap-sub" class="mrow-sub-group" style="display:none">
+            <div class="mrow mrow-sub"><span class="mrow-lbl">설치 매대 수</span><span class="mrow-val" id="s2-c-shelf">100대</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Camera ($1,600)</span><span class="mrow-val" id="s2-c-cam">$160,000</span></div>
+          </div>
+          <div class="mrow mrow-toggle" onclick="toggleSub('s2-c-opx-sub',this)">
+            <span class="mrow-lbl">OPEX</span>
+            <div class="mrow-right"><span class="mrow-val" id="s2-c-opex">$139,980</span><button class="expand-btn">+</button></div>
+          </div>
+          <div id="s2-c-opx-sub" class="mrow-sub-group" style="display:none">
+            <div class="mrow mrow-sub"><span class="mrow-lbl">OOS 기회 비용</span><span class="mrow-val" id="s2-c-oos">$120,000</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">보충 인력 비용</span><span class="mrow-val" id="s2-c-labor">$19,980</span></div>
+          </div>
+          <div class="mrow mrow-final"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s2-c-tco">$859,900</span></div>
         </div>
       </div>
       <div class="tbl-wrap">
