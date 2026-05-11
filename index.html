@@ -344,10 +344,7 @@ tr.total td:first-child{color:var(--accent);}
         <div class="tco-card">
           <div class="tco-card-headline">
             <span class="tco-card-label">5년 Net Value 우위</span>
-            <div class="tco-card-pct-group">
-              <span class="tco-card-pct"><span id="s3-tco-pct">60%</span></span>
-              <span class="tco-card-amt"><span id="s3-save">$59,147</span>▲</span>
-            </div>
+            <span class="tco-card-pct"><span id="s3-save">$59,147</span>▲</span>
           </div>
         </div>
       </div>
@@ -483,7 +480,7 @@ function calc(a){
   set('s3-s-slots',sd_slots+'구좌'); set('s3-s-rev',fmt(sd_rev)); set('s3-s-net',fmt(sd_net5));
   set('s3-n-ap',bQty+'대'); set('s3-n-pop',popQty+'대'); set('s3-n-capex',fmt(nd_capex));
   set('s3-n-slots',nd_slots+'구좌'); set('s3-n-rev',fmt(nd_rev)); set('s3-n-net',fmt(nd_net5));
-  set('s3-save',fmt(s3_advantage)); set('s3-tco-pct',Math.round(s3_advantage/nd_net5*100)+'%');
+  set('s3-save',fmt(s3_advantage));
   set('s3-bar-s-amt',fmt(sd_net5)); set('s3-bar-n-amt',fmt(nd_net5));
   setW('s3-bar-s',(sd_net5/mx3*100)+'%'); setW('s3-bar-n',(nd_net5/mx3*100)+'%');
   [1,2,3,4,5].forEach(y=>{set('s3-sy'+y,fmt(sdNetY[y-1]));set('s3-ny'+y,fmt(ndNetY[y-1]));set('s3-dy'+y,fmt(sdNetY[y-1]-ndNetY[y-1]));});
