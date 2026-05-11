@@ -126,12 +126,12 @@ tr.total td:first-child{color:var(--accent);}
 .bar-fill.c{background:linear-gradient(90deg,#e84040,#ff7070);}
 
 /* TCO SAVINGS CARD */
-.tco-card{background:linear-gradient(160deg,#003d99 0%,#0055dd 50%,#0070f3 100%);border-radius:16px;padding:32px 0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px;box-shadow:0 4px 20px rgba(0,98,255,.25);text-align:center;position:relative;overflow:hidden;}
+.tco-card{background:linear-gradient(160deg,#003d99 0%,#0055dd 50%,#0070f3 100%);border-radius:16px;padding:32px 0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;box-shadow:0 4px 20px rgba(0,98,255,.25);text-align:center;position:relative;overflow:hidden;}
 .tco-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.06);}
 .tco-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.04);}
-.tco-card-label{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1.35;padding:0 16px;}
-.tco-card-amt{font-size:38px;font-weight:800;color:#fff;letter-spacing:-1px;line-height:1;}
-.tco-card-amt span{font-size:38px;font-weight:800;color:#fff;}
+.tco-card-sub{font-size:12px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:1px;text-transform:uppercase;}
+.tco-card-pct{font-size:64px;font-weight:900;color:#fff;letter-spacing:-2px;line-height:1.05;}
+.tco-card-amt{font-size:17px;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:-.3px;margin-top:2px;}
 </style>
 </head>
 <body>
@@ -219,7 +219,8 @@ tr.total td:first-child{color:var(--accent);}
           </div>
         </div>
         <div class="tco-card">
-          <div class="tco-card-label">5년 TCO <span id="s1-tco-pct">80%</span> 절감</div>
+          <div class="tco-card-sub">5년 TCO 절감</div>
+          <div class="tco-card-pct"><span id="s1-tco-pct">80%</span></div>
           <div class="tco-card-amt"><span id="s1-save">$77,763</span>▼</div>
         </div>
       </div>
@@ -290,7 +291,8 @@ tr.total td:first-child{color:var(--accent);}
           </div>
         </div>
         <div class="tco-card">
-          <div class="tco-card-label">5년 TCO <span id="s2-tco-pct">73%</span> 절감</div>
+          <div class="tco-card-sub">5년 TCO 절감</div>
+          <div class="tco-card-pct"><span id="s2-tco-pct">73%</span></div>
           <div class="tco-card-amt"><span id="s2-save">$628,485</span>▼</div>
         </div>
       </div>
@@ -361,7 +363,8 @@ tr.total td:first-child{color:var(--accent);}
           </div>
         </div>
         <div class="tco-card">
-          <div class="tco-card-label">5년 TCO <span id="s3-tco-pct">69%</span> 절감</div>
+          <div class="tco-card-sub">5년 TCO 절감</div>
+          <div class="tco-card-pct"><span id="s3-tco-pct">69%</span></div>
           <div class="tco-card-amt"><span id="s3-save">$109,180</span>▼</div>
         </div>
       </div>
