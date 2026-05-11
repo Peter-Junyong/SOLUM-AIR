@@ -286,22 +286,24 @@ tr.total td:first-child{color:var(--accent);}
         <div class="mcard solum">
           <div class="mbadge"><span class="bdot"></span>SOLUM</div>
           <div class="mcard-name">Inventory Management (IM)</div>
-          <div class="mrow"><span class="mrow-lbl">Core Gondola 수</span><span class="mrow-val" id="s2-i-shelf">100개</span></div>
-          <div class="mrow"><span class="mrow-lbl">HW 단가 ($180/매대)</span><span class="mrow-val">$180</span></div>
-          <div class="mrow"><span class="mrow-lbl">CAPEX ($180 × 매대 수)</span><span class="mrow-val" id="s2-i-capex">$18,000</span></div>
-          <div class="mrow"><span class="mrow-lbl">OOS 기회비용</span><span class="mrow-val" id="s2-i-oos">$37,091/yr</span></div>
-          <div class="mrow"><span class="mrow-lbl">인력 비용</span><span class="mrow-val" id="s2-i-labor">$5,592/yr</span></div>
+          <div class="mrow"><span class="mrow-lbl">설치 매대 수</span><span class="mrow-val" id="s2-i-shelf">100개</span></div>
+          <div class="mrow"><span class="mrow-lbl">CAPEX ($180/매대)</span><span class="mrow-val" id="s2-i-capex">$18,000</span></div>
+          <div class="mrow"><span class="mrow-lbl">┗ UWB Powerrail ($100)</span><span class="mrow-val" id="s2-i-powerrail">$10,000</span></div>
+          <div class="mrow"><span class="mrow-lbl">┗ Camera ($70)</span><span class="mrow-val" id="s2-i-cam">$7,000</span></div>
+          <div class="mrow"><span class="mrow-lbl">┗ Load Cell ($10)</span><span class="mrow-val" id="s2-i-loadcell">$1,000</span></div>
+          <div class="mrow"><span class="mrow-lbl">OOS 기회 비용</span><span class="mrow-val" id="s2-i-oos">$37,091</span></div>
+          <div class="mrow"><span class="mrow-lbl">보충 인력 비용</span><span class="mrow-val" id="s2-i-labor">$5,592</span></div>
           <div class="mrow"><span class="mrow-lbl">연간 OPEX</span><span class="mrow-val" id="s2-i-opex">$42,683</span></div>
           <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s2-i-tco">$231,415</span></div>
         </div>
         <div class="mcard comp">
           <div class="mbadge"><span class="bdot"></span>COMPETITOR</div>
           <div class="mcard-name">Camera Only (108MP)</div>
-          <div class="mrow"><span class="mrow-lbl">카메라 수</span><span class="mrow-val" id="s2-c-shelf">100대</span></div>
-          <div class="mrow"><span class="mrow-lbl">HW 단가 ($1,600/대)</span><span class="mrow-val">$1,600</span></div>
-          <div class="mrow"><span class="mrow-lbl">CAPEX ($1,600 × 카메라 수)</span><span class="mrow-val" id="s2-c-capex">$160,000</span></div>
-          <div class="mrow"><span class="mrow-lbl">OOS 기회비용</span><span class="mrow-val" id="s2-c-oos">$120,000/yr</span></div>
-          <div class="mrow"><span class="mrow-lbl">인력 비용</span><span class="mrow-val" id="s2-c-labor">$19,980/yr</span></div>
+          <div class="mrow"><span class="mrow-lbl">설치 매대 수</span><span class="mrow-val" id="s2-c-shelf">100대</span></div>
+          <div class="mrow"><span class="mrow-lbl">CAPEX ($1,600/대)</span><span class="mrow-val" id="s2-c-capex">$160,000</span></div>
+          <div class="mrow"><span class="mrow-lbl">┗ Camera ($1,600)</span><span class="mrow-val" id="s2-c-cam">$160,000</span></div>
+          <div class="mrow"><span class="mrow-lbl">OOS 기회 비용</span><span class="mrow-val" id="s2-c-oos">$120,000</span></div>
+          <div class="mrow"><span class="mrow-lbl">보충 인력 비용</span><span class="mrow-val" id="s2-c-labor">$19,980</span></div>
           <div class="mrow"><span class="mrow-lbl">연간 OPEX</span><span class="mrow-val" id="s2-c-opex">$139,980</span></div>
           <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s2-c-tco">$859,900</span></div>
         </div>
@@ -393,8 +395,9 @@ tr.total td:first-child{color:var(--accent);}
 const BASE = 10000;
 const H_HW=500, H_INST=332.5, H_AP_UNIT=3832.5, H_MAINT=342;
 const B_HW=300, B_INST=332.5, B_AP_UNIT=1533, B_MAINT=342;
-const IM_HW=180, IM_OOS=37091/100, IM_LABOR=5592/100;
-const CAM_HW=1600, CAM_OOS=120000/100, CAM_LABOR=19980/100;
+const IM_HW=180, IM_POWERRAIL=100, IM_CAM=70, IM_LOADCELL=10;
+const IM_OOS_BASE=37091, IM_LABOR_BASE=5592;
+const CAM_HW=1600, CAM_OOS_BASE=120000, CAM_LABOR_BASE=19980;
 const SD_HW=500, SD_INST=332.5, SD_CMS=5000, SD_CONT=4333.33, SD_REV=78000;
 const ND_HW=300, ND_INST=332.5, ND_CMS=15000, ND_CONT=13000, ND_REV=60000;
 const SD_BASE_QTY=3, ND_BASE_QTY=29;
@@ -449,16 +452,22 @@ function calc(a){
   setW('s1-bar-h',(h_tco5/mx1*100)+'%'); setW('s1-bar-b',(b_tco5/mx1*100)+'%');
   [1,2,3,4,5].forEach(y=>{set('s1-hy'+y,fmt(hY[y-1]));set('s1-by'+y,fmt(bY[y-1]));set('s1-dy'+y,fmt(bY[y-1]-hY[y-1]));});
 
-  const im_capex=IM_HW*gondola, im_opex=(IM_OOS+IM_LABOR)*gondola, im_tco5=im_capex+im_opex*5;
-  const cam_capex=CAM_HW*gondola, cam_opex=(CAM_OOS+CAM_LABOR)*gondola, cam_tco5=cam_capex+cam_opex*5;
+  const im_oos=IM_OOS_BASE*Math.pow(r,1.0), im_labor=IM_LABOR_BASE*Math.pow(r,1.0);
+  const cam_oos=CAM_OOS_BASE*Math.pow(r,1.5), cam_labor=CAM_LABOR_BASE*Math.pow(r,1.5);
+  const im_capex=IM_HW*gondola, im_opex=im_oos+im_labor, im_tco5=im_capex+im_opex*5;
+  const cam_capex=CAM_HW*gondola, cam_opex=cam_oos+cam_labor, cam_tco5=cam_capex+cam_opex*5;
   const imY=[1,2,3,4,5].map(y=>im_capex+im_opex*y);
   const camY=[1,2,3,4,5].map(y=>cam_capex+cam_opex*y);
   const mx2=Math.max(im_tco5,cam_tco5);
 
-  set('s2-i-shelf',gondola+'개'); set('s2-i-capex',fmt(im_capex)); set('s2-i-oos',fmt(IM_OOS*gondola)+'/yr');
-  set('s2-i-labor',fmt(IM_LABOR*gondola)+'/yr'); set('s2-i-opex',fmt(im_opex)); set('s2-i-tco',fmt(im_tco5));
-  set('s2-c-shelf',gondola+'대'); set('s2-c-capex',fmt(cam_capex)); set('s2-c-oos',fmt(CAM_OOS*gondola)+'/yr');
-  set('s2-c-labor',fmt(CAM_LABOR*gondola)+'/yr'); set('s2-c-opex',fmt(cam_opex)); set('s2-c-tco',fmt(cam_tco5));
+  set('s2-i-shelf',gondola+'개');
+  set('s2-i-powerrail',fmt(IM_POWERRAIL*gondola)); set('s2-i-cam',fmt(IM_CAM*gondola)); set('s2-i-loadcell',fmt(IM_LOADCELL*gondola));
+  set('s2-i-capex',fmt(im_capex)); set('s2-i-oos',fmt(im_oos)); set('s2-i-labor',fmt(im_labor));
+  set('s2-i-opex',fmt(im_opex)); set('s2-i-tco',fmt(im_tco5));
+  set('s2-c-shelf',gondola+'대');
+  set('s2-c-cam',fmt(CAM_HW*gondola));
+  set('s2-c-capex',fmt(cam_capex)); set('s2-c-oos',fmt(cam_oos)); set('s2-c-labor',fmt(cam_labor));
+  set('s2-c-opex',fmt(cam_opex)); set('s2-c-tco',fmt(cam_tco5));
   const s2_savings=cam_tco5-im_tco5;
   set('s2-save',fmt(s2_savings)); set('s2-tco-pct',Math.round(s2_savings/cam_tco5*100)+'%');
   set('s2-bar-i-amt',fmt(im_tco5)); set('s2-bar-c-amt',fmt(cam_tco5));
