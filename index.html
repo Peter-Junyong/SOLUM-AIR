@@ -414,24 +414,48 @@ tr.total td:first-child{color:var(--accent);}
       </div>
       <div class="metrics-row">
         <div class="mcard solum">
-          <div class="mbadge"><span class="bdot"></span>SOLUM</div>
-          <div class="mcard-name">SOLUM E-Paper POP (HaLow AP)</div>
-          <div class="mrow"><span class="mrow-lbl">AP 설치 대수</span><span class="mrow-val" id="s3-s-ap">2대</span></div>
-          <div class="mrow"><span class="mrow-lbl">E-Paper POP 수량</span><span class="mrow-val" id="s3-s-pop">30대</span></div>
-          <div class="mrow"><span class="mrow-lbl">CAPEX (AP+POP)</span><span class="mrow-val" id="s3-s-capex">$22,665</span></div>
-          <div class="mrow"><span class="mrow-lbl">총 광고 구좌</span><span class="mrow-val" id="s3-s-slots">120구좌</span></div>
-          <div class="mrow"><span class="mrow-lbl">연간 광고 Revenue</span><span class="mrow-val" id="s3-s-rev">$36,000</span></div>
-          <div class="mrow"><span class="mrow-lbl">5년 Net Value</span><span class="mrow-val big" id="s3-s-net">$157,335</span></div>
+          <div class="mcard-header">
+            <div class="mbadge"><span class="bdot"></span>SOLUM</div>
+            <div class="mcard-name">SOLUM E-Paper POP (HaLow AP)</div>
+          </div>
+          <div class="mrow mrow-toggle" onclick="toggleSub('s3-s-cap-sub',this)">
+            <span class="mrow-lbl">CAPEX</span>
+            <div class="mrow-right"><span class="mrow-val" id="s3-s-capex">$22,665</span><button class="expand-btn">+</button></div>
+          </div>
+          <div id="s3-s-cap-sub" class="mrow-sub-group" style="display:none">
+            <div class="mrow mrow-sub"><span class="mrow-lbl">AP 설치 대수</span><span class="mrow-val" id="s3-s-ap">2대</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">E-Paper POP 수량</span><span class="mrow-val" id="s3-s-pop">30대</span></div>
+          </div>
+          <div class="mrow mrow-toggle" onclick="toggleSub('s3-s-rev-sub',this)">
+            <span class="mrow-lbl">연간 Revenue</span>
+            <div class="mrow-right"><span class="mrow-val" id="s3-s-rev">$36,000</span><button class="expand-btn">+</button></div>
+          </div>
+          <div id="s3-s-rev-sub" class="mrow-sub-group" style="display:none">
+            <div class="mrow mrow-sub"><span class="mrow-lbl">총 광고 구좌</span><span class="mrow-val" id="s3-s-slots">120구좌</span></div>
+          </div>
+          <div class="mrow mrow-final"><span class="mrow-lbl">5년 Net Value</span><span class="mrow-val big" id="s3-s-net">$157,335</span></div>
         </div>
         <div class="mcard comp">
-          <div class="mbadge"><span class="bdot"></span>COMPETITOR</div>
-          <div class="mcard-name">Normal POP (BLE AP)</div>
-          <div class="mrow"><span class="mrow-lbl">AP 설치 대수</span><span class="mrow-val" id="s3-n-ap">25대</span></div>
-          <div class="mrow"><span class="mrow-lbl">E-Paper POP 수량</span><span class="mrow-val" id="s3-n-pop">30대</span></div>
-          <div class="mrow"><span class="mrow-lbl">CAPEX (AP+POP)</span><span class="mrow-val" id="s3-n-capex">$36,813</span></div>
-          <div class="mrow"><span class="mrow-lbl">총 광고 구좌</span><span class="mrow-val" id="s3-n-slots">90구좌</span></div>
-          <div class="mrow"><span class="mrow-lbl">연간 광고 Revenue</span><span class="mrow-val" id="s3-n-rev">$27,000</span></div>
-          <div class="mrow"><span class="mrow-lbl">5년 Net Value</span><span class="mrow-val big" id="s3-n-net">$98,188</span></div>
+          <div class="mcard-header">
+            <div class="mbadge"><span class="bdot"></span>COMPETITOR</div>
+            <div class="mcard-name">Normal POP (BLE AP)</div>
+          </div>
+          <div class="mrow mrow-toggle" onclick="toggleSub('s3-n-cap-sub',this)">
+            <span class="mrow-lbl">CAPEX</span>
+            <div class="mrow-right"><span class="mrow-val" id="s3-n-capex">$36,813</span><button class="expand-btn">+</button></div>
+          </div>
+          <div id="s3-n-cap-sub" class="mrow-sub-group" style="display:none">
+            <div class="mrow mrow-sub"><span class="mrow-lbl">AP 설치 대수</span><span class="mrow-val" id="s3-n-ap">25대</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">E-Paper POP 수량</span><span class="mrow-val" id="s3-n-pop">30대</span></div>
+          </div>
+          <div class="mrow mrow-toggle" onclick="toggleSub('s3-n-rev-sub',this)">
+            <span class="mrow-lbl">연간 Revenue</span>
+            <div class="mrow-right"><span class="mrow-val" id="s3-n-rev">$27,000</span><button class="expand-btn">+</button></div>
+          </div>
+          <div id="s3-n-rev-sub" class="mrow-sub-group" style="display:none">
+            <div class="mrow mrow-sub"><span class="mrow-lbl">총 광고 구좌</span><span class="mrow-val" id="s3-n-slots">90구좌</span></div>
+          </div>
+          <div class="mrow mrow-final"><span class="mrow-lbl">5년 Net Value</span><span class="mrow-val big" id="s3-n-net">$98,188</span></div>
         </div>
       </div>
       <div class="tbl-wrap">
