@@ -115,22 +115,18 @@ tr.total td:first-child{color:var(--accent);}
 .bar-item{display:flex;flex-direction:column;gap:7px;}
 .bar-hdr{display:flex;justify-content:space-between;align-items:center;}
 .bar-name{font-size:14px;font-weight:600;color:var(--text);}
-.bar-meta{display:flex;align-items:center;gap:12px;}
-.bar-pct{font-size:13px;font-weight:700;padding:2px 8px;border-radius:5px;}
-.bar-pct.s{color:var(--green);background:var(--green-light);}
-.bar-pct.c{color:var(--red);background:var(--red-light);}
-.bar-val{font-size:14px;font-weight:600;color:var(--text);}
 .bar-track{height:10px;background:var(--bg);border-radius:100px;overflow:hidden;border:1px solid var(--border-light);}
 .bar-fill{height:100%;border-radius:100px;transition:width .55s cubic-bezier(.4,0,.2,1);}
 .bar-fill.s{background:linear-gradient(90deg,#00b87a,#00e699);}
 .bar-fill.c{background:linear-gradient(90deg,#e84040,#ff7070);}
 
 /* TCO SAVINGS CARD */
-.tco-card{background:linear-gradient(160deg,#162056 0%,#1B2A6B 45%,#2E0060 100%);border-radius:16px;padding:28px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;box-shadow:0 4px 20px rgba(27,42,107,.35);text-align:center;position:relative;overflow:hidden;}
+.tco-card{background:linear-gradient(160deg,#162056 0%,#1B2A6B 45%,#2E0060 100%);border-radius:16px;padding:24px 10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;box-shadow:0 4px 20px rgba(27,42,107,.35);text-align:center;position:relative;overflow:hidden;}
 .tco-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.06);}
 .tco-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.04);}
-.tco-card-headline{font-size:36px;font-weight:900;color:#fff;letter-spacing:-.5px;line-height:1.15;white-space:nowrap;}
-.tco-card-amt{font-size:18px;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:-.3px;}
+.tco-card-label{font-size:14px;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:-.1px;}
+.tco-card-pct{font-size:72px;font-weight:900;color:#fff;letter-spacing:-3px;line-height:1.05;}
+.tco-card-amt{font-size:14px;font-weight:500;color:rgba(255,255,255,.7);letter-spacing:-.2px;margin-top:2px;}
 </style>
 </head>
 <body>
@@ -144,9 +140,7 @@ tr.total td:first-child{color:var(--accent);}
 </header>
 
 <div class="main">
-  <!-- SIDEBAR -->
   <aside class="sidebar">
-
     <div>
       <div class="sec-title">Store Size</div>
       <div class="size-display">
@@ -157,7 +151,6 @@ tr.total td:first-child{color:var(--accent);}
       <input type="range" id="slider" min="500" max="25000" value="10000" step="500">
       <div class="range-labels"><span>500 m²</span><span>25,000 m²</span></div>
     </div>
-
     <div>
       <div class="sec-title">HW 설치 수량 (자동 산출)</div>
       <div class="hw-grid">
@@ -166,7 +159,6 @@ tr.total td:first-child{color:var(--accent);}
         <div class="hw-item"><div class="hw-name">Core Gondola</div><div class="hw-qty" id="q-gondola">100 <span>개</span></div></div>
       </div>
     </div>
-
     <div>
       <div class="sec-title">비교 시나리오 선택</div>
       <div class="tabs">
@@ -184,45 +176,36 @@ tr.total td:first-child{color:var(--accent);}
         </button>
       </div>
     </div>
-
   </aside>
 
-  <!-- CONTENT -->
   <main class="content">
 
-    <!-- ═══ SCENARIO 1 ═══ -->
+    <!-- SCENARIO 1 -->
     <div class="panel active" id="panel-0">
       <div>
         <div class="panel-title"><em>HaLow GW</em> vs BLE GW</div>
         <div class="panel-desc">동일한 ESL 커버리지 목표 기준, HaLow GW 기반 인프라와 BLE GW 기반 인프라의 5년 TCO를 비교합니다.<br>HaLow GW 2대 이상(중대형 매장)은 GW만으로 완전 커버되어 데이터 전송용 AP 비용이 $0입니다.</div>
       </div>
-
       <div class="cmp-wrapper">
         <div class="cmp-block">
           <div class="cmp-title">5년 TCO 비교</div>
           <div class="bar-row">
             <div class="bar-item">
-              <div class="bar-hdr">
-                <span class="bar-name">HaLow GW</span>
-                <div class="bar-meta"><span class="bar-pct s" id="s1-pct-h">20%</span><span class="bar-val" id="s1-bval-h">$19,125</span></div>
-              </div>
+              <div class="bar-hdr"><span class="bar-name">HaLow GW</span></div>
               <div class="bar-track"><div class="bar-fill s" id="s1-bar-h" style="width:20%"></div></div>
             </div>
             <div class="bar-item">
-              <div class="bar-hdr">
-                <span class="bar-name">BLE GW</span>
-                <div class="bar-meta"><span class="bar-pct c" id="s1-pct-b">100%</span><span class="bar-val" id="s1-bval-b">$96,888</span></div>
-              </div>
+              <div class="bar-hdr"><span class="bar-name">BLE GW</span></div>
               <div class="bar-track"><div class="bar-fill c" id="s1-bar-b" style="width:100%"></div></div>
             </div>
           </div>
         </div>
         <div class="tco-card">
-          <div class="tco-card-headline">5년 TCO <span id="s1-tco-pct">80%</span> 절감</div>
+          <div class="tco-card-label">5년 TCO 절감</div>
+          <div class="tco-card-pct"><span id="s1-tco-pct">80%</span></div>
           <div class="tco-card-amt"><span id="s1-save">$77,763</span>▼</div>
         </div>
       </div>
-
       <div class="metrics-row">
         <div class="mcard solum">
           <div class="mbadge"><span class="bdot"></span>SOLUM</div>
@@ -247,7 +230,6 @@ tr.total td:first-child{color:var(--accent);}
           <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s1-b-tco">$96,888</span></div>
         </div>
       </div>
-
       <div class="tbl-wrap">
         <div class="tbl-head">연도별 TCO 누적 추이</div>
         <table>
@@ -261,39 +243,32 @@ tr.total td:first-child{color:var(--accent);}
       </div>
     </div>
 
-    <!-- ═══ SCENARIO 2 ═══ -->
+    <!-- SCENARIO 2 -->
     <div class="panel" id="panel-1">
       <div>
         <div class="panel-title"><em>Inventory Management</em> vs Camera Only (108MP)</div>
         <div class="panel-desc">UWB Powerrail + Newton EYE + Load Cell 통합 솔루션과 108MP 선반 카메라 단독 운영의 5년 TCO 및 기회비용을 비교합니다.</div>
       </div>
-
       <div class="cmp-wrapper">
         <div class="cmp-block">
           <div class="cmp-title">5년 TCO 비교</div>
           <div class="bar-row">
             <div class="bar-item">
-              <div class="bar-hdr">
-                <span class="bar-name">IM Solution</span>
-                <div class="bar-meta"><span class="bar-pct s" id="s2-pct-i">27%</span><span class="bar-val" id="s2-bval-i">$231,415</span></div>
-              </div>
+              <div class="bar-hdr"><span class="bar-name">IM Solution</span></div>
               <div class="bar-track"><div class="bar-fill s" id="s2-bar-i" style="width:27%"></div></div>
             </div>
             <div class="bar-item">
-              <div class="bar-hdr">
-                <span class="bar-name">Camera Only</span>
-                <div class="bar-meta"><span class="bar-pct c" id="s2-pct-c">100%</span><span class="bar-val" id="s2-bval-c">$859,900</span></div>
-              </div>
+              <div class="bar-hdr"><span class="bar-name">Camera Only</span></div>
               <div class="bar-track"><div class="bar-fill c" id="s2-bar-c" style="width:100%"></div></div>
             </div>
           </div>
         </div>
         <div class="tco-card">
-          <div class="tco-card-headline">5년 TCO <span id="s2-tco-pct">73%</span> 절감</div>
+          <div class="tco-card-label">5년 TCO 절감</div>
+          <div class="tco-card-pct"><span id="s2-tco-pct">73%</span></div>
           <div class="tco-card-amt"><span id="s2-save">$628,485</span>▼</div>
         </div>
       </div>
-
       <div class="metrics-row">
         <div class="mcard solum">
           <div class="mbadge"><span class="bdot"></span>SOLUM</div>
@@ -318,7 +293,6 @@ tr.total td:first-child{color:var(--accent);}
           <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s2-c-tco">$859,900</span></div>
         </div>
       </div>
-
       <div class="tbl-wrap">
         <div class="tbl-head">연도별 TCO 누적 추이</div>
         <table>
@@ -332,39 +306,32 @@ tr.total td:first-child{color:var(--accent);}
       </div>
     </div>
 
-    <!-- ═══ SCENARIO 3 ═══ -->
+    <!-- SCENARIO 3 -->
     <div class="panel" id="panel-2">
       <div>
         <div class="panel-title"><em>SOLUM E-Paper POP</em> vs Normal POP</div>
         <div class="panel-desc">단일 CMS 기반 SOLUM E-Paper POP과 3개 CMS 분리 운영 방식의 비용 및 광고 수익 창출 효과를 비교합니다.</div>
       </div>
-
       <div class="cmp-wrapper">
         <div class="cmp-block">
           <div class="cmp-title">5년 TCO 비교</div>
           <div class="bar-row">
             <div class="bar-item">
-              <div class="bar-hdr">
-                <span class="bar-name">SOLUM E-Paper POP</span>
-                <div class="bar-meta"><span class="bar-pct s" id="s3-pct-s">31%</span><span class="bar-val" id="s3-bval-s">$49,163</span></div>
-              </div>
+              <div class="bar-hdr"><span class="bar-name">SOLUM E-Paper POP</span></div>
               <div class="bar-track"><div class="bar-fill s" id="s3-bar-s" style="width:31%"></div></div>
             </div>
             <div class="bar-item">
-              <div class="bar-hdr">
-                <span class="bar-name">Normal POP</span>
-                <div class="bar-meta"><span class="bar-pct c" id="s3-pct-n">100%</span><span class="bar-val" id="s3-bval-n">$158,343</span></div>
-              </div>
+              <div class="bar-hdr"><span class="bar-name">Normal POP</span></div>
               <div class="bar-track"><div class="bar-fill c" id="s3-bar-n" style="width:100%"></div></div>
             </div>
           </div>
         </div>
         <div class="tco-card">
-          <div class="tco-card-headline">5년 TCO <span id="s3-tco-pct">69%</span> 절감</div>
+          <div class="tco-card-label">5년 TCO 절감</div>
+          <div class="tco-card-pct"><span id="s3-tco-pct">69%</span></div>
           <div class="tco-card-amt"><span id="s3-save">$109,180</span>▼</div>
         </div>
       </div>
-
       <div class="metrics-row">
         <div class="mcard solum">
           <div class="mbadge"><span class="bdot"></span>SOLUM</div>
@@ -389,7 +356,6 @@ tr.total td:first-child{color:var(--accent);}
           <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s3-n-tco">$158,343</span></div>
         </div>
       </div>
-
       <div class="tbl-wrap">
         <div class="tbl-head">연도별 TCO 누적 추이</div>
         <table>
@@ -408,211 +374,106 @@ tr.total td:first-child{color:var(--accent);}
 
 <script>
 const BASE = 10000;
-const H_HW   = 500;
-const H_INST = 332.5;
-const H_AP_UNIT = 3832.5;
-const H_MAINT= 342;
+const H_HW=500, H_INST=332.5, H_AP_UNIT=3832.5, H_MAINT=342;
+const B_HW=300, B_INST=332.5, B_AP_UNIT=1533, B_MAINT=342;
+const IM_HW=180, IM_OOS=37091/100, IM_LABOR=5592/100;
+const CAM_HW=1600, CAM_OOS=120000/100, CAM_LABOR=19980/100;
+const SD_HW=500, SD_INST=332.5, SD_CMS=5000, SD_CONT=4333.33, SD_REV=78000;
+const ND_HW=300, ND_INST=332.5, ND_CMS=15000, ND_CONT=13000, ND_REV=60000;
+const SD_BASE_QTY=3, ND_BASE_QTY=29;
 
-const B_HW   = 300;
-const B_INST = 332.5;
-const B_AP_UNIT = 1533;
-const B_MAINT= 342;
-
-const IM_HW    = 180;
-const IM_OOS   = 37091 / 100;
-const IM_LABOR = 5592  / 100;
-const CAM_HW   = 1600;
-const CAM_OOS  = 120000 / 100;
-const CAM_LABOR= 19980  / 100;
-
-const SD_HW   = 500;   const SD_INST = 332.5;
-const SD_CMS  = 5000;  const SD_CONT = 4333.33; const SD_REV = 78000;
-const ND_HW   = 300;   const ND_INST = 332.5;
-const ND_CMS  = 15000; const ND_CONT = 13000;   const ND_REV = 60000;
-const SD_BASE_QTY = 3; const ND_BASE_QTY = 29;
-
-let area = 10000;
-
-function fmt(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
-function fmtN(n){ return Math.round(n).toLocaleString('en-US'); }
-function pct(a,max){ return Math.round(a/max*100)+'%'; }
-function set(id,v){ const el=document.getElementById(id); if(el) el.textContent=v; }
-function setW(id,w){ const el=document.getElementById(id); if(el) el.style.width=w; }
+let area=10000;
+function fmt(n){return '$'+Math.round(n).toLocaleString('en-US');}
+function pct(a,max){return Math.round(a/max*100)+'%';}
+function set(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
+function setW(id,w){const el=document.getElementById(id);if(el)el.style.width=w;}
 
 function storeLabel(a){
-  if(a <= 1500)  return 'Small Format';
-  if(a <= 5000)  return 'Supermarket';
-  if(a <= 10000) return 'Hypermarket';
-  if(a <= 16000) return 'Large Hypermarket';
+  if(a<=1500)return 'Small Format';
+  if(a<=5000)return 'Supermarket';
+  if(a<=10000)return 'Hypermarket';
+  if(a<=16000)return 'Large Hypermarket';
   return 'Mega Hypermarket';
 }
 
 function calc(a){
-  const r = a / BASE;
+  const r=a/BASE;
+  const hQty=Math.max(1,Math.round(3*r));
+  const bQty=Math.max(1,Math.round(2.5*a/1000));
+  const gondola=Math.max(1,Math.round(100*r));
+  const sdQty=Math.max(1,Math.round(SD_BASE_QTY*r));
+  const ndQty=Math.max(1,Math.round(ND_BASE_QTY*r));
 
-  const hQty = Math.max(1, Math.round(3 * r));
-  const bQty = Math.max(1, Math.round(2.5 * a / 1000));
-  const gondola = Math.max(1, Math.round(100 * r));
-  const sdQty = Math.max(1, Math.round(SD_BASE_QTY * r));
-  const ndQty = Math.max(1, Math.round(ND_BASE_QTY * r));
+  document.getElementById('q-halow').innerHTML=hQty+' <span>대</span>';
+  document.getElementById('q-ble').innerHTML=bQty+' <span>대</span>';
+  document.getElementById('q-gondola').innerHTML=gondola+' <span>개</span>';
 
-  document.getElementById('q-halow').innerHTML   = hQty + ' <span>대</span>';
-  document.getElementById('q-ble').innerHTML     = bQty + ' <span>대</span>';
-  document.getElementById('q-gondola').innerHTML = gondola + ' <span>개</span>';
+  const hAP=hQty>=3?H_AP_UNIT*hQty:0;
+  const h_capex=(H_HW+H_INST)*hQty+hAP;
+  const h_opex=H_MAINT*hQty;
+  const h_tco5=h_capex+h_opex*5;
+  const bAP=B_AP_UNIT*bQty;
+  const b_capex=(B_HW+B_INST)*bQty+bAP;
+  const b_opex=B_MAINT*bQty;
+  const b_tco5=b_capex+b_opex*5;
+  const hY=[1,2,3,4,5].map(y=>h_capex+h_opex*y);
+  const bY=[1,2,3,4,5].map(y=>b_capex+b_opex*y);
+  const mx1=Math.max(h_tco5,b_tco5);
 
-  const hAP = hQty >= 3 ? H_AP_UNIT * hQty : 0;
-  const h_capex = (H_HW + H_INST) * hQty + hAP;
-  const h_opex  = H_MAINT * hQty;
-  const h_tco5  = h_capex + h_opex * 5;
+  set('s1-h-qty',hQty+'대'); set('s1-h-hw',fmt(H_HW*hQty)); set('s1-h-inst',fmt(H_INST*hQty));
+  set('s1-h-ap',fmt(hAP)); set('s1-h-capex',fmt(h_capex)); set('s1-h-opex',fmt(h_opex)); set('s1-h-tco',fmt(h_tco5));
+  set('s1-b-qty',bQty+'대'); set('s1-b-hw',fmt(B_HW*bQty)); set('s1-b-inst',fmt(B_INST*bQty));
+  set('s1-b-ap',fmt(bAP)); set('s1-b-capex',fmt(b_capex)); set('s1-b-opex',fmt(b_opex)); set('s1-b-tco',fmt(b_tco5));
+  const s1_savings=b_tco5-h_tco5;
+  set('s1-save',fmt(s1_savings)); set('s1-tco-pct',Math.round(s1_savings/b_tco5*100)+'%');
+  setW('s1-bar-h',(h_tco5/mx1*100)+'%'); setW('s1-bar-b',(b_tco5/mx1*100)+'%');
+  [1,2,3,4,5].forEach(y=>{set('s1-hy'+y,fmt(hY[y-1]));set('s1-by'+y,fmt(bY[y-1]));set('s1-dy'+y,fmt(bY[y-1]-hY[y-1]));});
 
-  const bAP = B_AP_UNIT * bQty;
-  const b_capex = (B_HW + B_INST) * bQty + bAP;
-  const b_opex  = B_MAINT * bQty;
-  const b_tco5  = b_capex + b_opex * 5;
+  const im_capex=IM_HW*gondola, im_opex=(IM_OOS+IM_LABOR)*gondola, im_tco5=im_capex+im_opex*5;
+  const cam_capex=CAM_HW*gondola, cam_opex=(CAM_OOS+CAM_LABOR)*gondola, cam_tco5=cam_capex+cam_opex*5;
+  const imY=[1,2,3,4,5].map(y=>im_capex+im_opex*y);
+  const camY=[1,2,3,4,5].map(y=>cam_capex+cam_opex*y);
+  const mx2=Math.max(im_tco5,cam_tco5);
 
-  const hY = [1,2,3,4,5].map(y => h_capex + h_opex * y);
-  const bY = [1,2,3,4,5].map(y => b_capex + b_opex * y);
-  const mx1 = Math.max(h_tco5, b_tco5);
+  set('s2-i-shelf',gondola+'개'); set('s2-i-capex',fmt(im_capex)); set('s2-i-oos',fmt(IM_OOS*gondola)+'/yr');
+  set('s2-i-labor',fmt(IM_LABOR*gondola)+'/yr'); set('s2-i-opex',fmt(im_opex)); set('s2-i-tco',fmt(im_tco5));
+  set('s2-c-shelf',gondola+'대'); set('s2-c-capex',fmt(cam_capex)); set('s2-c-oos',fmt(CAM_OOS*gondola)+'/yr');
+  set('s2-c-labor',fmt(CAM_LABOR*gondola)+'/yr'); set('s2-c-opex',fmt(cam_opex)); set('s2-c-tco',fmt(cam_tco5));
+  const s2_savings=cam_tco5-im_tco5;
+  set('s2-save',fmt(s2_savings)); set('s2-tco-pct',Math.round(s2_savings/cam_tco5*100)+'%');
+  setW('s2-bar-i',(im_tco5/mx2*100)+'%'); setW('s2-bar-c',(cam_tco5/mx2*100)+'%');
+  [1,2,3,4,5].forEach(y=>{set('s2-iy'+y,fmt(imY[y-1]));set('s2-cy'+y,fmt(camY[y-1]));set('s2-dy'+y,fmt(camY[y-1]-imY[y-1]));});
 
-  set('s1-h-qty',   hQty + '대');
-  set('s1-h-hw',    fmt(H_HW * hQty));
-  set('s1-h-inst',  fmt(H_INST * hQty));
-  set('s1-h-ap',    fmt(hAP));
-  set('s1-h-capex', fmt(h_capex));
-  set('s1-h-opex',  fmt(h_opex));
-  set('s1-h-tco',   fmt(h_tco5));
+  const sd_capex=(SD_HW+SD_INST)*sdQty;
+  const sd_cms=SD_CMS*(sdQty/SD_BASE_QTY), sd_cont=SD_CONT*(sdQty/SD_BASE_QTY);
+  const sd_opex=sd_cms+sd_cont, sd_rev=SD_REV*(sdQty/SD_BASE_QTY), sd_tco5=sd_capex+sd_opex*5;
+  const nd_capex=(ND_HW+ND_INST)*ndQty;
+  const nd_cms=ND_CMS*(ndQty/ND_BASE_QTY), nd_cont=ND_CONT*(ndQty/ND_BASE_QTY);
+  const nd_opex=nd_cms+nd_cont, nd_rev=ND_REV*(ndQty/ND_BASE_QTY), nd_tco5=nd_capex+nd_opex*5;
+  const sdY=[1,2,3,4,5].map(y=>sd_capex+sd_opex*y);
+  const ndY=[1,2,3,4,5].map(y=>nd_capex+nd_opex*y);
+  const mx3=Math.max(sd_tco5,nd_tco5);
 
-  set('s1-b-qty',   bQty + '대');
-  set('s1-b-hw',    fmt(B_HW * bQty));
-  set('s1-b-inst',  fmt(B_INST * bQty));
-  set('s1-b-ap',    fmt(bAP));
-  set('s1-b-capex', fmt(b_capex));
-  set('s1-b-opex',  fmt(b_opex));
-  set('s1-b-tco',   fmt(b_tco5));
-
-  const s1_savings = b_tco5 - h_tco5;
-  const s1_pct_num = Math.round(s1_savings / b_tco5 * 100);
-  set('s1-save',      fmt(s1_savings));
-  set('s1-tco-pct',   s1_pct_num + '%');
-  set('s1-bval-h',  fmt(h_tco5));
-  set('s1-bval-b',  fmt(b_tco5));
-  set('s1-pct-h',   pct(h_tco5, mx1));
-  set('s1-pct-b',   pct(b_tco5, mx1));
-  setW('s1-bar-h',  (h_tco5/mx1*100)+'%');
-  setW('s1-bar-b',  (b_tco5/mx1*100)+'%');
-  [1,2,3,4,5].forEach(y => {
-    set('s1-hy'+y, fmt(hY[y-1]));
-    set('s1-by'+y, fmt(bY[y-1]));
-    set('s1-dy'+y, fmt(bY[y-1]-hY[y-1]));
-  });
-
-  const im_capex = IM_HW * gondola;
-  const im_oos   = IM_OOS * gondola;
-  const im_labor = IM_LABOR * gondola;
-  const im_opex  = im_oos + im_labor;
-  const im_tco5  = im_capex + im_opex * 5;
-
-  const cam_capex = CAM_HW * gondola;
-  const cam_oos   = CAM_OOS * gondola;
-  const cam_labor = CAM_LABOR * gondola;
-  const cam_opex  = cam_oos + cam_labor;
-  const cam_tco5  = cam_capex + cam_opex * 5;
-
-  const imY  = [1,2,3,4,5].map(y => im_capex + im_opex * y);
-  const camY = [1,2,3,4,5].map(y => cam_capex + cam_opex * y);
-  const mx2  = Math.max(im_tco5, cam_tco5);
-
-  set('s2-i-shelf', gondola + '개');
-  set('s2-i-capex', fmt(im_capex));
-  set('s2-i-oos',   fmt(im_oos) + '/yr');
-  set('s2-i-labor', fmt(im_labor) + '/yr');
-  set('s2-i-opex',  fmt(im_opex));
-  set('s2-i-tco',   fmt(im_tco5));
-
-  set('s2-c-shelf', gondola + '대');
-  set('s2-c-capex', fmt(cam_capex));
-  set('s2-c-oos',   fmt(cam_oos) + '/yr');
-  set('s2-c-labor', fmt(cam_labor) + '/yr');
-  set('s2-c-opex',  fmt(cam_opex));
-  set('s2-c-tco',   fmt(cam_tco5));
-
-  const s2_savings = cam_tco5 - im_tco5;
-  const s2_pct_num = Math.round(s2_savings / cam_tco5 * 100);
-  set('s2-save',      fmt(s2_savings));
-  set('s2-tco-pct',   s2_pct_num + '%');
-  set('s2-bval-i',  fmt(im_tco5));
-  set('s2-bval-c',  fmt(cam_tco5));
-  set('s2-pct-i',   pct(im_tco5, mx2));
-  set('s2-pct-c',   pct(cam_tco5, mx2));
-  setW('s2-bar-i',  (im_tco5/mx2*100)+'%');
-  setW('s2-bar-c',  (cam_tco5/mx2*100)+'%');
-  [1,2,3,4,5].forEach(y => {
-    set('s2-iy'+y, fmt(imY[y-1]));
-    set('s2-cy'+y, fmt(camY[y-1]));
-    set('s2-dy'+y, fmt(camY[y-1]-imY[y-1]));
-  });
-
-  const sd_capex = (SD_HW + SD_INST) * sdQty;
-  const sd_cms   = SD_CMS * (sdQty / SD_BASE_QTY);
-  const sd_cont  = SD_CONT * (sdQty / SD_BASE_QTY);
-  const sd_opex  = sd_cms + sd_cont;
-  const sd_rev   = SD_REV * (sdQty / SD_BASE_QTY);
-  const sd_tco5  = sd_capex + sd_opex * 5;
-
-  const nd_capex = (ND_HW + ND_INST) * ndQty;
-  const nd_cms   = ND_CMS * (ndQty / ND_BASE_QTY);
-  const nd_cont  = ND_CONT * (ndQty / ND_BASE_QTY);
-  const nd_opex  = nd_cms + nd_cont;
-  const nd_rev   = ND_REV * (ndQty / ND_BASE_QTY);
-  const nd_tco5  = nd_capex + nd_opex * 5;
-
-  const sdY = [1,2,3,4,5].map(y => sd_capex + sd_opex * y);
-  const ndY = [1,2,3,4,5].map(y => nd_capex + nd_opex * y);
-  const mx3 = Math.max(sd_tco5, nd_tco5);
-
-  set('s3-s-qty',     sdQty + '대');
-  set('s3-s-capex',   fmt(sd_capex));
-  set('s3-s-cms',     fmt(sd_cms) + '/yr');
-  set('s3-s-content', fmt(sd_cont) + '/yr');
-  set('s3-s-opex',    fmt(sd_opex));
-  set('s3-s-rev',     fmt(sd_rev));
-  set('s3-s-tco',     fmt(sd_tco5));
-
-  set('s3-n-qty',     ndQty + '대');
-  set('s3-n-capex',   fmt(nd_capex));
-  set('s3-n-cms',     fmt(nd_cms) + '/yr');
-  set('s3-n-content', fmt(nd_cont) + '/yr');
-  set('s3-n-opex',    fmt(nd_opex));
-  set('s3-n-rev',     fmt(nd_rev));
-  set('s3-n-tco',     fmt(nd_tco5));
-
-  const s3_savings = nd_tco5 - sd_tco5;
-  const s3_pct_num = Math.round(s3_savings / nd_tco5 * 100);
-  set('s3-save',      fmt(s3_savings));
-  set('s3-tco-pct',   s3_pct_num + '%');
-  set('s3-bval-s',  fmt(sd_tco5));
-  set('s3-bval-n',  fmt(nd_tco5));
-  set('s3-pct-s',   pct(sd_tco5, mx3));
-  set('s3-pct-n',   pct(nd_tco5, mx3));
-  setW('s3-bar-s',  (sd_tco5/mx3*100)+'%');
-  setW('s3-bar-n',  (nd_tco5/mx3*100)+'%');
-  [1,2,3,4,5].forEach(y => {
-    set('s3-sy'+y, fmt(sdY[y-1]));
-    set('s3-ny'+y, fmt(ndY[y-1]));
-    set('s3-dy'+y, fmt(ndY[y-1]-sdY[y-1]));
-  });
+  set('s3-s-qty',sdQty+'대'); set('s3-s-capex',fmt(sd_capex)); set('s3-s-cms',fmt(sd_cms)+'/yr');
+  set('s3-s-content',fmt(sd_cont)+'/yr'); set('s3-s-opex',fmt(sd_opex)); set('s3-s-rev',fmt(sd_rev)); set('s3-s-tco',fmt(sd_tco5));
+  set('s3-n-qty',ndQty+'대'); set('s3-n-capex',fmt(nd_capex)); set('s3-n-cms',fmt(nd_cms)+'/yr');
+  set('s3-n-content',fmt(nd_cont)+'/yr'); set('s3-n-opex',fmt(nd_opex)); set('s3-n-rev',fmt(nd_rev)); set('s3-n-tco',fmt(nd_tco5));
+  const s3_savings=nd_tco5-sd_tco5;
+  set('s3-save',fmt(s3_savings)); set('s3-tco-pct',Math.round(s3_savings/nd_tco5*100)+'%');
+  setW('s3-bar-s',(sd_tco5/mx3*100)+'%'); setW('s3-bar-n',(nd_tco5/mx3*100)+'%');
+  [1,2,3,4,5].forEach(y=>{set('s3-sy'+y,fmt(sdY[y-1]));set('s3-ny'+y,fmt(ndY[y-1]));set('s3-dy'+y,fmt(ndY[y-1]-sdY[y-1]));});
 }
 
-document.getElementById('slider').addEventListener('input', function(){
-  area = parseInt(this.value);
-  document.getElementById('sizeVal').textContent = area.toLocaleString('en-US');
-  document.getElementById('sizeTag').textContent = storeLabel(area);
+document.getElementById('slider').addEventListener('input',function(){
+  area=parseInt(this.value);
+  document.getElementById('sizeVal').textContent=area.toLocaleString('en-US');
+  document.getElementById('sizeTag').textContent=storeLabel(area);
   calc(area);
 });
 
 function switchTab(idx){
-  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
-  document.querySelectorAll('.panel').forEach((p,i) => p.classList.toggle('active', i===idx));
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
+  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
   calc(area);
 }
 
