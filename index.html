@@ -108,7 +108,7 @@ tr.total td{background:rgba(0,98,255,.04);font-weight:700;color:var(--accent);}
 tr.total td:first-child{color:var(--accent);}
 
 /* CMP WRAPPER - bar left + savings right */
-.cmp-wrapper{display:grid;grid-template-columns:2fr 1fr;gap:16px;align-items:stretch;}
+.cmp-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;}
 .cmp-block{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:24px 28px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
 .cmp-title{font-size:13px;font-weight:700;color:var(--label);letter-spacing:.5px;text-transform:uppercase;margin-bottom:22px;}
 .bar-row{display:flex;flex-direction:column;gap:18px;}
@@ -126,15 +126,12 @@ tr.total td:first-child{color:var(--accent);}
 .bar-fill.c{background:linear-gradient(90deg,#e84040,#ff7070);}
 
 /* TCO SAVINGS CARD */
-.tco-card{background:linear-gradient(160deg,#003d99 0%,#0055dd 50%,#0070f3 100%);border-radius:16px;padding:24px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;box-shadow:0 4px 20px rgba(0,98,255,.25);text-align:center;position:relative;overflow:hidden;}
+.tco-card{background:linear-gradient(160deg,#003d99 0%,#0055dd 50%,#0070f3 100%);border-radius:16px;padding:32px 0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px;box-shadow:0 4px 20px rgba(0,98,255,.25);text-align:center;position:relative;overflow:hidden;}
 .tco-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.06);}
 .tco-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.04);}
-.tco-card-label{font-size:12px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.65);text-transform:uppercase;}
-.tco-card-pct{font-size:48px;font-weight:800;color:#fff;line-height:1;letter-spacing:-2px;}
-.tco-card-sub{font-size:13px;font-weight:600;color:rgba(255,255,255,.7);margin-top:2px;}
-.tco-card-amt{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:8px 18px;margin-top:4px;}
-.tco-card-amt span{font-size:15px;font-weight:700;color:#fff;}
-.tco-card-amt small{font-size:12px;color:rgba(255,255,255,.6);margin-left:4px;}
+.tco-card-label{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1.35;padding:0 16px;}
+.tco-card-amt{font-size:38px;font-weight:800;color:#fff;letter-spacing:-1px;line-height:1;}
+.tco-card-amt span{font-size:38px;font-weight:800;color:#fff;}
 </style>
 </head>
 <body>
@@ -201,6 +198,32 @@ tr.total td:first-child{color:var(--accent);}
         <div class="panel-desc">동일한 ESL 커버리지 목표 기준, Wi-Fi HaLow GW 기반 인프라와 BLE AP 기반 인프라의 5년 TCO를 비교합니다.<br>HaLow GW 2대 이상(중대형 매장)은 GW만으로 완전 커버되어 데이터 전송용 AP 비용이 $0입니다.</div>
       </div>
 
+      <div class="cmp-wrapper">
+        <div class="cmp-block">
+          <div class="cmp-title">5년 TCO 비교</div>
+          <div class="bar-row">
+            <div class="bar-item">
+              <div class="bar-hdr">
+                <span class="bar-name">Wi-Fi HaLow</span>
+                <div class="bar-meta"><span class="bar-pct s" id="s1-pct-h">20%</span><span class="bar-val" id="s1-bval-h">$19,125</span></div>
+              </div>
+              <div class="bar-track"><div class="bar-fill s" id="s1-bar-h" style="width:20%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-hdr">
+                <span class="bar-name">BLE AP</span>
+                <div class="bar-meta"><span class="bar-pct c" id="s1-pct-b">100%</span><span class="bar-val" id="s1-bval-b">$96,888</span></div>
+              </div>
+              <div class="bar-track"><div class="bar-fill c" id="s1-bar-b" style="width:100%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="tco-card">
+          <div class="tco-card-label">5년 TCO <span id="s1-tco-pct">80%</span> 절감</div>
+          <div class="tco-card-amt"><span id="s1-save">$77,763</span>▼</div>
+        </div>
+      </div>
+
       <div class="metrics-row">
         <div class="mcard solum">
           <div class="mbadge"><span class="bdot"></span>SOLUM</div>
@@ -226,34 +249,6 @@ tr.total td:first-child{color:var(--accent);}
         </div>
       </div>
 
-      <div class="cmp-wrapper">
-        <div class="cmp-block">
-          <div class="cmp-title">5년 TCO 비교</div>
-          <div class="bar-row">
-            <div class="bar-item">
-              <div class="bar-hdr">
-                <span class="bar-name">Wi-Fi HaLow</span>
-                <div class="bar-meta"><span class="bar-pct s" id="s1-pct-h">20%</span><span class="bar-val" id="s1-bval-h">$19,125</span></div>
-              </div>
-              <div class="bar-track"><div class="bar-fill s" id="s1-bar-h" style="width:20%"></div></div>
-            </div>
-            <div class="bar-item">
-              <div class="bar-hdr">
-                <span class="bar-name">BLE AP</span>
-                <div class="bar-meta"><span class="bar-pct c" id="s1-pct-b">100%</span><span class="bar-val" id="s1-bval-b">$96,888</span></div>
-              </div>
-              <div class="bar-track"><div class="bar-fill c" id="s1-bar-b" style="width:100%"></div></div>
-            </div>
-          </div>
-        </div>
-        <div class="tco-card">
-          <div class="tco-card-label">5년 TCO 절감</div>
-          <div class="tco-card-pct" id="s1-tco-pct">80%</div>
-          <div class="tco-card-sub">TCO -<span id="s1-tco-pct2">80</span>% 절감</div>
-          <div class="tco-card-amt"><span id="s1-save">$77,763</span><small>절감</small></div>
-        </div>
-      </div>
-
       <div class="tbl-wrap">
         <div class="tbl-head">연도별 TCO 누적 추이</div>
         <table>
@@ -272,6 +267,32 @@ tr.total td:first-child{color:var(--accent);}
       <div>
         <div class="panel-title"><em>Inventory Management</em> vs Camera Only (108MP)</div>
         <div class="panel-desc">UWB Powerrail + Newton EYE + Load Cell 통합 솔루션과 108MP 선반 카메라 단독 운영의 5년 TCO 및 기회비용을 비교합니다.</div>
+      </div>
+
+      <div class="cmp-wrapper">
+        <div class="cmp-block">
+          <div class="cmp-title">5년 TCO 비교</div>
+          <div class="bar-row">
+            <div class="bar-item">
+              <div class="bar-hdr">
+                <span class="bar-name">IM Solution</span>
+                <div class="bar-meta"><span class="bar-pct s" id="s2-pct-i">27%</span><span class="bar-val" id="s2-bval-i">$231,415</span></div>
+              </div>
+              <div class="bar-track"><div class="bar-fill s" id="s2-bar-i" style="width:27%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-hdr">
+                <span class="bar-name">Camera Only</span>
+                <div class="bar-meta"><span class="bar-pct c" id="s2-pct-c">100%</span><span class="bar-val" id="s2-bval-c">$859,900</span></div>
+              </div>
+              <div class="bar-track"><div class="bar-fill c" id="s2-bar-c" style="width:100%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="tco-card">
+          <div class="tco-card-label">5년 TCO <span id="s2-tco-pct">73%</span> 절감</div>
+          <div class="tco-card-amt"><span id="s2-save">$628,485</span>▼</div>
+        </div>
       </div>
 
       <div class="metrics-row">
@@ -299,34 +320,6 @@ tr.total td:first-child{color:var(--accent);}
         </div>
       </div>
 
-      <div class="cmp-wrapper">
-        <div class="cmp-block">
-          <div class="cmp-title">5년 TCO 비교</div>
-          <div class="bar-row">
-            <div class="bar-item">
-              <div class="bar-hdr">
-                <span class="bar-name">IM Solution</span>
-                <div class="bar-meta"><span class="bar-pct s" id="s2-pct-i">27%</span><span class="bar-val" id="s2-bval-i">$231,415</span></div>
-              </div>
-              <div class="bar-track"><div class="bar-fill s" id="s2-bar-i" style="width:27%"></div></div>
-            </div>
-            <div class="bar-item">
-              <div class="bar-hdr">
-                <span class="bar-name">Camera Only</span>
-                <div class="bar-meta"><span class="bar-pct c" id="s2-pct-c">100%</span><span class="bar-val" id="s2-bval-c">$859,900</span></div>
-              </div>
-              <div class="bar-track"><div class="bar-fill c" id="s2-bar-c" style="width:100%"></div></div>
-            </div>
-          </div>
-        </div>
-        <div class="tco-card">
-          <div class="tco-card-label">5년 TCO 절감</div>
-          <div class="tco-card-pct" id="s2-tco-pct">73%</div>
-          <div class="tco-card-sub">TCO -<span id="s2-tco-pct2">73</span>% 절감</div>
-          <div class="tco-card-amt"><span id="s2-save">$628,485</span><small>절감</small></div>
-        </div>
-      </div>
-
       <div class="tbl-wrap">
         <div class="tbl-head">연도별 TCO 누적 추이</div>
         <table>
@@ -345,6 +338,32 @@ tr.total td:first-child{color:var(--accent);}
       <div>
         <div class="panel-title"><em>SOLUM E-Paper POP</em> vs Normal POP</div>
         <div class="panel-desc">단일 CMS 기반 SOLUM E-Paper POP과 3개 CMS 분리 운영 방식의 비용 및 광고 수익 창출 효과를 비교합니다.</div>
+      </div>
+
+      <div class="cmp-wrapper">
+        <div class="cmp-block">
+          <div class="cmp-title">5년 TCO 비교</div>
+          <div class="bar-row">
+            <div class="bar-item">
+              <div class="bar-hdr">
+                <span class="bar-name">SOLUM E-Paper POP</span>
+                <div class="bar-meta"><span class="bar-pct s" id="s3-pct-s">31%</span><span class="bar-val" id="s3-bval-s">$49,163</span></div>
+              </div>
+              <div class="bar-track"><div class="bar-fill s" id="s3-bar-s" style="width:31%"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-hdr">
+                <span class="bar-name">Normal POP</span>
+                <div class="bar-meta"><span class="bar-pct c" id="s3-pct-n">100%</span><span class="bar-val" id="s3-bval-n">$158,343</span></div>
+              </div>
+              <div class="bar-track"><div class="bar-fill c" id="s3-bar-n" style="width:100%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="tco-card">
+          <div class="tco-card-label">5년 TCO <span id="s3-tco-pct">69%</span> 절감</div>
+          <div class="tco-card-amt"><span id="s3-save">$109,180</span>▼</div>
+        </div>
       </div>
 
       <div class="metrics-row">
@@ -369,34 +388,6 @@ tr.total td:first-child{color:var(--accent);}
           <div class="mrow"><span class="mrow-lbl">연간 OPEX</span><span class="mrow-val" id="s3-n-opex">$28,000</span></div>
           <div class="mrow"><span class="mrow-lbl">1년 광고 Revenue</span><span class="mrow-val" id="s3-n-rev">$60,000</span></div>
           <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s3-n-tco">$158,343</span></div>
-        </div>
-      </div>
-
-      <div class="cmp-wrapper">
-        <div class="cmp-block">
-          <div class="cmp-title">5년 TCO 비교</div>
-          <div class="bar-row">
-            <div class="bar-item">
-              <div class="bar-hdr">
-                <span class="bar-name">SOLUM E-Paper POP</span>
-                <div class="bar-meta"><span class="bar-pct s" id="s3-pct-s">31%</span><span class="bar-val" id="s3-bval-s">$49,163</span></div>
-              </div>
-              <div class="bar-track"><div class="bar-fill s" id="s3-bar-s" style="width:31%"></div></div>
-            </div>
-            <div class="bar-item">
-              <div class="bar-hdr">
-                <span class="bar-name">Normal POP</span>
-                <div class="bar-meta"><span class="bar-pct c" id="s3-pct-n">100%</span><span class="bar-val" id="s3-bval-n">$158,343</span></div>
-              </div>
-              <div class="bar-track"><div class="bar-fill c" id="s3-bar-n" style="width:100%"></div></div>
-            </div>
-          </div>
-        </div>
-        <div class="tco-card">
-          <div class="tco-card-label">5년 TCO 절감</div>
-          <div class="tco-card-pct" id="s3-tco-pct">69%</div>
-          <div class="tco-card-sub">TCO -<span id="s3-tco-pct2">69</span>% 절감</div>
-          <div class="tco-card-amt"><span id="s3-save">$109,180</span><small>절감</small></div>
         </div>
       </div>
 
