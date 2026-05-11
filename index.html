@@ -127,9 +127,8 @@ tr.total td:first-child{color:var(--accent);}
 .tco-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.04);}
 .tco-card-headline{display:flex;align-items:center;gap:16px;white-space:nowrap;position:relative;z-index:1;}
 .tco-card-label{font-size:80px;font-weight:900;color:rgba(255,255,255,.85);letter-spacing:-3px;line-height:1;}
-.tco-card-right{display:flex;flex-direction:column;align-items:center;}
 .tco-card-pct{font-size:80px;font-weight:900;color:#fff;letter-spacing:-3px;line-height:1;}
-.tco-card-amt{font-size:22px;font-weight:500;color:rgba(255,255,255,.7);letter-spacing:-.3px;margin-top:6px;}
+.tco-card-amt{font-size:22px;font-weight:500;color:rgba(255,255,255,.7);letter-spacing:-.3px;margin-top:6px;align-self:flex-end;position:relative;z-index:1;}
 </style>
 </head>
 <body>
@@ -206,11 +205,9 @@ tr.total td:first-child{color:var(--accent);}
         <div class="tco-card">
           <div class="tco-card-headline">
             <span class="tco-card-label">5년 TCO 절감</span>
-            <div class="tco-card-right">
-              <div class="tco-card-pct"><span id="s1-tco-pct">80%</span></div>
-              <div class="tco-card-amt"><span id="s1-save">$77,763</span>▼</div>
-            </div>
+            <span class="tco-card-pct"><span id="s1-tco-pct">80%</span></span>
           </div>
+          <div class="tco-card-amt"><span id="s1-save">$77,763</span>▼</div>
         </div>
       </div>
       <div class="metrics-row">
@@ -273,11 +270,9 @@ tr.total td:first-child{color:var(--accent);}
         <div class="tco-card">
           <div class="tco-card-headline">
             <span class="tco-card-label">5년 TCO 절감</span>
-            <div class="tco-card-right">
-              <div class="tco-card-pct"><span id="s2-tco-pct">73%</span></div>
-              <div class="tco-card-amt"><span id="s2-save">$628,485</span>▼</div>
-            </div>
+            <span class="tco-card-pct"><span id="s2-tco-pct">73%</span></span>
           </div>
+          <div class="tco-card-amt"><span id="s2-save">$628,485</span>▼</div>
         </div>
       </div>
       <div class="metrics-row">
@@ -340,11 +335,9 @@ tr.total td:first-child{color:var(--accent);}
         <div class="tco-card">
           <div class="tco-card-headline">
             <span class="tco-card-label">5년 TCO 절감</span>
-            <div class="tco-card-right">
-              <div class="tco-card-pct"><span id="s3-tco-pct">69%</span></div>
-              <div class="tco-card-amt"><span id="s3-save">$109,180</span>▼</div>
-            </div>
+            <span class="tco-card-pct"><span id="s3-tco-pct">69%</span></span>
           </div>
+          <div class="tco-card-amt"><span id="s3-save">$109,180</span>▼</div>
         </div>
       </div>
       <div class="metrics-row">
