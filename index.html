@@ -71,16 +71,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 
 /* METRIC CARDS */
 .metrics-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.mcard{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
-.mcard.solum{border-color:rgba(0,184,122,.3);}
-.mcard.comp{border-color:rgba(232,64,64,.2);}
-.mbadge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.8px;padding:5px 12px;border-radius:100px;margin-bottom:12px;text-transform:uppercase;}
-.mcard.solum .mbadge{background:var(--green-light);border:1px solid rgba(0,184,122,.25);color:var(--green);}
-.mcard.comp .mbadge{background:var(--red-light);border:1px solid rgba(232,64,64,.2);color:var(--red);}
+.mcard{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.mcard.solum{border-color:var(--green);}
+.mcard.comp{border-color:var(--red);}
+.mcard-header{margin:-24px -24px 16px;padding:16px 24px;border-radius:14px 14px 0 0;}
+.mcard.solum .mcard-header{background:linear-gradient(135deg,rgba(0,184,122,.14),rgba(0,184,122,.04));border-bottom:1px solid rgba(0,184,122,.25);}
+.mcard.comp .mcard-header{background:linear-gradient(135deg,rgba(232,64,64,.12),rgba(232,64,64,.03));border-bottom:1px solid rgba(232,64,64,.2);}
+.mbadge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.8px;padding:5px 12px;border-radius:100px;margin-bottom:8px;text-transform:uppercase;}
+.mcard.solum .mbadge{background:rgba(0,184,122,.15);border:1px solid rgba(0,184,122,.35);color:var(--green);}
+.mcard.comp .mbadge{background:rgba(232,64,64,.12);border:1px solid rgba(232,64,64,.3);color:var(--red);}
 .bdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
 .solum .bdot{background:var(--green);}
 .comp .bdot{background:var(--red);}
-.mcard-name{font-size:17px;font-weight:700;color:var(--text);margin-bottom:16px;}
+.mcard-name{font-size:17px;font-weight:700;color:var(--text);margin-bottom:0;}
 .mrow{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border-light);}
 .mrow:last-child{border-bottom:none;}
 .mrow-lbl{font-size:14px;font-weight:500;color:var(--label);}
@@ -88,6 +91,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .mrow-val.big{font-size:24px;font-weight:800;letter-spacing:-.5px;}
 .mcard.solum .mrow-val.big{color:var(--green);}
 .mcard.comp .mrow-val.big{color:var(--red);}
+.mrow-right{display:flex;align-items:center;gap:8px;}
+.expand-btn{background:none;border:1.5px solid var(--border);border-radius:5px;width:22px;height:22px;font-size:15px;font-weight:700;cursor:pointer;color:var(--muted);line-height:1;padding:0;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.expand-btn:hover{border-color:var(--accent);color:var(--accent);}
+.mrow-toggle{cursor:pointer;}
+.mrow-sub-group .mrow:last-child{border-bottom:1px solid var(--border-light);}
+.mrow-sub{padding-left:20px;}
+.mcard.solum .mrow-sub{background:rgba(0,184,122,.04);}
+.mcard.comp .mrow-sub{background:rgba(232,64,64,.03);}
+.mrow-sub .mrow-lbl{font-size:13px;color:var(--muted);}
+.mrow-sub .mrow-val{font-size:13px;color:var(--label);}
+.mrow-final{background:rgba(27,42,107,.03);margin:0 -24px -24px;padding:12px 24px;border-radius:0 0 14px 14px;border-top:1.5px solid var(--border-light);}
+.mcard.solum .mrow-final{background:rgba(0,184,122,.07);border-top-color:rgba(0,184,122,.2);}
+.mcard.comp .mrow-final{background:rgba(232,64,64,.05);border-top-color:rgba(232,64,64,.15);}
 
 /* BAR CHART */
 
@@ -187,7 +203,7 @@ tr.total td:first-child{color:var(--accent);}
     <div class="panel active" id="panel-0">
       <div>
         <div class="panel-title"><em>HaLow GW</em> vs BLE GW</div>
-        <div class="panel-desc">동일한 ESL 커버리지 목표 기준, HaLow GW 기반 인프라와 BLE GW 기반 인프라의 5년 TCO를 비교합니다.<br>HaLow GW 2대 이상(중대형 매장)은 GW만으로 완전 커버되어 데이터 전송용 AP 비용이 $0입니다.</div>
+        <div class="panel-desc">동일한 ESL 커버리지 목표 기준, HaLow GW 기반 인프라와 BLE GW 기반 인프라의 5년 TCO를 비교합니다.</div>
       </div>
       <div class="cmp-wrapper">
         <div class="cmp-block">
@@ -215,28 +231,52 @@ tr.total td:first-child{color:var(--accent);}
       </div>
       <div class="metrics-row">
         <div class="mcard solum">
-          <div class="mbadge"><span class="bdot"></span>SOLUM</div>
-          <div class="mcard-name">HaLow GW</div>
-          <div class="mrow"><span class="mrow-lbl">권장 대수</span><span class="mrow-val" id="s1-h-qty">2대</span></div>
-          <div class="mrow"><span class="mrow-lbl">HW 가격 ($500 × 대수)</span><span class="mrow-val" id="s1-h-hw">$1,000</span></div>
-          <div class="mrow"><span class="mrow-lbl">데이터 전송용 AP</span><span class="mrow-val" id="s1-h-ap">$0</span></div>
-          <div class="mrow"><span class="mrow-lbl">HW 설치비 ($332.5 × 대수)</span><span class="mrow-val" id="s1-h-inst">$665</span></div>
-          <div class="mrow"><span class="mrow-lbl">유지보수 비용 ($342 × 대수)</span><span class="mrow-val" id="s1-h-opex">$684</span></div>
-          <div class="mrow"><span class="mrow-lbl">CAPEX</span><span class="mrow-val" id="s1-h-capex">$1,665</span></div>
-          <div class="mrow"><span class="mrow-lbl">연간 OPEX</span><span class="mrow-val" id="s1-h-opex2">$684</span></div>
-          <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s1-h-tco">$5,085</span></div>
+          <div class="mcard-header">
+            <div class="mbadge"><span class="bdot"></span>SOLUM</div>
+            <div class="mcard-name">HaLow GW</div>
+          </div>
+          <div class="mrow mrow-toggle" onclick="toggleSub('s1-h-cap-sub',this)">
+            <span class="mrow-lbl">CAPEX</span>
+            <div class="mrow-right"><span class="mrow-val" id="s1-h-capex">$1,665</span><button class="expand-btn">+</button></div>
+          </div>
+          <div id="s1-h-cap-sub" class="mrow-sub-group" style="display:none">
+            <div class="mrow mrow-sub"><span class="mrow-lbl">HW 가격</span><span class="mrow-val" id="s1-h-hw">$1,000</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">설치 수량</span><span class="mrow-val" id="s1-h-qty">2대</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">HW 설치비</span><span class="mrow-val" id="s1-h-inst">$665</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">데이터 전송용 AP</span><span class="mrow-val" id="s1-h-ap">$0</span></div>
+          </div>
+          <div class="mrow mrow-toggle" onclick="toggleSub('s1-h-opx-sub',this)">
+            <span class="mrow-lbl">연간 OPEX</span>
+            <div class="mrow-right"><span class="mrow-val" id="s1-h-opex2">$684</span><button class="expand-btn">+</button></div>
+          </div>
+          <div id="s1-h-opx-sub" class="mrow-sub-group" style="display:none">
+            <div class="mrow mrow-sub"><span class="mrow-lbl">유지보수 비용</span><span class="mrow-val" id="s1-h-opex">$684</span></div>
+          </div>
+          <div class="mrow mrow-final"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s1-h-tco">$5,085</span></div>
         </div>
         <div class="mcard comp">
-          <div class="mbadge"><span class="bdot"></span>COMPETITOR</div>
-          <div class="mcard-name">BLE GW</div>
-          <div class="mrow"><span class="mrow-lbl">권장 대수</span><span class="mrow-val" id="s1-b-qty">25대</span></div>
-          <div class="mrow"><span class="mrow-lbl">HW 가격 ($300 × 대수)</span><span class="mrow-val" id="s1-b-hw">$7,500</span></div>
-          <div class="mrow"><span class="mrow-lbl">데이터 전송용 AP ($1,533/대)</span><span class="mrow-val" id="s1-b-ap">$38,325</span></div>
-          <div class="mrow"><span class="mrow-lbl">HW 설치비 ($332.5 × 대수)</span><span class="mrow-val" id="s1-b-inst">$8,313</span></div>
-          <div class="mrow"><span class="mrow-lbl">유지보수 비용 ($342 × 대수)</span><span class="mrow-val" id="s1-b-opex">$8,550</span></div>
-          <div class="mrow"><span class="mrow-lbl">CAPEX</span><span class="mrow-val" id="s1-b-capex">$54,138</span></div>
-          <div class="mrow"><span class="mrow-lbl">연간 OPEX</span><span class="mrow-val" id="s1-b-opex2">$8,550</span></div>
-          <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s1-b-tco">$96,888</span></div>
+          <div class="mcard-header">
+            <div class="mbadge"><span class="bdot"></span>COMPETITOR</div>
+            <div class="mcard-name">BLE GW</div>
+          </div>
+          <div class="mrow mrow-toggle" onclick="toggleSub('s1-b-cap-sub',this)">
+            <span class="mrow-lbl">CAPEX</span>
+            <div class="mrow-right"><span class="mrow-val" id="s1-b-capex">$54,138</span><button class="expand-btn">+</button></div>
+          </div>
+          <div id="s1-b-cap-sub" class="mrow-sub-group" style="display:none">
+            <div class="mrow mrow-sub"><span class="mrow-lbl">HW 가격</span><span class="mrow-val" id="s1-b-hw">$7,500</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">설치 수량</span><span class="mrow-val" id="s1-b-qty">25대</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">HW 설치비</span><span class="mrow-val" id="s1-b-inst">$8,313</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">데이터 전송용 AP (설치수량 30%)</span><span class="mrow-val" id="s1-b-ap">$11,498</span></div>
+          </div>
+          <div class="mrow mrow-toggle" onclick="toggleSub('s1-b-opx-sub',this)">
+            <span class="mrow-lbl">연간 OPEX</span>
+            <div class="mrow-right"><span class="mrow-val" id="s1-b-opex2">$8,550</span><button class="expand-btn">+</button></div>
+          </div>
+          <div id="s1-b-opx-sub" class="mrow-sub-group" style="display:none">
+            <div class="mrow mrow-sub"><span class="mrow-lbl">유지보수 비용</span><span class="mrow-val" id="s1-b-opex">$8,550</span></div>
+          </div>
+          <div class="mrow mrow-final"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s1-b-tco">$96,888</span></div>
         </div>
       </div>
       <div class="tbl-wrap">
@@ -424,7 +464,7 @@ function calc(a){
   const h_capex=(H_HW+H_INST)*hQty+hAP;
   const h_opex=H_MAINT*hQty;
   const h_tco5=h_capex+h_opex*5;
-  const bAP=B_AP_UNIT*bQty;
+  const bAP=B_AP_UNIT*Math.max(1,Math.round(bQty*0.3));
   const b_capex=(B_HW+B_INST)*bQty+bAP;
   const b_opex=B_MAINT*bQty;
   const b_tco5=b_capex+b_opex*5;
@@ -492,6 +532,15 @@ document.getElementById('slider').addEventListener('input',function(){
   document.getElementById('sizeTag').textContent=storeLabel(area);
   calc(area);
 });
+
+function toggleSub(id, row) {
+  const sub = document.getElementById(id);
+  const btn = row.querySelector('.expand-btn');
+  if (!sub) return;
+  const open = sub.style.display !== 'none';
+  sub.style.display = open ? 'none' : 'block';
+  btn.textContent = open ? '+' : '−';
+}
 
 function switchTab(idx){
   document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
