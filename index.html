@@ -107,7 +107,7 @@ td:first-child{color:var(--label);font-weight:600;}
 tr.total td{background:rgba(27,42,107,.04);font-weight:700;color:var(--accent);}
 tr.total td:first-child{color:var(--accent);}
 
-/* CMP WRAPPER - bar left + savings right */
+/* CMP WRAPPER - bar left + savings right (5:5) */
 .cmp-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;}
 .cmp-block{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:24px 28px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
 .cmp-title{font-size:13px;font-weight:700;color:var(--label);letter-spacing:.5px;text-transform:uppercase;margin-bottom:22px;}
@@ -115,18 +115,20 @@ tr.total td:first-child{color:var(--accent);}
 .bar-item{display:flex;flex-direction:column;gap:7px;}
 .bar-hdr{display:flex;justify-content:space-between;align-items:center;}
 .bar-name{font-size:14px;font-weight:600;color:var(--text);}
+.bar-val{font-size:13px;font-weight:700;color:var(--label);}
 .bar-track{height:10px;background:var(--bg);border-radius:100px;overflow:hidden;border:1px solid var(--border-light);}
 .bar-fill{height:100%;border-radius:100px;transition:width .55s cubic-bezier(.4,0,.2,1);}
 .bar-fill.s{background:linear-gradient(90deg,#00b87a,#00e699);}
 .bar-fill.c{background:linear-gradient(90deg,#e84040,#ff7070);}
 
 /* TCO SAVINGS CARD */
-.tco-card{background:linear-gradient(160deg,#162056 0%,#1B2A6B 45%,#2E0060 100%);border-radius:16px;padding:24px 10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;box-shadow:0 4px 20px rgba(27,42,107,.35);text-align:center;position:relative;overflow:hidden;}
+.tco-card{background:linear-gradient(160deg,#162056 0%,#1B2A6B 45%,#2E0060 100%);border-radius:16px;padding:28px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;box-shadow:0 4px 20px rgba(27,42,107,.35);text-align:center;position:relative;overflow:hidden;}
 .tco-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.06);}
 .tco-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.04);}
-.tco-card-label{font-size:14px;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:-.1px;}
-.tco-card-pct{font-size:72px;font-weight:900;color:#fff;letter-spacing:-3px;line-height:1.05;}
-.tco-card-amt{font-size:14px;font-weight:500;color:rgba(255,255,255,.7);letter-spacing:-.2px;margin-top:2px;}
+.tco-card-headline{display:flex;align-items:baseline;gap:8px;white-space:nowrap;position:relative;z-index:1;}
+.tco-card-label{font-size:16px;font-weight:700;color:rgba(255,255,255,.85);letter-spacing:-.2px;}
+.tco-card-pct{font-size:52px;font-weight:900;color:#fff;letter-spacing:-2px;line-height:1;}
+.tco-card-amt{font-size:13px;font-weight:500;color:rgba(255,255,255,.7);letter-spacing:-.2px;position:relative;z-index:1;}
 </style>
 </head>
 <body>
@@ -191,18 +193,20 @@ tr.total td:first-child{color:var(--accent);}
           <div class="cmp-title">5년 TCO 비교</div>
           <div class="bar-row">
             <div class="bar-item">
-              <div class="bar-hdr"><span class="bar-name">HaLow GW</span></div>
+              <div class="bar-hdr"><span class="bar-name">HaLow GW</span><span class="bar-val" id="s1-bar-h-amt">$19,125</span></div>
               <div class="bar-track"><div class="bar-fill s" id="s1-bar-h" style="width:20%"></div></div>
             </div>
             <div class="bar-item">
-              <div class="bar-hdr"><span class="bar-name">BLE GW</span></div>
+              <div class="bar-hdr"><span class="bar-name">BLE GW</span><span class="bar-val" id="s1-bar-b-amt">$96,888</span></div>
               <div class="bar-track"><div class="bar-fill c" id="s1-bar-b" style="width:100%"></div></div>
             </div>
           </div>
         </div>
         <div class="tco-card">
-          <div class="tco-card-label">5년 TCO 절감</div>
-          <div class="tco-card-pct"><span id="s1-tco-pct">80%</span></div>
+          <div class="tco-card-headline">
+            <span class="tco-card-label">5년 TCO 절감</span>
+            <span class="tco-card-pct"><span id="s1-tco-pct">80%</span></span>
+          </div>
           <div class="tco-card-amt"><span id="s1-save">$77,763</span>▼</div>
         </div>
       </div>
@@ -254,18 +258,20 @@ tr.total td:first-child{color:var(--accent);}
           <div class="cmp-title">5년 TCO 비교</div>
           <div class="bar-row">
             <div class="bar-item">
-              <div class="bar-hdr"><span class="bar-name">IM Solution</span></div>
+              <div class="bar-hdr"><span class="bar-name">IM Solution</span><span class="bar-val" id="s2-bar-i-amt">$231,415</span></div>
               <div class="bar-track"><div class="bar-fill s" id="s2-bar-i" style="width:27%"></div></div>
             </div>
             <div class="bar-item">
-              <div class="bar-hdr"><span class="bar-name">Camera Only</span></div>
+              <div class="bar-hdr"><span class="bar-name">Camera Only</span><span class="bar-val" id="s2-bar-c-amt">$859,900</span></div>
               <div class="bar-track"><div class="bar-fill c" id="s2-bar-c" style="width:100%"></div></div>
             </div>
           </div>
         </div>
         <div class="tco-card">
-          <div class="tco-card-label">5년 TCO 절감</div>
-          <div class="tco-card-pct"><span id="s2-tco-pct">73%</span></div>
+          <div class="tco-card-headline">
+            <span class="tco-card-label">5년 TCO 절감</span>
+            <span class="tco-card-pct"><span id="s2-tco-pct">73%</span></span>
+          </div>
           <div class="tco-card-amt"><span id="s2-save">$628,485</span>▼</div>
         </div>
       </div>
@@ -317,18 +323,20 @@ tr.total td:first-child{color:var(--accent);}
           <div class="cmp-title">5년 TCO 비교</div>
           <div class="bar-row">
             <div class="bar-item">
-              <div class="bar-hdr"><span class="bar-name">SOLUM E-Paper POP</span></div>
+              <div class="bar-hdr"><span class="bar-name">SOLUM E-Paper POP</span><span class="bar-val" id="s3-bar-s-amt">$49,163</span></div>
               <div class="bar-track"><div class="bar-fill s" id="s3-bar-s" style="width:31%"></div></div>
             </div>
             <div class="bar-item">
-              <div class="bar-hdr"><span class="bar-name">Normal POP</span></div>
+              <div class="bar-hdr"><span class="bar-name">Normal POP</span><span class="bar-val" id="s3-bar-n-amt">$158,343</span></div>
               <div class="bar-track"><div class="bar-fill c" id="s3-bar-n" style="width:100%"></div></div>
             </div>
           </div>
         </div>
         <div class="tco-card">
-          <div class="tco-card-label">5년 TCO 절감</div>
-          <div class="tco-card-pct"><span id="s3-tco-pct">69%</span></div>
+          <div class="tco-card-headline">
+            <span class="tco-card-label">5년 TCO 절감</span>
+            <span class="tco-card-pct"><span id="s3-tco-pct">69%</span></span>
+          </div>
           <div class="tco-card-amt"><span id="s3-save">$109,180</span>▼</div>
         </div>
       </div>
@@ -426,6 +434,7 @@ function calc(a){
   set('s1-b-ap',fmt(bAP)); set('s1-b-capex',fmt(b_capex)); set('s1-b-opex',fmt(b_opex)); set('s1-b-tco',fmt(b_tco5));
   const s1_savings=b_tco5-h_tco5;
   set('s1-save',fmt(s1_savings)); set('s1-tco-pct',Math.round(s1_savings/b_tco5*100)+'%');
+  set('s1-bar-h-amt',fmt(h_tco5)); set('s1-bar-b-amt',fmt(b_tco5));
   setW('s1-bar-h',(h_tco5/mx1*100)+'%'); setW('s1-bar-b',(b_tco5/mx1*100)+'%');
   [1,2,3,4,5].forEach(y=>{set('s1-hy'+y,fmt(hY[y-1]));set('s1-by'+y,fmt(bY[y-1]));set('s1-dy'+y,fmt(bY[y-1]-hY[y-1]));});
 
@@ -441,6 +450,7 @@ function calc(a){
   set('s2-c-labor',fmt(CAM_LABOR*gondola)+'/yr'); set('s2-c-opex',fmt(cam_opex)); set('s2-c-tco',fmt(cam_tco5));
   const s2_savings=cam_tco5-im_tco5;
   set('s2-save',fmt(s2_savings)); set('s2-tco-pct',Math.round(s2_savings/cam_tco5*100)+'%');
+  set('s2-bar-i-amt',fmt(im_tco5)); set('s2-bar-c-amt',fmt(cam_tco5));
   setW('s2-bar-i',(im_tco5/mx2*100)+'%'); setW('s2-bar-c',(cam_tco5/mx2*100)+'%');
   [1,2,3,4,5].forEach(y=>{set('s2-iy'+y,fmt(imY[y-1]));set('s2-cy'+y,fmt(camY[y-1]));set('s2-dy'+y,fmt(camY[y-1]-imY[y-1]));});
 
@@ -460,6 +470,7 @@ function calc(a){
   set('s3-n-content',fmt(nd_cont)+'/yr'); set('s3-n-opex',fmt(nd_opex)); set('s3-n-rev',fmt(nd_rev)); set('s3-n-tco',fmt(nd_tco5));
   const s3_savings=nd_tco5-sd_tco5;
   set('s3-save',fmt(s3_savings)); set('s3-tco-pct',Math.round(s3_savings/nd_tco5*100)+'%');
+  set('s3-bar-s-amt',fmt(sd_tco5)); set('s3-bar-n-amt',fmt(nd_tco5));
   setW('s3-bar-s',(sd_tco5/mx3*100)+'%'); setW('s3-bar-n',(nd_tco5/mx3*100)+'%');
   [1,2,3,4,5].forEach(y=>{set('s3-sy'+y,fmt(sdY[y-1]));set('s3-ny'+y,fmt(ndY[y-1]));set('s3-dy'+y,fmt(ndY[y-1]-sdY[y-1]));});
 }
