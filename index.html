@@ -107,8 +107,8 @@ td:first-child{color:var(--label);font-weight:600;}
 tr.total td{background:rgba(27,42,107,.04);font-weight:700;color:var(--accent);}
 tr.total td:first-child{color:var(--accent);}
 
-/* CMP WRAPPER - bar left + savings right */
-.cmp-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;}
+/* CMP WRAPPER - bar top + savings bottom */
+.cmp-wrapper{display:flex;flex-direction:column;gap:16px;}
 .cmp-block{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:24px 28px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
 .cmp-title{font-size:13px;font-weight:700;color:var(--label);letter-spacing:.5px;text-transform:uppercase;margin-bottom:22px;}
 .bar-row{display:flex;flex-direction:column;gap:18px;}
@@ -121,7 +121,7 @@ tr.total td:first-child{color:var(--accent);}
 .bar-fill.c{background:linear-gradient(90deg,#e84040,#ff7070);}
 
 /* TCO SAVINGS CARD */
-.tco-card{background:linear-gradient(160deg,#162056 0%,#1B2A6B 45%,#2E0060 100%);border-radius:16px;padding:24px 10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;box-shadow:0 4px 20px rgba(27,42,107,.35);text-align:center;position:relative;overflow:hidden;}
+.tco-card{background:linear-gradient(160deg,#162056 0%,#1B2A6B 45%,#2E0060 100%);border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;box-shadow:0 4px 20px rgba(27,42,107,.35);text-align:center;position:relative;overflow:hidden;width:100%;}
 .tco-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.06);}
 .tco-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.04);}
 .tco-card-label{font-size:14px;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:-.1px;}
