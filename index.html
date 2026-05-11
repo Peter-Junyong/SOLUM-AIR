@@ -217,23 +217,25 @@ tr.total td:first-child{color:var(--accent);}
         <div class="mcard solum">
           <div class="mbadge"><span class="bdot"></span>SOLUM</div>
           <div class="mcard-name">HaLow GW</div>
-          <div class="mrow"><span class="mrow-lbl">설치 수량</span><span class="mrow-val" id="s1-h-qty">3대</span></div>
-          <div class="mrow"><span class="mrow-lbl">HW 가격 ($500 × 대수)</span><span class="mrow-val" id="s1-h-hw">$1,500</span></div>
-          <div class="mrow"><span class="mrow-lbl">HW 설치비 ($332.5 × 대수)</span><span class="mrow-val" id="s1-h-inst">$997</span></div>
-          <div class="mrow"><span class="mrow-lbl">데이터 전송용 AP ($3,833/대, 3대↑)</span><span class="mrow-val" id="s1-h-ap">$11,498</span></div>
-          <div class="mrow"><span class="mrow-lbl">CAPEX</span><span class="mrow-val" id="s1-h-capex">$13,995</span></div>
-          <div class="mrow"><span class="mrow-lbl">연간 OPEX ($342 × 대수)</span><span class="mrow-val" id="s1-h-opex">$1,026</span></div>
-          <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s1-h-tco">$19,125</span></div>
+          <div class="mrow"><span class="mrow-lbl">권장 대수</span><span class="mrow-val" id="s1-h-qty">2대</span></div>
+          <div class="mrow"><span class="mrow-lbl">HW 가격 ($500 × 대수)</span><span class="mrow-val" id="s1-h-hw">$1,000</span></div>
+          <div class="mrow"><span class="mrow-lbl">데이터 전송용 AP</span><span class="mrow-val" id="s1-h-ap">$0</span></div>
+          <div class="mrow"><span class="mrow-lbl">HW 설치비 ($332.5 × 대수)</span><span class="mrow-val" id="s1-h-inst">$665</span></div>
+          <div class="mrow"><span class="mrow-lbl">유지보수 비용 ($342 × 대수)</span><span class="mrow-val" id="s1-h-opex">$684</span></div>
+          <div class="mrow"><span class="mrow-lbl">CAPEX</span><span class="mrow-val" id="s1-h-capex">$1,665</span></div>
+          <div class="mrow"><span class="mrow-lbl">연간 OPEX</span><span class="mrow-val" id="s1-h-opex2">$684</span></div>
+          <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s1-h-tco">$5,085</span></div>
         </div>
         <div class="mcard comp">
           <div class="mbadge"><span class="bdot"></span>COMPETITOR</div>
           <div class="mcard-name">BLE GW</div>
-          <div class="mrow"><span class="mrow-lbl">설치 수량</span><span class="mrow-val" id="s1-b-qty">25대</span></div>
+          <div class="mrow"><span class="mrow-lbl">권장 대수</span><span class="mrow-val" id="s1-b-qty">25대</span></div>
           <div class="mrow"><span class="mrow-lbl">HW 가격 ($300 × 대수)</span><span class="mrow-val" id="s1-b-hw">$7,500</span></div>
-          <div class="mrow"><span class="mrow-lbl">HW 설치비 ($332.5 × 대수)</span><span class="mrow-val" id="s1-b-inst">$8,313</span></div>
           <div class="mrow"><span class="mrow-lbl">데이터 전송용 AP ($1,533/대)</span><span class="mrow-val" id="s1-b-ap">$38,325</span></div>
+          <div class="mrow"><span class="mrow-lbl">HW 설치비 ($332.5 × 대수)</span><span class="mrow-val" id="s1-b-inst">$8,313</span></div>
+          <div class="mrow"><span class="mrow-lbl">유지보수 비용 ($342 × 대수)</span><span class="mrow-val" id="s1-b-opex">$8,550</span></div>
           <div class="mrow"><span class="mrow-lbl">CAPEX</span><span class="mrow-val" id="s1-b-capex">$54,138</span></div>
-          <div class="mrow"><span class="mrow-lbl">연간 OPEX ($342 × 대수)</span><span class="mrow-val" id="s1-b-opex">$8,550</span></div>
+          <div class="mrow"><span class="mrow-lbl">연간 OPEX</span><span class="mrow-val" id="s1-b-opex2">$8,550</span></div>
           <div class="mrow"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s1-b-tco">$96,888</span></div>
         </div>
       </div>
@@ -413,7 +415,7 @@ function storeLabel(a){
 
 function calc(a){
   const r=a/BASE;
-  const hQty=Math.max(1,Math.round(3*r));
+  const hQty=Math.max(1,Math.round(2*r));
   const bQty=Math.max(1,Math.round(2.5*a/1000));
   const gondola=Math.max(1,Math.round(100*r));
   const sdQty=Math.max(1,Math.round(SD_BASE_QTY*r));
@@ -423,7 +425,7 @@ function calc(a){
   document.getElementById('q-ble').innerHTML=bQty+' <span>대</span>';
   document.getElementById('q-gondola').innerHTML=gondola+' <span>개</span>';
 
-  const hAP=hQty>=3?H_AP_UNIT*hQty:0;
+  const hAP=0;
   const h_capex=(H_HW+H_INST)*hQty+hAP;
   const h_opex=H_MAINT*hQty;
   const h_tco5=h_capex+h_opex*5;
@@ -435,10 +437,12 @@ function calc(a){
   const bY=[1,2,3,4,5].map(y=>b_capex+b_opex*y);
   const mx1=Math.max(h_tco5,b_tco5);
 
-  set('s1-h-qty',hQty+'대'); set('s1-h-hw',fmt(H_HW*hQty)); set('s1-h-inst',fmt(H_INST*hQty));
-  set('s1-h-ap',fmt(hAP)); set('s1-h-capex',fmt(h_capex)); set('s1-h-opex',fmt(h_opex)); set('s1-h-tco',fmt(h_tco5));
-  set('s1-b-qty',bQty+'대'); set('s1-b-hw',fmt(B_HW*bQty)); set('s1-b-inst',fmt(B_INST*bQty));
-  set('s1-b-ap',fmt(bAP)); set('s1-b-capex',fmt(b_capex)); set('s1-b-opex',fmt(b_opex)); set('s1-b-tco',fmt(b_tco5));
+  set('s1-h-qty',hQty+'대'); set('s1-h-hw',fmt(H_HW*hQty)); set('s1-h-ap','$0');
+  set('s1-h-inst',fmt(H_INST*hQty)); set('s1-h-opex',fmt(h_opex)); set('s1-h-opex2',fmt(h_opex));
+  set('s1-h-capex',fmt(h_capex)); set('s1-h-tco',fmt(h_tco5));
+  set('s1-b-qty',bQty+'대'); set('s1-b-hw',fmt(B_HW*bQty)); set('s1-b-ap',fmt(bAP));
+  set('s1-b-inst',fmt(B_INST*bQty)); set('s1-b-opex',fmt(b_opex)); set('s1-b-opex2',fmt(b_opex));
+  set('s1-b-capex',fmt(b_capex)); set('s1-b-tco',fmt(b_tco5));
   const s1_savings=b_tco5-h_tco5;
   set('s1-save',fmt(s1_savings)); set('s1-tco-pct',Math.round(s1_savings/b_tco5*100)+'%');
   set('s1-bar-h-amt',fmt(h_tco5)); set('s1-bar-b-amt',fmt(b_tco5));
