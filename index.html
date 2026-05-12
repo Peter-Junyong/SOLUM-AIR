@@ -157,14 +157,14 @@ tr.total td:first-child{color:var(--accent);}
 .bar-fill.c{background:linear-gradient(90deg,#e84040,#ff7070);}
 
 /* TCO SAVINGS CARD */
-.tco-card{background:linear-gradient(160deg,#162056 0%,#1B2A6B 45%,#2E0060 100%);border-radius:16px;padding:28px 40px;display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 4px 20px rgba(27,42,107,.35);position:relative;overflow:hidden;}
+.tco-card{background:linear-gradient(160deg,#162056 0%,#1B2A6B 45%,#2E0060 100%);border-radius:16px;padding:clamp(16px,2.5vw,28px) clamp(20px,3vw,40px);display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 4px 20px rgba(27,42,107,.35);position:relative;overflow:hidden;}
 .tco-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.06);}
 .tco-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.04);}
-.tco-card-headline{display:flex;align-items:center;justify-content:center;gap:16px;white-space:nowrap;position:relative;z-index:1;}
-.tco-card-label{font-size:60px;font-weight:900;color:rgba(255,255,255,.85);letter-spacing:-2px;line-height:1;}
+.tco-card-headline{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:clamp(8px,1.2vw,16px);position:relative;z-index:1;text-align:center;}
+.tco-card-label{font-size:clamp(20px,3.5vw,60px);font-weight:900;color:rgba(255,255,255,.85);letter-spacing:-2px;line-height:1;}
 .tco-card-pct-group{display:flex;flex-direction:column;align-items:center;gap:6px;}
-.tco-card-pct{font-size:60px;font-weight:900;color:#fff;letter-spacing:-2px;line-height:1;}
-.tco-card-amt{font-size:20px;font-weight:500;color:rgba(255,255,255,.7);letter-spacing:-.3px;}
+.tco-card-pct{font-size:clamp(20px,3.5vw,60px);font-weight:900;color:#fff;letter-spacing:-2px;line-height:1;}
+.tco-card-amt{font-size:clamp(13px,1.4vw,20px);font-weight:500;color:rgba(255,255,255,.7);letter-spacing:-.3px;}
 .tco-headline-col{flex-direction:column;gap:8px;}
 </style>
 </head>
