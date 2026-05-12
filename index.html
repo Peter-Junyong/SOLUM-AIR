@@ -10,7 +10,7 @@
   --bg:#F0EEFF; --card:#fff; --border:#E4DEFF; --border-light:#EDE8FF;
   --accent:#6366F1; --accent-light:#EEF2FF; --accent2:#7C3AED;
   --green:#6366F1; --green-light:#EEF2FF;
-  --red:#A855F7; --red-light:#F3E8FF;
+  --red:#94A3B8; --red-light:#F1F5F9;
   --text:#1E1B4B; --muted:#A5B4FC; --label:#6B7280;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -97,10 +97,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .mcard{display:flex;flex-direction:column;gap:10px;}
 .mcard-header{padding:16px 20px;border-radius:16px;background:var(--card);border:1.5px solid var(--border);box-shadow:0 4px 16px rgba(99,102,241,.1);}
 .mcard.solum .mcard-header{background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(99,102,241,.03));border-color:rgba(99,102,241,.4);}
-.mcard.comp .mcard-header{background:linear-gradient(135deg,rgba(168,85,247,.09),rgba(168,85,247,.02));border-color:rgba(168,85,247,.38);}
+.mcard.comp .mcard-header{background:linear-gradient(135deg,rgba(148,163,184,.09),rgba(148,163,184,.02));border-color:rgba(148,163,184,.38);}
 .mbadge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.8px;padding:5px 12px;border-radius:100px;margin-bottom:8px;text-transform:uppercase;}
 .mcard.solum .mbadge{background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.35);color:var(--green);}
-.mcard.comp .mbadge{background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.3);color:var(--red);}
+.mcard.comp .mbadge{background:rgba(148,163,184,.15);border:1px solid rgba(148,163,184,.35);color:var(--red);}
 .bdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
 .solum .bdot{background:var(--green);}
 .comp .bdot{background:var(--red);}
@@ -119,18 +119,18 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .mrow-sub-group .mrow:last-child{border-bottom:1px solid var(--border-light);}
 .mrow-sub{padding-left:20px;}
 .mcard.solum .mrow-sub{background:rgba(99,102,241,.04);}
-.mcard.comp .mrow-sub{background:rgba(168,85,247,.03);}
+.mcard.comp .mrow-sub{background:rgba(148,163,184,.03);}
 .mrow-sub .mrow-lbl{font-size:13px;color:var(--muted);}
 .mrow-sub .mrow-val{font-size:13px;color:var(--label);}
 .mrow-final{background:rgba(27,42,107,.03);margin:0 -24px -24px;padding:12px 24px;border-radius:0 0 14px 14px;border-top:1.5px solid var(--border-light);}
 .mcard.solum .mrow-final{background:rgba(99,102,241,.07);border-top-color:rgba(99,102,241,.2);}
-.mcard.comp .mrow-final{background:rgba(168,85,247,.05);border-top-color:rgba(168,85,247,.15);}
+.mcard.comp .mrow-final{background:rgba(148,163,184,.05);border-top-color:rgba(148,163,184,.2);}
 
 /* MCARD SPLIT LAYOUT */
 .mcard-top{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .mcard-half{background:var(--card);border:1.5px solid var(--border-light);border-radius:16px;padding:18px 20px;position:relative;min-height:92px;box-shadow:0 4px 16px rgba(99,102,241,.08);}
 .mcard.solum .mcard-half{background:rgba(99,102,241,.05);border-color:rgba(99,102,241,.25);}
-.mcard.comp .mcard-half{background:rgba(168,85,247,.04);border-color:rgba(168,85,247,.2);}
+.mcard.comp .mcard-half{background:rgba(148,163,184,.06);border-color:rgba(148,163,184,.3);}
 .mhalf-lbl{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
 .mhalf-val{font-size:26px;font-weight:800;letter-spacing:-.5px;line-height:1;color:var(--text);}
 .mcard.solum .mhalf-val{color:var(--green);}
@@ -138,10 +138,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .mcard-half .expand-btn{position:absolute;top:14px;right:14px;}
 .mcard-detail{background:var(--card);border:1.5px solid var(--border-light);border-radius:16px;padding:6px 20px 4px;box-shadow:0 4px 16px rgba(99,102,241,.06);}
 .mcard.solum .mcard-detail{border-color:rgba(99,102,241,.2);}
-.mcard.comp .mcard-detail{border-color:rgba(168,85,247,.18);}
+.mcard.comp .mcard-detail{border-color:rgba(148,163,184,.3);}
 .mcard-tco{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:2px solid var(--border);border-radius:16px;padding:16px 22px;box-shadow:0 4px 16px rgba(99,102,241,.08);}
 .mcard.solum .mcard-tco{background:rgba(99,102,241,.07);border-color:var(--green);}
-.mcard.comp .mcard-tco{background:rgba(168,85,247,.05);border-color:var(--red);}
+.mcard.comp .mcard-tco{background:rgba(148,163,184,.07);border-color:var(--red);}
 .mcard-tco-lbl{font-size:13px;font-weight:600;color:var(--label);}
 .mcard-tco-val{font-size:28px;font-weight:800;letter-spacing:-.5px;}
 .mcard.solum .mcard-tco-val{color:var(--green);}
@@ -175,7 +175,7 @@ tr.total td:first-child{color:var(--accent);}
 .bar-track{height:10px;background:var(--bg);border-radius:100px;overflow:hidden;border:1px solid var(--border-light);}
 .bar-fill{height:100%;border-radius:100px;transition:width .55s cubic-bezier(.4,0,.2,1);}
 .bar-fill.s{background:linear-gradient(90deg,#6366F1,#818CF8);}
-.bar-fill.c{background:linear-gradient(90deg,#A855F7,#C084FC);}
+.bar-fill.c{background:linear-gradient(90deg,#94A3B8,#CBD5E1);}
 
 /* TCO SAVINGS CARD */
 .tco-card{background:linear-gradient(135deg,#4338CA 0%,#6366F1 50%,#7C3AED 100%);border-radius:20px;padding:clamp(16px,2.5vw,28px) clamp(20px,3vw,40px);display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 8px 32px rgba(99,102,241,.4);position:relative;overflow:hidden;}
@@ -230,7 +230,7 @@ tr.total td:first-child{color:var(--accent);}
         <button class="tab-btn" onclick="switchTab(1)">
           <div class="tab-lbl">SCENARIO 02</div>
           <div class="tab-ttl">Intelligence</div>
-          <div class="tab-desc">IM Solution vs 108MP Camera</div>
+          <div class="tab-desc">Inventory Management Solution vs 108MP Camera</div>
         </button>
         <button class="tab-btn" onclick="switchTab(2)">
           <div class="tab-lbl">SCENARIO 03</div>
@@ -361,7 +361,7 @@ tr.total td:first-child{color:var(--accent);}
           <div class="cmp-title">5-Year TCO Comparison</div>
           <div class="bar-row">
             <div class="bar-item">
-              <div class="bar-hdr"><span class="bar-name">IM Solution</span><span class="bar-val" id="s2-bar-i-amt">$231,415</span></div>
+              <div class="bar-hdr"><span class="bar-name">Inventory Management Solution</span><span class="bar-val" id="s2-bar-i-amt">$231,415</span></div>
               <div class="bar-track"><div class="bar-fill s" id="s2-bar-i" style="width:27%"></div></div>
             </div>
             <div class="bar-item">
@@ -449,7 +449,7 @@ tr.total td:first-child{color:var(--accent);}
         <table>
           <thead><tr><th>Category</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th></tr></thead>
           <tbody>
-            <tr><td>IM Solution</td><td id="s2-iy1"></td><td id="s2-iy2"></td><td id="s2-iy3"></td><td id="s2-iy4"></td><td id="s2-iy5"></td></tr>
+            <tr><td>Inventory Management Solution</td><td id="s2-iy1"></td><td id="s2-iy2"></td><td id="s2-iy3"></td><td id="s2-iy4"></td><td id="s2-iy5"></td></tr>
             <tr><td>108MP Camera Solution</td><td id="s2-cy1"></td><td id="s2-cy2"></td><td id="s2-cy3"></td><td id="s2-cy4"></td><td id="s2-cy5"></td></tr>
             <tr class="total"><td>Savings</td><td id="s2-dy1"></td><td id="s2-dy2"></td><td id="s2-dy3"></td><td id="s2-dy4"></td><td id="s2-dy5"></td></tr>
           </tbody>
