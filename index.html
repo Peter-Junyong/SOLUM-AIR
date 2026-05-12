@@ -508,7 +508,7 @@ function calc(a){
   document.getElementById('q-ble').innerHTML=bQty+' <span>대</span>';
   document.getElementById('q-gondola').innerHTML=gondola+' <span>개</span>';
 
-  const hAP=B_AP_UNIT*Math.max(1,Math.round(bQty*0.2));
+  const hAP=a<=5000 ? 0 : B_AP_UNIT*Math.max(1,Math.round(bQty*0.2));
   const h_capex=(H_HW+H_INST)*hQty+hAP;
   const h_opex=H_MAINT*hQty;
   const h_tco5=h_capex+h_opex*5;
