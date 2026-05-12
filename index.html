@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -191,15 +191,15 @@ tr.total td:first-child{color:var(--accent);}
       <div class="range-labels"><span>500 m²</span><span>25,000 m²</span></div>
     </div>
     <div>
-      <div class="sec-title">HW 설치 수량</div>
+      <div class="sec-title">HW Installation Count</div>
       <div class="hw-grid">
-        <div class="hw-item"><div class="hw-name">HaLow GW</div><div class="hw-qty" id="q-halow">3 <span>대</span></div></div>
-        <div class="hw-item"><div class="hw-name">BLE GW</div><div class="hw-qty" id="q-ble">25 <span>대</span></div></div>
-        <div class="hw-item"><div class="hw-name">Core Gondola</div><div class="hw-qty" id="q-gondola">100 <span>개</span></div></div>
+        <div class="hw-item"><div class="hw-name">HaLow GW</div><div class="hw-qty" id="q-halow">3 <span>units</span></div></div>
+        <div class="hw-item"><div class="hw-name">BLE GW</div><div class="hw-qty" id="q-ble">25 <span>units</span></div></div>
+        <div class="hw-item"><div class="hw-name">Core Gondola</div><div class="hw-qty" id="q-gondola">100 <span>units</span></div></div>
       </div>
     </div>
     <div>
-      <div class="sec-title">비교 시나리오 선택</div>
+      <div class="sec-title">Select Scenario</div>
       <div class="tabs">
         <button class="tab-btn active" onclick="switchTab(0)">
           <div class="tab-lbl">SCENARIO 01</div>
@@ -226,11 +226,11 @@ tr.total td:first-child{color:var(--accent);}
     <div class="panel active" id="panel-0">
       <div>
         <div class="panel-title"><em>HaLow GW</em> vs BLE GW</div>
-        <div class="panel-desc">동일한 매장 면적 기준, HaLow GW 기반 인프라와 BLE GW 기반 인프라의 5년 TCO를 비교합니다.</div>
+        <div class="panel-desc">Based on the same store area, compares the 5-year TCO of HaLow GW infrastructure vs BLE GW infrastructure.</div>
       </div>
       <div class="cmp-wrapper">
         <div class="cmp-block">
-          <div class="cmp-title">5년 TCO 비교</div>
+          <div class="cmp-title">5-Year TCO Comparison</div>
           <div class="bar-row">
             <div class="bar-item">
               <div class="bar-hdr"><span class="bar-name">HaLow GW</span><span class="bar-val" id="s1-bar-h-amt">$19,125</span></div>
@@ -244,7 +244,7 @@ tr.total td:first-child{color:var(--accent);}
         </div>
         <div class="tco-card">
           <div class="tco-card-headline">
-            <span class="tco-card-label">5년 TCO 절감</span>
+            <span class="tco-card-label">5-Yr TCO Savings</span>
             <div class="tco-card-pct-group">
               <span class="tco-card-pct"><span id="s1-tco-pct">80%</span></span>
               <span class="tco-card-amt"><span id="s1-save">$77,763</span>▼</span>
@@ -265,22 +265,22 @@ tr.total td:first-child{color:var(--accent);}
               <button class="expand-btn" onclick="toggleSub('s1-h-cap-sub',this)">+</button>
             </div>
             <div class="mcard-half">
-              <div class="mhalf-lbl">OPEX (연간)</div>
+              <div class="mhalf-lbl">OPEX (Annual)</div>
               <div class="mhalf-val" id="s1-h-opex2">$684</div>
               <button class="expand-btn" onclick="toggleSub('s1-h-opx-sub',this)">+</button>
             </div>
           </div>
           <div id="s1-h-cap-sub" class="mcard-detail" style="display:none">
-            <div class="mrow mrow-sub"><span class="mrow-lbl">HW 가격</span><span class="mrow-val" id="s1-h-hw">$1,000</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">설치 수량</span><span class="mrow-val" id="s1-h-qty">2대</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">HW 설치비</span><span class="mrow-val" id="s1-h-inst">$665</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">데이터 전송용 AP (BLE 설치수량 20%)</span><span class="mrow-val" id="s1-h-ap">$0</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">HW Unit Price</span><span class="mrow-val" id="s1-h-hw">$1,000</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Qty Installed</span><span class="mrow-val" id="s1-h-qty">2 units</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">HW Installation</span><span class="mrow-val" id="s1-h-inst">$665</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Data AP (20% of BLE qty)</span><span class="mrow-val" id="s1-h-ap">$0</span></div>
           </div>
           <div id="s1-h-opx-sub" class="mcard-detail" style="display:none">
-            <div class="mrow mrow-sub"><span class="mrow-lbl">유지보수 비용</span><span class="mrow-val" id="s1-h-opex">$684</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Maintenance Cost</span><span class="mrow-val" id="s1-h-opex">$684</span></div>
           </div>
           <div class="mcard-tco">
-            <span class="mcard-tco-lbl">5년 TCO</span>
+            <span class="mcard-tco-lbl">5-Year TCO</span>
             <span class="mcard-tco-val" id="s1-h-tco">$5,085</span>
           </div>
         </div>
@@ -296,34 +296,34 @@ tr.total td:first-child{color:var(--accent);}
               <button class="expand-btn" onclick="toggleSub('s1-b-cap-sub',this)">+</button>
             </div>
             <div class="mcard-half">
-              <div class="mhalf-lbl">OPEX (연간)</div>
+              <div class="mhalf-lbl">OPEX (Annual)</div>
               <div class="mhalf-val" id="s1-b-opex2">$8,550</div>
               <button class="expand-btn" onclick="toggleSub('s1-b-opx-sub',this)">+</button>
             </div>
           </div>
           <div id="s1-b-cap-sub" class="mcard-detail" style="display:none">
-            <div class="mrow mrow-sub"><span class="mrow-lbl">HW 가격</span><span class="mrow-val" id="s1-b-hw">$7,500</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">설치 수량</span><span class="mrow-val" id="s1-b-qty">25대</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">HW 설치비</span><span class="mrow-val" id="s1-b-inst">$8,313</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">데이터 전송용 AP (설치수량 30%)</span><span class="mrow-val" id="s1-b-ap">$11,498</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">HW Unit Price</span><span class="mrow-val" id="s1-b-hw">$7,500</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Qty Installed</span><span class="mrow-val" id="s1-b-qty">25 units</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">HW Installation</span><span class="mrow-val" id="s1-b-inst">$8,313</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Data AP (30% of qty)</span><span class="mrow-val" id="s1-b-ap">$11,498</span></div>
           </div>
           <div id="s1-b-opx-sub" class="mcard-detail" style="display:none">
-            <div class="mrow mrow-sub"><span class="mrow-lbl">유지보수 비용</span><span class="mrow-val" id="s1-b-opex">$8,550</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Maintenance Cost</span><span class="mrow-val" id="s1-b-opex">$8,550</span></div>
           </div>
           <div class="mcard-tco">
-            <span class="mcard-tco-lbl">5년 TCO</span>
+            <span class="mcard-tco-lbl">5-Year TCO</span>
             <span class="mcard-tco-val" id="s1-b-tco">$96,888</span>
           </div>
         </div>
       </div>
       <div class="tbl-wrap">
-        <div class="tbl-head">연도별 TCO 누적 추이</div>
+        <div class="tbl-head">Cumulative TCO by Year</div>
         <table>
-          <thead><tr><th>구분</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th></tr></thead>
+          <thead><tr><th>Category</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th></tr></thead>
           <tbody>
             <tr><td>HaLow GW</td><td id="s1-hy1"></td><td id="s1-hy2"></td><td id="s1-hy3"></td><td id="s1-hy4"></td><td id="s1-hy5"></td></tr>
             <tr><td>BLE GW</td><td id="s1-by1"></td><td id="s1-by2"></td><td id="s1-by3"></td><td id="s1-by4"></td><td id="s1-by5"></td></tr>
-            <tr class="total"><td>절감액</td><td id="s1-dy1"></td><td id="s1-dy2"></td><td id="s1-dy3"></td><td id="s1-dy4"></td><td id="s1-dy5"></td></tr>
+            <tr class="total"><td>Savings</td><td id="s1-dy1"></td><td id="s1-dy2"></td><td id="s1-dy3"></td><td id="s1-dy4"></td><td id="s1-dy5"></td></tr>
           </tbody>
         </table>
       </div>
@@ -333,11 +333,11 @@ tr.total td:first-child{color:var(--accent);}
     <div class="panel" id="panel-1">
       <div>
         <div class="panel-title"><em>Inventory Management</em> vs 108MP Camera Solution</div>
-        <div class="panel-desc">UWB Powerrail + Newton EYE + Load Cell 통합 솔루션과 108MP 선반 카메라 단독 운영의 5년 TCO 및 기회비용을 비교합니다.</div>
+        <div class="panel-desc">Compares the 5-year TCO and opportunity costs of the UWB Powerrail + Newton EYE + Load Cell integrated solution vs standalone 108MP shelf camera operation.</div>
       </div>
       <div class="cmp-wrapper">
         <div class="cmp-block">
-          <div class="cmp-title">5년 TCO 비교</div>
+          <div class="cmp-title">5-Year TCO Comparison</div>
           <div class="bar-row">
             <div class="bar-item">
               <div class="bar-hdr"><span class="bar-name">IM Solution</span><span class="bar-val" id="s2-bar-i-amt">$231,415</span></div>
@@ -351,7 +351,7 @@ tr.total td:first-child{color:var(--accent);}
         </div>
         <div class="tco-card">
           <div class="tco-card-headline">
-            <span class="tco-card-label">5년 TCO 절감</span>
+            <span class="tco-card-label">5-Yr TCO Savings</span>
             <div class="tco-card-pct-group">
               <span class="tco-card-pct"><span id="s2-tco-pct">73%</span></span>
               <span class="tco-card-amt"><span id="s2-save">$628,485</span>▼</span>
@@ -372,23 +372,23 @@ tr.total td:first-child{color:var(--accent);}
               <button class="expand-btn" onclick="toggleSub('s2-i-cap-sub',this)">+</button>
             </div>
             <div class="mcard-half">
-              <div class="mhalf-lbl">OPEX (연간)</div>
+              <div class="mhalf-lbl">OPEX (Annual)</div>
               <div class="mhalf-val" id="s2-i-opex">$42,683</div>
               <button class="expand-btn" onclick="toggleSub('s2-i-opx-sub',this)">+</button>
             </div>
           </div>
           <div id="s2-i-cap-sub" class="mcard-detail" style="display:none">
-            <div class="mrow mrow-sub"><span class="mrow-lbl">설치 매대 수</span><span class="mrow-val" id="s2-i-shelf">100개</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Shelves Installed</span><span class="mrow-val" id="s2-i-shelf">100 units</span></div>
             <div class="mrow mrow-sub"><span class="mrow-lbl">UWB Powerrail ($100)</span><span class="mrow-val" id="s2-i-powerrail">$10,000</span></div>
             <div class="mrow mrow-sub"><span class="mrow-lbl">Camera ($70)</span><span class="mrow-val" id="s2-i-cam">$7,000</span></div>
             <div class="mrow mrow-sub"><span class="mrow-lbl">Load Cell ($10)</span><span class="mrow-val" id="s2-i-loadcell">$1,000</span></div>
           </div>
           <div id="s2-i-opx-sub" class="mcard-detail" style="display:none">
-            <div class="mrow mrow-sub"><span class="mrow-lbl">OOS 기회 비용</span><span class="mrow-val" id="s2-i-oos">$37,091</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">보충 인력 비용</span><span class="mrow-val" id="s2-i-labor">$5,592</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">OOS Opportunity Cost</span><span class="mrow-val" id="s2-i-oos">$37,091</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Replenishment Labor Cost</span><span class="mrow-val" id="s2-i-labor">$5,592</span></div>
           </div>
           <div class="mcard-tco">
-            <span class="mcard-tco-lbl">5년 TCO</span>
+            <span class="mcard-tco-lbl">5-Year TCO</span>
             <span class="mcard-tco-val" id="s2-i-tco">$231,415</span>
           </div>
         </div>
@@ -404,33 +404,33 @@ tr.total td:first-child{color:var(--accent);}
               <button class="expand-btn" onclick="toggleSub('s2-c-cap-sub',this)">+</button>
             </div>
             <div class="mcard-half">
-              <div class="mhalf-lbl">OPEX (연간)</div>
+              <div class="mhalf-lbl">OPEX (Annual)</div>
               <div class="mhalf-val" id="s2-c-opex">$139,980</div>
               <button class="expand-btn" onclick="toggleSub('s2-c-opx-sub',this)">+</button>
             </div>
           </div>
           <div id="s2-c-cap-sub" class="mcard-detail" style="display:none">
-            <div class="mrow mrow-sub"><span class="mrow-lbl">설치 매대 수</span><span class="mrow-val" id="s2-c-shelf">100대</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Shelves Installed</span><span class="mrow-val" id="s2-c-shelf">100 units</span></div>
             <div class="mrow mrow-sub"><span class="mrow-lbl">Camera ($1,600)</span><span class="mrow-val" id="s2-c-cam">$160,000</span></div>
           </div>
           <div id="s2-c-opx-sub" class="mcard-detail" style="display:none">
-            <div class="mrow mrow-sub"><span class="mrow-lbl">OOS 기회 비용</span><span class="mrow-val" id="s2-c-oos">$120,000</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">보충 인력 비용</span><span class="mrow-val" id="s2-c-labor">$19,980</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">OOS Opportunity Cost</span><span class="mrow-val" id="s2-c-oos">$120,000</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Replenishment Labor Cost</span><span class="mrow-val" id="s2-c-labor">$19,980</span></div>
           </div>
           <div class="mcard-tco">
-            <span class="mcard-tco-lbl">5년 TCO</span>
+            <span class="mcard-tco-lbl">5-Year TCO</span>
             <span class="mcard-tco-val" id="s2-c-tco">$859,900</span>
           </div>
         </div>
       </div>
       <div class="tbl-wrap">
-        <div class="tbl-head">연도별 TCO 누적 추이</div>
+        <div class="tbl-head">Cumulative TCO by Year</div>
         <table>
-          <thead><tr><th>구분</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th></tr></thead>
+          <thead><tr><th>Category</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th></tr></thead>
           <tbody>
             <tr><td>IM Solution</td><td id="s2-iy1"></td><td id="s2-iy2"></td><td id="s2-iy3"></td><td id="s2-iy4"></td><td id="s2-iy5"></td></tr>
             <tr><td>108MP Camera Solution</td><td id="s2-cy1"></td><td id="s2-cy2"></td><td id="s2-cy3"></td><td id="s2-cy4"></td><td id="s2-cy5"></td></tr>
-            <tr class="total"><td>절감액</td><td id="s2-dy1"></td><td id="s2-dy2"></td><td id="s2-dy3"></td><td id="s2-dy4"></td><td id="s2-dy5"></td></tr>
+            <tr class="total"><td>Savings</td><td id="s2-dy1"></td><td id="s2-dy2"></td><td id="s2-dy3"></td><td id="s2-dy4"></td><td id="s2-dy5"></td></tr>
           </tbody>
         </table>
       </div>
@@ -440,11 +440,11 @@ tr.total td:first-child{color:var(--accent);}
     <div class="panel" id="panel-2">
       <div>
         <div class="panel-title"><em>SOLUM E-Paper POP</em> vs Normal POP</div>
-        <div class="panel-desc">HaLow 기반 SOLUM E-Paper POP과 BLE 기반 Normal POP의 CAPEX 및 5년 광고 수익 Net Value를 비교합니다.</div>
+        <div class="panel-desc">Compares CAPEX and 5-year advertising revenue Net Value of HaLow-based SOLUM E-Paper POP vs BLE-based Normal POP.</div>
       </div>
       <div class="cmp-wrapper">
         <div class="cmp-block">
-          <div class="cmp-title">5년 Net Value 비교</div>
+          <div class="cmp-title">5-Year Net Value Comparison</div>
           <div class="bar-row">
             <div class="bar-item">
               <div class="bar-hdr"><span class="bar-name">SOLUM E-Paper POP</span><span class="bar-val" id="s3-bar-s-amt">$157,335</span></div>
@@ -458,7 +458,7 @@ tr.total td:first-child{color:var(--accent);}
         </div>
         <div class="tco-card">
           <div class="tco-card-headline tco-headline-col">
-            <span class="tco-card-label">5년 Net Value</span>
+            <span class="tco-card-label">5-Yr Net Value</span>
             <span class="tco-card-pct"><span id="s3-save">$59,147</span>▲</span>
           </div>
         </div>
@@ -476,20 +476,20 @@ tr.total td:first-child{color:var(--accent);}
               <button class="expand-btn" onclick="toggleSub('s3-s-cap-sub',this)">+</button>
             </div>
             <div class="mcard-half">
-              <div class="mhalf-lbl">연간 Revenue</div>
+              <div class="mhalf-lbl">Annual Revenue</div>
               <div class="mhalf-val" id="s3-s-rev">$36,000</div>
               <button class="expand-btn" onclick="toggleSub('s3-s-rev-sub',this)">+</button>
             </div>
           </div>
           <div id="s3-s-cap-sub" class="mcard-detail" style="display:none">
-            <div class="mrow mrow-sub"><span class="mrow-lbl">AP 설치 대수</span><span class="mrow-val" id="s3-s-ap">2대</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">E-Paper POP 수량</span><span class="mrow-val" id="s3-s-pop">30대</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">AP Units Installed</span><span class="mrow-val" id="s3-s-ap">2 units</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">E-Paper POP Qty</span><span class="mrow-val" id="s3-s-pop">30 units</span></div>
           </div>
           <div id="s3-s-rev-sub" class="mcard-detail" style="display:none">
-            <div class="mrow mrow-sub"><span class="mrow-lbl">총 광고 구좌</span><span class="mrow-val" id="s3-s-slots">120구좌</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Total Ad Slots</span><span class="mrow-val" id="s3-s-slots">120 slots</span></div>
           </div>
           <div class="mcard-tco">
-            <span class="mcard-tco-lbl">5년 Net Value</span>
+            <span class="mcard-tco-lbl">5-Year Net Value</span>
             <span class="mcard-tco-val" id="s3-s-net">$157,335</span>
           </div>
         </div>
@@ -505,32 +505,32 @@ tr.total td:first-child{color:var(--accent);}
               <button class="expand-btn" onclick="toggleSub('s3-n-cap-sub',this)">+</button>
             </div>
             <div class="mcard-half">
-              <div class="mhalf-lbl">연간 Revenue</div>
+              <div class="mhalf-lbl">Annual Revenue</div>
               <div class="mhalf-val" id="s3-n-rev">$27,000</div>
               <button class="expand-btn" onclick="toggleSub('s3-n-rev-sub',this)">+</button>
             </div>
           </div>
           <div id="s3-n-cap-sub" class="mcard-detail" style="display:none">
-            <div class="mrow mrow-sub"><span class="mrow-lbl">AP 설치 대수</span><span class="mrow-val" id="s3-n-ap">25대</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">E-Paper POP 수량</span><span class="mrow-val" id="s3-n-pop">30대</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">AP Units Installed</span><span class="mrow-val" id="s3-n-ap">25 units</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">E-Paper POP Qty</span><span class="mrow-val" id="s3-n-pop">30 units</span></div>
           </div>
           <div id="s3-n-rev-sub" class="mcard-detail" style="display:none">
-            <div class="mrow mrow-sub"><span class="mrow-lbl">총 광고 구좌</span><span class="mrow-val" id="s3-n-slots">90구좌</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Total Ad Slots</span><span class="mrow-val" id="s3-n-slots">90 slots</span></div>
           </div>
           <div class="mcard-tco">
-            <span class="mcard-tco-lbl">5년 Net Value</span>
+            <span class="mcard-tco-lbl">5-Year Net Value</span>
             <span class="mcard-tco-val" id="s3-n-net">$98,188</span>
           </div>
         </div>
       </div>
       <div class="tbl-wrap">
-        <div class="tbl-head">연도별 Net Value 누적 추이</div>
+        <div class="tbl-head">Cumulative Net Value by Year</div>
         <table>
-          <thead><tr><th>구분</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th></tr></thead>
+          <thead><tr><th>Category</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Year 4</th><th>Year 5</th></tr></thead>
           <tbody>
             <tr><td>SOLUM E-Paper POP</td><td id="s3-sy1"></td><td id="s3-sy2"></td><td id="s3-sy3"></td><td id="s3-sy4"></td><td id="s3-sy5"></td></tr>
             <tr><td>Normal POP</td><td id="s3-ny1"></td><td id="s3-ny2"></td><td id="s3-ny3"></td><td id="s3-ny4"></td><td id="s3-ny5"></td></tr>
-            <tr class="total"><td>SOLUM 우위</td><td id="s3-dy1"></td><td id="s3-dy2"></td><td id="s3-dy3"></td><td id="s3-dy4"></td><td id="s3-dy5"></td></tr>
+            <tr class="total"><td>SOLUM Advantage</td><td id="s3-dy1"></td><td id="s3-dy2"></td><td id="s3-dy3"></td><td id="s3-dy4"></td><td id="s3-dy5"></td></tr>
           </tbody>
         </table>
       </div>
@@ -569,9 +569,9 @@ function calc(a){
   const gondola=Math.max(1,Math.round(100*r));
   const popQty=Math.max(1,Math.round(POP_BASE_QTY*r));
 
-  document.getElementById('q-halow').innerHTML=hQty+' <span>대</span>';
-  document.getElementById('q-ble').innerHTML=bQty+' <span>대</span>';
-  document.getElementById('q-gondola').innerHTML=gondola+' <span>개</span>';
+  document.getElementById('q-halow').innerHTML=hQty+' <span>units</span>';
+  document.getElementById('q-ble').innerHTML=bQty+' <span>units</span>';
+  document.getElementById('q-gondola').innerHTML=gondola+' <span>units</span>';
 
   const hAP=a<=5000 ? 0 : B_AP_UNIT*Math.max(1,Math.round(bQty*0.2));
   const h_capex=(H_HW+H_INST)*hQty+hAP;
@@ -585,10 +585,10 @@ function calc(a){
   const bY=[1,2,3,4,5].map(y=>b_capex+b_opex*y);
   const mx1=Math.max(h_tco5,b_tco5);
 
-  set('s1-h-qty',hQty+'대'); set('s1-h-hw',fmt(H_HW*hQty)); set('s1-h-ap',fmt(hAP));
+  set('s1-h-qty',hQty+' units'); set('s1-h-hw',fmt(H_HW*hQty)); set('s1-h-ap',fmt(hAP));
   set('s1-h-inst',fmt(H_INST*hQty)); set('s1-h-opex',fmt(h_opex)); set('s1-h-opex2',fmt(h_opex));
   set('s1-h-capex',fmt(h_capex)); set('s1-h-tco',fmt(h_tco5));
-  set('s1-b-qty',bQty+'대'); set('s1-b-hw',fmt(B_HW*bQty)); set('s1-b-ap',fmt(bAP));
+  set('s1-b-qty',bQty+' units'); set('s1-b-hw',fmt(B_HW*bQty)); set('s1-b-ap',fmt(bAP));
   set('s1-b-inst',fmt(B_INST*bQty)); set('s1-b-opex',fmt(b_opex)); set('s1-b-opex2',fmt(b_opex));
   set('s1-b-capex',fmt(b_capex)); set('s1-b-tco',fmt(b_tco5));
   const s1_savings=b_tco5-h_tco5;
@@ -604,11 +604,11 @@ function calc(a){
   const camY=[1,2,3,4,5].map(y=>cam_capex+cam_opex*y);
   const mx2=Math.max(im_tco5,cam_tco5);
 
-  set('s2-i-shelf',gondola+'개');
+  set('s2-i-shelf',gondola+' units');
   set('s2-i-powerrail',fmt(IM_POWERRAIL*gondola)); set('s2-i-cam',fmt(IM_CAM*gondola)); set('s2-i-loadcell',fmt(IM_LOADCELL*gondola));
   set('s2-i-capex',fmt(im_capex)); set('s2-i-oos',fmt(im_oos)); set('s2-i-labor',fmt(im_labor));
   set('s2-i-opex',fmt(im_opex)); set('s2-i-tco',fmt(im_tco5));
-  set('s2-c-shelf',gondola+'대');
+  set('s2-c-shelf',gondola+' units');
   set('s2-c-cam',fmt(CAM_HW*gondola));
   set('s2-c-capex',fmt(cam_capex)); set('s2-c-oos',fmt(cam_oos)); set('s2-c-labor',fmt(cam_labor));
   set('s2-c-opex',fmt(cam_opex)); set('s2-c-tco',fmt(cam_tco5));
@@ -627,10 +627,10 @@ function calc(a){
   const mx3=Math.max(sd_net5,nd_net5);
   const s3_advantage=sd_net5-nd_net5;
 
-  set('s3-s-ap',hQty+'대'); set('s3-s-pop',popQty+'대'); set('s3-s-capex',fmt(sd_capex));
-  set('s3-s-slots',sd_slots+'구좌'); set('s3-s-rev',fmt(sd_rev)); set('s3-s-net',fmt(sd_net5));
-  set('s3-n-ap',bQty+'대'); set('s3-n-pop',popQty+'대'); set('s3-n-capex',fmt(nd_capex));
-  set('s3-n-slots',nd_slots+'구좌'); set('s3-n-rev',fmt(nd_rev)); set('s3-n-net',fmt(nd_net5));
+  set('s3-s-ap',hQty+' units'); set('s3-s-pop',popQty+' units'); set('s3-s-capex',fmt(sd_capex));
+  set('s3-s-slots',sd_slots+' slots'); set('s3-s-rev',fmt(sd_rev)); set('s3-s-net',fmt(sd_net5));
+  set('s3-n-ap',bQty+' units'); set('s3-n-pop',popQty+' units'); set('s3-n-capex',fmt(nd_capex));
+  set('s3-n-slots',nd_slots+' slots'); set('s3-n-rev',fmt(nd_rev)); set('s3-n-net',fmt(nd_net5));
   set('s3-save',fmt(s3_advantage));
   set('s3-bar-s-amt',fmt(sd_net5)); set('s3-bar-n-amt',fmt(nd_net5));
   setW('s3-bar-s',(sd_net5/mx3*100)+'%'); setW('s3-bar-n',(nd_net5/mx3*100)+'%');
