@@ -108,18 +108,23 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 
 /* BEP CHART */
 .bep-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:22px 28px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
-.bep-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-.bep-title{font-size:13px;font-weight:700;color:var(--label);letter-spacing:.8px;text-transform:uppercase;}
-.bep-kpis{display:flex;gap:28px;}
-.bep-kpi{text-align:right;}
-.bep-kpi-lbl{font-size:11px;color:var(--muted);margin-bottom:2px;}
-.bep-kpi-val{font-size:18px;font-weight:800;letter-spacing:-.5px;}
-.bep-kpi-val.s{color:var(--green);}
-.bep-kpi-val.c{color:var(--red);}
+.bep-titlebar{font-size:13px;font-weight:700;color:var(--label);letter-spacing:.8px;text-transform:uppercase;margin-bottom:18px;}
+.bep-inner{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;}
+.bep-summary{padding-right:24px;border-right:1px solid var(--border-light);}
+.bep-m-lbl{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;}
+.bep-m-num{font-size:42px;font-weight:900;color:var(--accent);letter-spacing:-2px;line-height:1;margin-bottom:14px;}
+.bep-m-num .bep-m-unit{font-size:15px;font-weight:600;color:var(--muted);letter-spacing:0;margin-left:4px;}
+.bep-m-num.s{color:var(--green);}
+.bep-m-num.c{color:var(--red);}
+.bep-rows{display:flex;flex-direction:column;gap:6px;}
+.bep-row{display:flex;justify-content:space-between;font-size:13px;}
+.bep-rl{color:var(--muted);}
+.bep-rv{font-weight:700;color:var(--text);}
+.bep-s3-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .bep-svg{width:100%;height:130px;display:block;}
-.bep-legend{display:flex;gap:20px;justify-content:center;margin-top:10px;}
-.bep-legend span{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--label);font-weight:500;}
-.bep-leg-line{width:18px;height:3px;border-radius:2px;display:inline-block;flex-shrink:0;}
+.bep-legend{display:flex;gap:16px;margin-top:8px;justify-content:flex-end;}
+.bep-legend span{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--label);font-weight:500;}
+.bep-leg-line{width:14px;height:3px;border-radius:2px;display:inline-block;flex-shrink:0;}
 
 /* SAVINGS */
 .savings{background:linear-gradient(135deg,#f0fff9,#eaecf5);border:1.5px solid rgba(0,184,122,.2);border-radius:16px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
@@ -293,26 +298,6 @@ tr.total td:first-child{color:var(--accent);}
           <div class="mrow mrow-final"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s1-b-tco">$96,888</span></div>
         </div>
       </div>
-      <div class="bep-card">
-        <div class="bep-header">
-          <div class="bep-title">투자 회수 분석 (BEP)</div>
-          <div class="bep-kpis">
-            <div class="bep-kpi">
-              <div class="bep-kpi-lbl">HaLow 절감 시작</div>
-              <div class="bep-kpi-val s" id="s1-bep-val">즉시</div>
-            </div>
-            <div class="bep-kpi">
-              <div class="bep-kpi-lbl">5년 누적 절감</div>
-              <div class="bep-kpi-val s" id="s1-bep-save">$91,803</div>
-            </div>
-          </div>
-        </div>
-        <svg id="s1-bep-svg" class="bep-svg" viewBox="0 0 500 130" xmlns="http://www.w3.org/2000/svg"></svg>
-        <div class="bep-legend">
-          <span><span class="bep-leg-line" style="background:var(--green)"></span>HaLow GW</span>
-          <span><span class="bep-leg-line" style="background:var(--red)"></span>BLE GW</span>
-        </div>
-      </div>
       <div class="tbl-wrap">
         <div class="tbl-head">연도별 TCO 누적 추이</div>
         <table>
@@ -323,6 +308,24 @@ tr.total td:first-child{color:var(--accent);}
             <tr class="total"><td>절감액</td><td id="s1-dy1"></td><td id="s1-dy2"></td><td id="s1-dy3"></td><td id="s1-dy4"></td><td id="s1-dy5"></td></tr>
           </tbody>
         </table>
+      </div>
+      <div class="bep-card">
+        <div class="bep-titlebar">투자 회수 분석 (BEP)</div>
+        <div class="bep-inner">
+          <div class="bep-summary">
+            <div class="bep-m-lbl">투자 회수 기간</div>
+            <div class="bep-m-num"><span id="s1-bep-val">—</span><span class="bep-m-unit">개월</span></div>
+            <div class="bep-rows">
+              <div class="bep-row"><span class="bep-rl">투자 CAPEX</span><span class="bep-rv" id="s1-bep-capex">—</span></div>
+              <div class="bep-row"><span class="bep-rl">연간 절감액</span><span class="bep-rv" id="s1-bep-annual">—</span></div>
+              <div class="bep-row"><span class="bep-rl">월간 절감액</span><span class="bep-rv" id="s1-bep-monthly">—</span></div>
+            </div>
+          </div>
+          <div class="bep-chart-side">
+            <svg id="s1-bep-svg" class="bep-svg" viewBox="0 0 500 130" xmlns="http://www.w3.org/2000/svg"></svg>
+            <div class="bep-legend"><span><span class="bep-leg-line" style="background:var(--green)"></span>누적 절감액</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -406,26 +409,6 @@ tr.total td:first-child{color:var(--accent);}
           <div class="mrow mrow-final"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s2-c-tco">$859,900</span></div>
         </div>
       </div>
-      <div class="bep-card">
-        <div class="bep-header">
-          <div class="bep-title">투자 회수 분석 (BEP)</div>
-          <div class="bep-kpis">
-            <div class="bep-kpi">
-              <div class="bep-kpi-lbl">IM 절감 시작</div>
-              <div class="bep-kpi-val s" id="s2-bep-val">즉시</div>
-            </div>
-            <div class="bep-kpi">
-              <div class="bep-kpi-lbl">5년 누적 절감</div>
-              <div class="bep-kpi-val s" id="s2-bep-save">$628,485</div>
-            </div>
-          </div>
-        </div>
-        <svg id="s2-bep-svg" class="bep-svg" viewBox="0 0 500 130" xmlns="http://www.w3.org/2000/svg"></svg>
-        <div class="bep-legend">
-          <span><span class="bep-leg-line" style="background:var(--green)"></span>IM Solution</span>
-          <span><span class="bep-leg-line" style="background:var(--red)"></span>108MP Camera Solution</span>
-        </div>
-      </div>
       <div class="tbl-wrap">
         <div class="tbl-head">연도별 TCO 누적 추이</div>
         <table>
@@ -436,6 +419,24 @@ tr.total td:first-child{color:var(--accent);}
             <tr class="total"><td>절감액</td><td id="s2-dy1"></td><td id="s2-dy2"></td><td id="s2-dy3"></td><td id="s2-dy4"></td><td id="s2-dy5"></td></tr>
           </tbody>
         </table>
+      </div>
+      <div class="bep-card">
+        <div class="bep-titlebar">투자 회수 분석 (BEP)</div>
+        <div class="bep-inner">
+          <div class="bep-summary">
+            <div class="bep-m-lbl">투자 회수 기간</div>
+            <div class="bep-m-num"><span id="s2-bep-val">—</span><span class="bep-m-unit">개월</span></div>
+            <div class="bep-rows">
+              <div class="bep-row"><span class="bep-rl">투자 CAPEX</span><span class="bep-rv" id="s2-bep-capex">—</span></div>
+              <div class="bep-row"><span class="bep-rl">연간 절감액</span><span class="bep-rv" id="s2-bep-annual">—</span></div>
+              <div class="bep-row"><span class="bep-rl">월간 절감액</span><span class="bep-rv" id="s2-bep-monthly">—</span></div>
+            </div>
+          </div>
+          <div class="bep-chart-side">
+            <svg id="s2-bep-svg" class="bep-svg" viewBox="0 0 500 130" xmlns="http://www.w3.org/2000/svg"></svg>
+            <div class="bep-legend"><span><span class="bep-leg-line" style="background:var(--green)"></span>누적 절감액</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -512,26 +513,6 @@ tr.total td:first-child{color:var(--accent);}
           <div class="mrow mrow-final"><span class="mrow-lbl">5년 Net Value</span><span class="mrow-val big" id="s3-n-net">$98,188</span></div>
         </div>
       </div>
-      <div class="bep-card">
-        <div class="bep-header">
-          <div class="bep-title">투자 회수 기간 (BEP)</div>
-          <div class="bep-kpis">
-            <div class="bep-kpi">
-              <div class="bep-kpi-lbl">HaLow+POP BEP</div>
-              <div class="bep-kpi-val s" id="s3-bep-s">—개월</div>
-            </div>
-            <div class="bep-kpi">
-              <div class="bep-kpi-lbl">BLE+POP BEP</div>
-              <div class="bep-kpi-val c" id="s3-bep-n">—개월</div>
-            </div>
-          </div>
-        </div>
-        <svg id="s3-bep-svg" class="bep-svg" viewBox="0 0 500 130" xmlns="http://www.w3.org/2000/svg"></svg>
-        <div class="bep-legend">
-          <span><span class="bep-leg-line" style="background:var(--green)"></span>HaLow+POP Net Value</span>
-          <span><span class="bep-leg-line" style="background:var(--red)"></span>BLE+POP Net Value</span>
-        </div>
-      </div>
       <div class="tbl-wrap">
         <div class="tbl-head">연도별 Net Value 누적 추이</div>
         <table>
@@ -542,6 +523,38 @@ tr.total td:first-child{color:var(--accent);}
             <tr class="total"><td>SOLUM 우위</td><td id="s3-dy1"></td><td id="s3-dy2"></td><td id="s3-dy3"></td><td id="s3-dy4"></td><td id="s3-dy5"></td></tr>
           </tbody>
         </table>
+      </div>
+      <div class="bep-card">
+        <div class="bep-titlebar">투자 회수 분석 (BEP)</div>
+        <div class="bep-inner">
+          <div class="bep-summary">
+            <div class="bep-s3-grid">
+              <div>
+                <div class="bep-m-lbl">HaLow+POP</div>
+                <div class="bep-m-num s"><span id="s3-bep-s">—</span><span class="bep-m-unit">개월</span></div>
+                <div class="bep-rows">
+                  <div class="bep-row"><span class="bep-rl">CAPEX</span><span class="bep-rv" id="s3-bep-s-capex">—</span></div>
+                  <div class="bep-row"><span class="bep-rl">연간 수익</span><span class="bep-rv" id="s3-bep-s-rev">—</span></div>
+                </div>
+              </div>
+              <div>
+                <div class="bep-m-lbl">BLE+POP</div>
+                <div class="bep-m-num c"><span id="s3-bep-n">—</span><span class="bep-m-unit">개월</span></div>
+                <div class="bep-rows">
+                  <div class="bep-row"><span class="bep-rl">CAPEX</span><span class="bep-rv" id="s3-bep-n-capex">—</span></div>
+                  <div class="bep-row"><span class="bep-rl">연간 수익</span><span class="bep-rv" id="s3-bep-n-rev">—</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bep-chart-side">
+            <svg id="s3-bep-svg" class="bep-svg" viewBox="0 0 500 130" xmlns="http://www.w3.org/2000/svg"></svg>
+            <div class="bep-legend">
+              <span><span class="bep-leg-line" style="background:var(--green)"></span>HaLow+POP</span>
+              <span><span class="bep-leg-line" style="background:var(--red)"></span>BLE+POP</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -562,10 +575,11 @@ function fmt(n){return '$'+Math.round(n).toLocaleString('en-US');}
 function pct(a,max){return Math.round(a/max*100)+'%';}
 function set(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
 function setW(id,w){const el=document.getElementById(id);if(el)el.style.width=w;}
-function drawBEP(svgId,series,bepMarkers){
+function drawBEP(svgId,series,bepMarkers,maxM){
+  if(!maxM)maxM=60;
   const svg=document.getElementById(svgId);if(!svg)return;
   const W=500,H=130,pl=64,pr=20,pt=12,pb=28;
-  const cW=W-pl-pr,cH=H-pt-pb,months=60;
+  const cW=W-pl-pr,cH=H-pt-pb,months=maxM;
   const allV=series.flatMap(s=>s.vals);
   let minV=Math.min(0,...allV),maxV=Math.max(...allV);
   const rng=maxV-minV||1;
@@ -657,14 +671,17 @@ function calc(a){
   set('s1-bar-h-amt',fmt(h_tco5)); set('s1-bar-b-amt',fmt(b_tco5));
   setW('s1-bar-h',(h_tco5/mx1*100)+'%'); setW('s1-bar-b',(b_tco5/mx1*100)+'%');
   [1,2,3,4,5].forEach(y=>{set('s1-hy'+y,fmt(hY[y-1]));set('s1-by'+y,fmt(bY[y-1]));set('s1-dy'+y,fmt(bY[y-1]-hY[y-1]));});
-  const s1CapDiff=b_capex-h_capex,s1MoSave=(b_opex-h_opex)/12;
-  const s1bep=s1CapDiff>0&&s1MoSave>0?s1CapDiff/s1MoSave:0;
-  set('s1-bep-val',s1bep>0?Math.round(s1bep)+'개월':'즉시');
-  set('s1-bep-save',fmt(b_tco5-h_tco5));
+  const s1_ann_save=(b_tco5-h_tco5)/5;
+  const s1_bep_m=s1_ann_save>0?h_capex/(s1_ann_save/12):999;
+  const s1_maxM=Math.min(60,Math.max(24,Math.ceil(s1_bep_m*2.5)));
+  set('s1-bep-val',Math.round(s1_bep_m)+'');
+  set('s1-bep-capex',fmt(h_capex));
+  set('s1-bep-annual',fmt(s1_ann_save));
+  set('s1-bep-monthly',fmt(s1_ann_save/12));
   drawBEP('s1-bep-svg',
-    [{vals:Array.from({length:61},(_,m)=>h_capex+h_opex/12*m),color:'#00b87a'},
-     {vals:Array.from({length:61},(_,m)=>b_capex+b_opex/12*m),color:'#e84040'}],
-    s1bep>0?[{month:s1bep,color:'#00b87a'}]:[]
+    [{vals:Array.from({length:s1_maxM+1},(_,m)=>s1_ann_save/12*m-h_capex),color:'#00b87a'}],
+    [{month:s1_bep_m,color:'#00b87a'}],
+    s1_maxM
   );
   const im_oos=IM_OOS_BASE*Math.pow(r,1.0), im_labor=IM_LABOR_BASE*Math.pow(r,1.0);
   const cam_oos=CAM_OOS_BASE*Math.pow(r,1.5), cam_labor=CAM_LABOR_BASE*Math.pow(r,1.3);
@@ -687,14 +704,17 @@ function calc(a){
   set('s2-bar-i-amt',fmt(im_tco5)); set('s2-bar-c-amt',fmt(cam_tco5));
   setW('s2-bar-i',(im_tco5/mx2*100)+'%'); setW('s2-bar-c',(cam_tco5/mx2*100)+'%');
   [1,2,3,4,5].forEach(y=>{set('s2-iy'+y,fmt(imY[y-1]));set('s2-cy'+y,fmt(camY[y-1]));set('s2-dy'+y,fmt(camY[y-1]-imY[y-1]));});
-  const s2CapDiff=cam_capex-im_capex,s2MoSave=(cam_opex-im_opex)/12;
-  const s2bep=s2CapDiff>0&&s2MoSave>0?s2CapDiff/s2MoSave:0;
-  set('s2-bep-val',s2bep>0?Math.round(s2bep)+'개월':'즉시');
-  set('s2-bep-save',fmt(cam_tco5-im_tco5));
+  const s2_ann_save=(cam_tco5-im_tco5)/5;
+  const s2_bep_m=s2_ann_save>0?im_capex/(s2_ann_save/12):999;
+  const s2_maxM=Math.min(60,Math.max(24,Math.ceil(s2_bep_m*2.5)));
+  set('s2-bep-val',Math.round(s2_bep_m)+'');
+  set('s2-bep-capex',fmt(im_capex));
+  set('s2-bep-annual',fmt(s2_ann_save));
+  set('s2-bep-monthly',fmt(s2_ann_save/12));
   drawBEP('s2-bep-svg',
-    [{vals:Array.from({length:61},(_,m)=>im_capex+im_opex/12*m),color:'#00b87a'},
-     {vals:Array.from({length:61},(_,m)=>cam_capex+cam_opex/12*m),color:'#e84040'}],
-    s2bep>0?[{month:s2bep,color:'#00b87a'}]:[]
+    [{vals:Array.from({length:s2_maxM+1},(_,m)=>s2_ann_save/12*m-im_capex),color:'#00b87a'}],
+    [{month:s2_bep_m,color:'#00b87a'}],
+    s2_maxM
   );
   const sd_capex=(H_HW+H_INST)*hQty+POP_UNIT*popQty;
   const nd_capex=(B_HW+B_INST)*bQty+POP_UNIT*popQty;
@@ -716,12 +736,16 @@ function calc(a){
   [1,2,3,4,5].forEach(y=>{set('s3-sy'+y,fmt(sdNetY[y-1]));set('s3-ny'+y,fmt(ndNetY[y-1]));set('s3-dy'+y,fmt(sdNetY[y-1]-ndNetY[y-1]));});
   const s3bepS=sd_rev>0?sd_capex/(sd_rev/12):999;
   const s3bepN=nd_rev>0?nd_capex/(nd_rev/12):999;
-  set('s3-bep-s',Math.round(s3bepS)+'개월');
-  set('s3-bep-n',Math.round(s3bepN)+'개월');
+  const s3_maxM=Math.min(60,Math.max(24,Math.ceil(Math.max(s3bepS,s3bepN)*2.5)));
+  set('s3-bep-s',Math.round(s3bepS)+'');
+  set('s3-bep-n',Math.round(s3bepN)+'');
+  set('s3-bep-s-capex',fmt(sd_capex)); set('s3-bep-s-rev',fmt(sd_rev));
+  set('s3-bep-n-capex',fmt(nd_capex)); set('s3-bep-n-rev',fmt(nd_rev));
   drawBEP('s3-bep-svg',
-    [{vals:Array.from({length:61},(_,m)=>sd_rev/12*m-sd_capex),color:'#00b87a'},
-     {vals:Array.from({length:61},(_,m)=>nd_rev/12*m-nd_capex),color:'#e84040'}],
-    [{month:s3bepS,color:'#00b87a'},{month:s3bepN,color:'#e84040'}]
+    [{vals:Array.from({length:s3_maxM+1},(_,m)=>sd_rev/12*m-sd_capex),color:'#00b87a'},
+     {vals:Array.from({length:s3_maxM+1},(_,m)=>nd_rev/12*m-nd_capex),color:'#e84040'}],
+    [{month:s3bepS,color:'#00b87a'},{month:s3bepN,color:'#e84040'}],
+    s3_maxM
   );
 }
 
