@@ -203,6 +203,72 @@ tr.total td:first-child{color:#2F006D;}
 .tco-card-amt{font-size:clamp(15px,1.6vw,24px);font-weight:600;color:rgba(0,0,0,.65);letter-spacing:-.2px;}
 .tco-headline-col{flex-direction:column;gap:6px;}
 .tco-headline-col .tco-card-pct-group{margin-top:0;}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width:1024px){
+  html,body{height:auto;overflow:auto;}
+  body{display:block;}
+  .main{display:flex;flex-direction:column;height:auto;overflow:visible;}
+  .sidebar{position:static;height:auto;overflow-y:visible;border-right:none;border-bottom:2px solid #2F006D;}
+  .content{height:auto;overflow-y:visible;}
+}
+
+@media (max-width:768px){
+  header{padding:0 16px;height:56px;}
+  .logo-block h1{font-size:20px;}
+  .logo-block p{display:none;}
+  .logo-divider{display:none;}
+
+  .sidebar{padding:14px 12px;gap:12px;}
+  .sec-title{font-size:12px;}
+  .size-val{font-size:28px;}
+  .size-unit{font-size:14px;}
+  .size-tag{font-size:13px;}
+  .hw-name{font-size:13px;}
+  .hw-qty{font-size:16px;}
+  .tab-lbl{font-size:11px;}
+  .tab-ttl{font-size:16px;}
+  .tab-desc{font-size:12px;}
+  .tab-btn{padding:8px 10px;}
+
+  .content{padding:14px 12px;gap:10px;}
+  .panel{gap:10px;}
+  .panel-title{font-size:18px;}
+  .panel-desc{font-size:13px;}
+
+  .metrics-row{grid-template-columns:1fr;gap:8px;}
+  .mcard-top{grid-template-columns:1fr 1fr;}
+  .mbadge{font-size:13px;padding:3px 10px;}
+  .mcard-name{font-size:14px;}
+  .mhalf-lbl{font-size:14px;}
+  .mhalf-val{font-size:18px;}
+  .mcard-tco-lbl{font-size:14px;}
+  .mcard-tco-val{font-size:18px;}
+  .mrow-lbl{font-size:13px;}
+  .mrow-val{font-size:13px;}
+  .mrow-val.big{font-size:16px;}
+
+  .cmp-wrapper{grid-template-columns:1fr;}
+  .savings-val{font-size:28px;}
+
+  th{font-size:13px;padding:6px 8px;}
+  td{font-size:13px;padding:5px 8px;}
+
+  .tco-card-label{font-size:16px;}
+  .tco-card-pct{font-size:22px;}
+  .tco-card-amt{font-size:13px;}
+  .tco-card-pct-group{margin-top:16px;}
+}
+
+@media (max-width:480px){
+  .metrics-row{grid-template-columns:1fr;}
+  .mcard-top{grid-template-columns:1fr;}
+  .cmp-wrapper{grid-template-columns:1fr;}
+  .tco-card-headline{flex-direction:column;gap:6px;}
+  .tco-card-pct-group{margin-top:8px;}
+  table{font-size:12px;}
+  th,td{padding:4px 6px;}
+}
 </style>
 </head>
 <body>
