@@ -533,7 +533,7 @@ function calc(a){
   [1,2,3,4,5].forEach(y=>{set('s1-hy'+y,fmt(hY[y-1]));set('s1-by'+y,fmt(bY[y-1]));set('s1-dy'+y,fmt(bY[y-1]-hY[y-1]));});
 
   const im_oos=IM_OOS_BASE*Math.pow(r,1.0), im_labor=IM_LABOR_BASE*Math.pow(r,1.0);
-  const cam_oos=CAM_OOS_BASE*Math.pow(r,1.5), cam_labor=CAM_LABOR_BASE*Math.pow(r,1.5);
+  const cam_oos=CAM_OOS_BASE*Math.pow(r,1.0), cam_labor=CAM_LABOR_BASE*Math.pow(r,1.0);
   const im_capex=IM_HW*gondola, im_opex=im_oos+im_labor, im_tco5=im_capex+im_opex*5;
   const cam_capex=CAM_HW*gondola, cam_opex=cam_oos+cam_labor, cam_tco5=cam_capex+cam_opex*5;
   const imY=[1,2,3,4,5].map(y=>im_capex+im_opex*y);
