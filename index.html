@@ -121,10 +121,15 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .mrow-toggle{cursor:pointer;}
 .mrow-sub-group .mrow:last-child{border-bottom:1px solid var(--border-light);}
 .mrow-sub{padding-left:20px;}
-.mcard.solum .mrow-sub{background:rgba(47,0,109,.03);}
+.mcard.solum .mrow-sub{background:rgba(255,255,255,.04);}
 .mcard.comp .mrow-sub{background:#FAFAFA;}
-.mrow-sub .mrow-lbl{font-size:13px;color:var(--muted);}
-.mrow-sub .mrow-val{font-size:13px;color:var(--label);}
+.mrow-sub .mrow-lbl{font-size:20px;color:var(--muted);}
+.mrow-sub .mrow-val{font-size:20px;font-weight:600;color:var(--label);}
+.mcard.solum .mrow-sub .mrow-lbl{color:rgba(255,255,255,.7);}
+.mcard.solum .mrow-sub .mrow-val{color:#fff;}
+.mcard.comp .mrow-sub .mrow-lbl{color:rgba(167,139,250,.7);}
+.mcard.comp .mrow-sub .mrow-val{color:#A78BFA;}
+.mcard.solum .mcard-detail .mrow{border-bottom-color:rgba(255,255,255,.12);}
 .mrow-final{background:rgba(27,42,107,.03);margin:0 -24px -24px;padding:12px 24px;border-radius:0 0 14px 14px;border-top:1.5px solid var(--border-light);}
 .mcard.solum .mrow-final{background:rgba(47,0,109,.06);border-top-color:rgba(47,0,109,.15);}
 .mcard.comp .mrow-final{background:#F5F0FF;border-top-color:rgba(47,0,109,.1);}
@@ -144,8 +149,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .mcard.solum .expand-btn:hover{border-color:#fff;color:#fff;}
 .mcard-half .expand-btn{position:absolute;top:14px;right:14px;}
 .mcard-detail{background:var(--card);border:1.5px solid var(--border-light);border-radius:16px;padding:6px 20px 4px;box-shadow:0 4px 16px rgba(99,102,241,.06);}
-.mcard.solum .mcard-detail{border-color:rgba(47,0,109,.2);}
-.mcard.comp .mcard-detail{border-color:rgba(47,0,109,.15);}
+.mcard.solum .mcard-detail{background:#2F006D;border-color:#2F006D;box-shadow:0 4px 16px rgba(47,0,109,.3);}
+.mcard.comp .mcard-detail{background:#fff;border-color:rgba(167,139,250,.3);}
 .mcard-tco{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:2px solid var(--border);border-radius:16px;padding:16px 22px;box-shadow:0 4px 16px rgba(47,0,109,.1);}
 .mcard.solum .mcard-tco{background:#2F006D;border-color:#2F006D;}
 .mcard.comp .mcard-tco{background:#fff;border-color:rgba(47,0,109,.25);}
