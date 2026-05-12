@@ -106,6 +106,21 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .mcard.comp .mrow-final{background:rgba(232,64,64,.05);border-top-color:rgba(232,64,64,.15);}
 
 
+/* BEP CHART */
+.bep-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:22px 28px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.bep-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.bep-title{font-size:13px;font-weight:700;color:var(--label);letter-spacing:.8px;text-transform:uppercase;}
+.bep-kpis{display:flex;gap:28px;}
+.bep-kpi{text-align:right;}
+.bep-kpi-lbl{font-size:11px;color:var(--muted);margin-bottom:2px;}
+.bep-kpi-val{font-size:18px;font-weight:800;letter-spacing:-.5px;}
+.bep-kpi-val.s{color:var(--green);}
+.bep-kpi-val.c{color:var(--red);}
+.bep-svg{width:100%;display:block;}
+.bep-legend{display:flex;gap:20px;justify-content:center;margin-top:10px;}
+.bep-legend span{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--label);font-weight:500;}
+.bep-leg-line{width:18px;height:3px;border-radius:2px;display:inline-block;flex-shrink:0;}
+
 /* SAVINGS */
 .savings{background:linear-gradient(135deg,#f0fff9,#eaecf5);border:1.5px solid rgba(0,184,122,.2);border-radius:16px;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
 .savings-lbl{font-size:14px;color:var(--label);line-height:1.6;font-weight:500;}
@@ -278,6 +293,26 @@ tr.total td:first-child{color:var(--accent);}
           <div class="mrow mrow-final"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s1-b-tco">$96,888</span></div>
         </div>
       </div>
+      <div class="bep-card">
+        <div class="bep-header">
+          <div class="bep-title">누적 TCO 비교 (월별)</div>
+          <div class="bep-kpis">
+            <div class="bep-kpi">
+              <div class="bep-kpi-lbl">HaLow 절감 시작</div>
+              <div class="bep-kpi-val s" id="s1-bep-val">즉시</div>
+            </div>
+            <div class="bep-kpi">
+              <div class="bep-kpi-lbl">5년 누적 절감</div>
+              <div class="bep-kpi-val s" id="s1-bep-save">$91,803</div>
+            </div>
+          </div>
+        </div>
+        <svg id="s1-bep-svg" class="bep-svg" viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="bep-legend">
+          <span><span class="bep-leg-line" style="background:var(--green)"></span>HaLow GW</span>
+          <span><span class="bep-leg-line" style="background:var(--red)"></span>BLE GW</span>
+        </div>
+      </div>
       <div class="tbl-wrap">
         <div class="tbl-head">연도별 TCO 누적 추이</div>
         <table>
@@ -371,6 +406,26 @@ tr.total td:first-child{color:var(--accent);}
           <div class="mrow mrow-final"><span class="mrow-lbl">5년 TCO</span><span class="mrow-val big" id="s2-c-tco">$859,900</span></div>
         </div>
       </div>
+      <div class="bep-card">
+        <div class="bep-header">
+          <div class="bep-title">누적 TCO 비교 (월별)</div>
+          <div class="bep-kpis">
+            <div class="bep-kpi">
+              <div class="bep-kpi-lbl">IM 절감 시작</div>
+              <div class="bep-kpi-val s" id="s2-bep-val">즉시</div>
+            </div>
+            <div class="bep-kpi">
+              <div class="bep-kpi-lbl">5년 누적 절감</div>
+              <div class="bep-kpi-val s" id="s2-bep-save">$628,485</div>
+            </div>
+          </div>
+        </div>
+        <svg id="s2-bep-svg" class="bep-svg" viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="bep-legend">
+          <span><span class="bep-leg-line" style="background:var(--green)"></span>IM Solution</span>
+          <span><span class="bep-leg-line" style="background:var(--red)"></span>108MP Camera Solution</span>
+        </div>
+      </div>
       <div class="tbl-wrap">
         <div class="tbl-head">연도별 TCO 누적 추이</div>
         <table>
@@ -457,6 +512,26 @@ tr.total td:first-child{color:var(--accent);}
           <div class="mrow mrow-final"><span class="mrow-lbl">5년 Net Value</span><span class="mrow-val big" id="s3-n-net">$98,188</span></div>
         </div>
       </div>
+      <div class="bep-card">
+        <div class="bep-header">
+          <div class="bep-title">투자 회수 기간 (BEP)</div>
+          <div class="bep-kpis">
+            <div class="bep-kpi">
+              <div class="bep-kpi-lbl">HaLow+POP BEP</div>
+              <div class="bep-kpi-val s" id="s3-bep-s">—개월</div>
+            </div>
+            <div class="bep-kpi">
+              <div class="bep-kpi-lbl">BLE+POP BEP</div>
+              <div class="bep-kpi-val c" id="s3-bep-n">—개월</div>
+            </div>
+          </div>
+        </div>
+        <svg id="s3-bep-svg" class="bep-svg" viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="bep-legend">
+          <span><span class="bep-leg-line" style="background:var(--green)"></span>HaLow+POP Net Value</span>
+          <span><span class="bep-leg-line" style="background:var(--red)"></span>BLE+POP Net Value</span>
+        </div>
+      </div>
       <div class="tbl-wrap">
         <div class="tbl-head">연도별 Net Value 누적 추이</div>
         <table>
@@ -487,6 +562,58 @@ function fmt(n){return '$'+Math.round(n).toLocaleString('en-US');}
 function pct(a,max){return Math.round(a/max*100)+'%';}
 function set(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
 function setW(id,w){const el=document.getElementById(id);if(el)el.style.width=w;}
+function drawBEP(svgId,series,bepMarkers){
+  const svg=document.getElementById(svgId);if(!svg)return;
+  const W=500,H=180,pl=64,pr=20,pt=16,pb=36;
+  const cW=W-pl-pr,cH=H-pt-pb,months=60;
+  const allV=series.flatMap(s=>s.vals);
+  let minV=Math.min(0,...allV),maxV=Math.max(...allV);
+  const rng=maxV-minV||1;
+  minV-=rng*0.06;maxV+=rng*0.06;
+  const xS=m=>pl+(m/months)*cW;
+  const yS=v=>pt+cH-((v-minV)/(maxV-minV)*cH);
+  const fmtY=v=>{
+    const a=Math.abs(v),s=v<0?'-':'';
+    if(a>=1e6)return s+'$'+(a/1e6).toFixed(1)+'M';
+    if(a>=1e3)return s+'$'+(a/1e3).toFixed(0)+'K';
+    return s+'$'+Math.round(a);
+  };
+  let h='';
+  // y-grid (4 lines)
+  for(let i=0;i<=3;i++){
+    const v=minV+(maxV-minV)*i/3,y=yS(v).toFixed(1);
+    h+=`<line x1="${pl}" y1="${y}" x2="${pl+cW}" y2="${y}" stroke="#eaecf0" stroke-width="1"/>`;
+    h+=`<text x="${pl-6}" y="${(yS(v)+4).toFixed(1)}" text-anchor="end" font-size="9.5" fill="#b0b8c8">${fmtY(v)}</text>`;
+  }
+  // zero baseline
+  if(minV<0&&maxV>0){
+    const y0=yS(0).toFixed(1);
+    h+=`<line x1="${pl}" y1="${y0}" x2="${pl+cW}" y2="${y0}" stroke="#9ea8b8" stroke-width="1" stroke-dasharray="4 2"/>`;
+  }
+  // x-axis year marks
+  for(let y=0;y<=5;y++){
+    const x=xS(y*12).toFixed(1);
+    if(y>0)h+=`<line x1="${x}" y1="${pt}" x2="${x}" y2="${pt+cH}" stroke="#eaecf0" stroke-width="1"/>`;
+    h+=`<text x="${x}" y="${H-8}" text-anchor="middle" font-size="10" fill="#b0b8c8">${y===0?'시작':y+'년'}</text>`;
+  }
+  // lines (draw in reverse so first series is on top)
+  for(let i=series.length-1;i>=0;i--){
+    const s=series[i];
+    const pts=s.vals.map((v,m)=>`${xS(m).toFixed(1)},${yS(v).toFixed(1)}`).join(' ');
+    h+=`<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+  }
+  // BEP markers
+  if(bepMarkers)for(const b of bepMarkers){
+    if(b.month>0&&b.month<=60){
+      const bx=xS(b.month).toFixed(1),by=yS(0).toFixed(1);
+      h+=`<line x1="${bx}" y1="${pt}" x2="${bx}" y2="${pt+cH}" stroke="${b.color}" stroke-width="1.5" stroke-dasharray="4 2" opacity=".7"/>`;
+      h+=`<circle cx="${bx}" cy="${by}" r="5" fill="${b.color}"/>`;
+      const anchor=b.month>40?'end':'start',tx=(b.month>40?xS(b.month)-10:xS(b.month)+10).toFixed(1);
+      h+=`<text x="${tx}" y="${(yS(0)-10).toFixed(1)}" text-anchor="${anchor}" font-size="10.5" fill="${b.color}" font-weight="700">${Math.round(b.month)}개월</text>`;
+    }
+  }
+  svg.innerHTML=h;
+}
 
 function storeLabel(a){
   if(a<=1500)return 'Small Format';
@@ -530,6 +657,15 @@ function calc(a){
   set('s1-bar-h-amt',fmt(h_tco5)); set('s1-bar-b-amt',fmt(b_tco5));
   setW('s1-bar-h',(h_tco5/mx1*100)+'%'); setW('s1-bar-b',(b_tco5/mx1*100)+'%');
   [1,2,3,4,5].forEach(y=>{set('s1-hy'+y,fmt(hY[y-1]));set('s1-by'+y,fmt(bY[y-1]));set('s1-dy'+y,fmt(bY[y-1]-hY[y-1]));});
+  const s1CapDiff=b_capex-h_capex,s1MoSave=(b_opex-h_opex)/12;
+  const s1bep=s1CapDiff>0&&s1MoSave>0?s1CapDiff/s1MoSave:0;
+  set('s1-bep-val',s1bep>0?Math.round(s1bep)+'개월':'즉시');
+  set('s1-bep-save',fmt(b_tco5-h_tco5));
+  drawBEP('s1-bep-svg',
+    [{vals:Array.from({length:61},(_,m)=>h_capex+h_opex/12*m),color:'#00b87a'},
+     {vals:Array.from({length:61},(_,m)=>b_capex+b_opex/12*m),color:'#e84040'}],
+    s1bep>0?[{month:s1bep,color:'#00b87a'}]:[]
+  );
   const im_oos=IM_OOS_BASE*Math.pow(r,1.0), im_labor=IM_LABOR_BASE*Math.pow(r,1.0);
   const cam_oos=CAM_OOS_BASE*Math.pow(r,1.0), cam_labor=CAM_LABOR_BASE*Math.pow(r,1.0);
   const im_capex=IM_HW*gondola, im_opex=im_oos+im_labor, im_tco5=im_capex+im_opex*5;
@@ -551,6 +687,15 @@ function calc(a){
   set('s2-bar-i-amt',fmt(im_tco5)); set('s2-bar-c-amt',fmt(cam_tco5));
   setW('s2-bar-i',(im_tco5/mx2*100)+'%'); setW('s2-bar-c',(cam_tco5/mx2*100)+'%');
   [1,2,3,4,5].forEach(y=>{set('s2-iy'+y,fmt(imY[y-1]));set('s2-cy'+y,fmt(camY[y-1]));set('s2-dy'+y,fmt(camY[y-1]-imY[y-1]));});
+  const s2CapDiff=cam_capex-im_capex,s2MoSave=(cam_opex-im_opex)/12;
+  const s2bep=s2CapDiff>0&&s2MoSave>0?s2CapDiff/s2MoSave:0;
+  set('s2-bep-val',s2bep>0?Math.round(s2bep)+'개월':'즉시');
+  set('s2-bep-save',fmt(cam_tco5-im_tco5));
+  drawBEP('s2-bep-svg',
+    [{vals:Array.from({length:61},(_,m)=>im_capex+im_opex/12*m),color:'#00b87a'},
+     {vals:Array.from({length:61},(_,m)=>cam_capex+cam_opex/12*m),color:'#e84040'}],
+    s2bep>0?[{month:s2bep,color:'#00b87a'}]:[]
+  );
   const sd_capex=(H_HW+H_INST)*hQty+POP_UNIT*popQty;
   const nd_capex=(B_HW+B_INST)*bQty+POP_UNIT*popQty;
   const sd_slots=POP_SLOTS_SD*popQty, nd_slots=POP_SLOTS_ND*popQty;
@@ -569,6 +714,15 @@ function calc(a){
   set('s3-bar-s-amt',fmt(sd_net5)); set('s3-bar-n-amt',fmt(nd_net5));
   setW('s3-bar-s',(sd_net5/mx3*100)+'%'); setW('s3-bar-n',(nd_net5/mx3*100)+'%');
   [1,2,3,4,5].forEach(y=>{set('s3-sy'+y,fmt(sdNetY[y-1]));set('s3-ny'+y,fmt(ndNetY[y-1]));set('s3-dy'+y,fmt(sdNetY[y-1]-ndNetY[y-1]));});
+  const s3bepS=sd_rev>0?sd_capex/(sd_rev/12):999;
+  const s3bepN=nd_rev>0?nd_capex/(nd_rev/12):999;
+  set('s3-bep-s',Math.round(s3bepS)+'개월');
+  set('s3-bep-n',Math.round(s3bepN)+'개월');
+  drawBEP('s3-bep-svg',
+    [{vals:Array.from({length:61},(_,m)=>sd_rev/12*m-sd_capex),color:'#00b87a'},
+     {vals:Array.from({length:61},(_,m)=>nd_rev/12*m-nd_capex),color:'#e84040'}],
+    [{month:s3bepS,color:'#00b87a'},{month:s3bepN,color:'#e84040'}]
+  );
 }
 
 document.getElementById('slider').addEventListener('input',function(){
