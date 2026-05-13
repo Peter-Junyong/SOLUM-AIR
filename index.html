@@ -102,7 +102,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .metrics-row{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
 .mcard{display:flex;flex-direction:column;gap:6px;}
 .mcard-header{padding:11px 17px;border-radius:12px;background:var(--card);border:1.5px solid var(--border);box-shadow:0 2px 8px rgba(99,102,241,.08);}
-.mcard.solum .mcard-header{background:linear-gradient(135deg,#1A003D,#2F006D);border-color:#2F006D;}
+.mcard.solum .mcard-header{background:#2F006D;border-color:#2F006D;}
 .mcard.comp .mcard-header{background:#fff;border-color:rgba(0,25,115,.2);}
 .mbadge{display:inline-flex;align-items:center;gap:6px;font-size:18px;font-weight:800;letter-spacing:-.3px;padding:4px 14px;border-radius:100px;margin-bottom:6px;text-transform:uppercase;}
 .mcard.solum .mbadge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;}
@@ -167,7 +167,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 .mcard.comp .mcard-tco-val{color:#001973;}
 
 /* SAVINGS */
-.savings{background:linear-gradient(135deg,#F0EBF8,#E8EBF5);border:1.5px solid rgba(47,0,109,.2);border-radius:14px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:11px;box-shadow:0 2px 8px rgba(47,0,109,.08);}
+.savings{background:#F0EBF8;border:1.5px solid rgba(47,0,109,.2);border-radius:14px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:11px;box-shadow:0 2px 8px rgba(47,0,109,.08);}
 .savings-lbl{font-size:17px;color:var(--label);line-height:1.5;font-weight:500;}
 .savings-lbl strong{color:#000;font-weight:700;display:block;font-size:18px;}
 .savings-val{font-size:34px;font-weight:800;color:#FFCD00;white-space:nowrap;letter-spacing:-.5px;text-shadow:0 1px 3px rgba(0,0,0,.2);}
@@ -193,13 +193,12 @@ tr.total td:first-child{color:#2F006D;}
 .bar-val{font-size:17px;font-weight:700;color:var(--label);}
 .bar-track{height:8px;background:var(--bg);border-radius:100px;overflow:hidden;border:1px solid var(--border-light);}
 .bar-fill{height:100%;border-radius:100px;transition:width .55s cubic-bezier(.4,0,.2,1);}
-.bar-fill.s{background:linear-gradient(90deg,#1A003D,#2F006D);}
-.bar-fill.c{background:linear-gradient(90deg,#000D52,#001973);}
+.bar-fill.s{background:#2F006D;}
+.bar-fill.c{background:#001973;}
 
 /* TCO SAVINGS CARD */
-.tco-card{background:#FFCD00;border-radius:14px;padding:14px 22px;display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 4px 16px rgba(255,205,0,.5);position:relative;overflow:hidden;}
-.tco-card::before{content:'';position:absolute;top:-28px;right:-28px;width:112px;height:112px;border-radius:50%;background:rgba(0,0,0,.05);}
-.tco-card::after{content:'';position:absolute;bottom:-21px;left:-21px;width:84px;height:84px;border-radius:50%;background:rgba(0,0,0,.04);}
+.tco-card{background:#FFCD00;border-radius:14px;padding:14px 22px;display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 4px 16px rgba(255,205,0,.4);}
+.tco-card::before,.tco-card::after{display:none;}
 .tco-card-headline{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:11px;position:relative;z-index:1;text-align:center;}
 .tco-card-label{font-size:clamp(20px,2.6vw,38px);font-weight:900;color:rgba(0,0,0,.75);letter-spacing:-.5px;line-height:1;}
 .tco-card-pct-group{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:40px;}
