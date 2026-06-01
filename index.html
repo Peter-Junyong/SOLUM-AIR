@@ -200,15 +200,15 @@ tr.total td:first-child{color:#5A3D8A;}
 .bar-fill.c{background:#9CA3AF;}
 
 /* TCO SAVINGS CARD */
-.tco-card{background:#FFCD00;border-radius:28px;padding:14px 22px;display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 12px 40px rgba(255,205,0,.50);}
+.tco-card{background:#FFCD00;border-radius:28px;padding:14px 22px;display:flex;flex-direction:column;justify-content:center;align-items:stretch;box-shadow:0 12px 40px rgba(255,205,0,.50);}
 .tco-card::before,.tco-card::after{display:none;}
-.tco-card-headline{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:11px;position:relative;z-index:1;text-align:center;}
-.tco-card-label{font-size:clamp(20px,2.6vw,38px);font-weight:900;color:rgba(0,0,0,.75);letter-spacing:-.5px;line-height:1;}
-.tco-card-pct-group{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:40px;}
-.tco-card-pct{font-size:clamp(20px,2.6vw,38px);font-weight:900;color:#000;letter-spacing:-.5px;line-height:1;}
-.tco-card-amt{font-size:clamp(15px,1.6vw,24px);font-weight:600;color:rgba(0,0,0,.65);letter-spacing:-.2px;}
+.tco-card-headline{display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:8px;position:relative;z-index:1;width:100%;}
+.tco-card-label{font-size:clamp(13px,1.6vw,26px);font-weight:900;color:rgba(0,0,0,.75);letter-spacing:-.3px;line-height:1.2;flex-shrink:1;min-width:0;}
+.tco-card-pct-group{display:flex;flex-direction:row;align-items:baseline;gap:8px;margin-top:0;flex-shrink:0;white-space:nowrap;}
+.tco-card-pct{font-size:clamp(18px,2.2vw,34px);font-weight:900;color:#000;letter-spacing:-.5px;line-height:1;}
+.tco-card-amt{font-size:clamp(13px,1.4vw,22px);font-weight:600;color:rgba(0,0,0,.65);letter-spacing:-.2px;}
 .tco-headline-col{flex-direction:column;gap:6px;}
-.tco-headline-col .tco-card-pct-group{margin-top:0;}
+.tco-headline-col .tco-card-pct-group{flex-direction:column;align-items:flex-end;gap:2px;}
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width:1024px){
@@ -260,18 +260,20 @@ tr.total td:first-child{color:#5A3D8A;}
   th{font-size:13px;padding:6px 8px;}
   td{font-size:13px;padding:5px 8px;}
 
-  .tco-card-label{font-size:16px;}
-  .tco-card-pct{font-size:22px;}
-  .tco-card-amt{font-size:13px;}
-  .tco-card-pct-group{margin-top:16px;}
+  .tco-card-label{font-size:14px;}
+  .tco-card-pct{font-size:18px;}
+  .tco-card-amt{font-size:12px;}
+  .tco-card-pct-group{margin-top:0;gap:5px;}
 }
 
 @media (max-width:480px){
   .metrics-row{grid-template-columns:1fr;}
   .mcard-top{grid-template-columns:1fr;}
   .cmp-wrapper{grid-template-columns:1fr;}
-  .tco-card-headline{flex-direction:column;gap:6px;}
-  .tco-card-pct-group{margin-top:8px;}
+  .tco-card-headline{flex-wrap:nowrap;gap:6px;}
+  .tco-card-label{font-size:12px;}
+  .tco-card-pct{font-size:16px;}
+  .tco-card-amt{font-size:11px;}
   table{font-size:12px;}
   th,td{padding:4px 6px;}
 }
