@@ -488,9 +488,9 @@ tr.total td:first-child{color:#5A3D8A;}
           </div>
           <div id="s2-i-cap-sub" class="mcard-detail" style="display:none">
             <div class="mrow mrow-sub"><span class="mrow-lbl">Shelves Installed</span><span class="mrow-val" id="s2-i-shelf">100 units</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">UWB Powerrail ($100×5)</span><span class="mrow-val" id="s2-i-powerrail">$50,000</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">Newton EYE ($70)</span><span class="mrow-val" id="s2-i-cam">$7,000</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">Load Cell ($8×15)</span><span class="mrow-val" id="s2-i-loadcell">$12,000</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">UWB Powerrail (€70×5)</span><span class="mrow-val" id="s2-i-powerrail">$50,000</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Newton EYE (€60)</span><span class="mrow-val" id="s2-i-cam">$7,000</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Load Cell (€12×15)</span><span class="mrow-val" id="s2-i-loadcell">$12,000</span></div>
           </div>
           <div id="s2-i-opx-sub" class="mcard-detail" style="display:none">
             <div class="mrow mrow-sub"><span class="mrow-lbl">OOS Opportunity Cost</span><span class="mrow-val" id="s2-i-oos">$37,091</span></div>
@@ -520,7 +520,7 @@ tr.total td:first-child{color:#5A3D8A;}
           </div>
           <div id="s2-c-cap-sub" class="mcard-detail" style="display:none">
             <div class="mrow mrow-sub"><span class="mrow-lbl">Shelves Installed</span><span class="mrow-val" id="s2-c-shelf">100 units</span></div>
-            <div class="mrow mrow-sub"><span class="mrow-lbl">Camera ($650×4)</span><span class="mrow-val" id="s2-c-cam">$160,000</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Camera (€650×4)</span><span class="mrow-val" id="s2-c-cam">$160,000</span></div>
           </div>
           <div id="s2-c-opx-sub" class="mcard-detail" style="display:none">
             <div class="mrow mrow-sub"><span class="mrow-lbl">OOS Opportunity Cost</span><span class="mrow-val" id="s2-c-oos">$120,000</span></div>
@@ -652,13 +652,13 @@ tr.total td:first-child{color:#5A3D8A;}
 const BASE = 10000;
 const H_HW=500, H_INST=332.5, H_AP_UNIT=3832.5, H_MAINT=342;
 const B_HW=300, B_INST=332.5, B_AP_UNIT=1533, B_MAINT=342;
-const IM_HW=690, IM_POWERRAIL=500, IM_CAM=70, IM_LOADCELL=120;
+const IM_HW=590, IM_POWERRAIL=350, IM_CAM=60, IM_LOADCELL=180;
 const IM_OOS_BASE=37091, IM_LABOR_BASE=5592;
 const CAM_HW=2600, CAM_OOS_BASE=120000, CAM_LABOR_BASE=19980;
 const POP_UNIT=700, POP_SLOTS_SD=4, POP_SLOTS_ND=3, POP_BASE_QTY=30, POP_SLOT_REV=300;
 
 let area=10000;
-function fmt(n){return '$'+Math.round(n).toLocaleString('en-US');}
+function fmt(n){return '€'+Math.round(n).toLocaleString('en-US');}
 function pct(a,max){return Math.round(a/max*100)+'%';}
 function set(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
 function setW(id,w){const el=document.getElementById(id);if(el)el.style.width=w;}
