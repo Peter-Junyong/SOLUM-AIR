@@ -200,15 +200,11 @@ tr.total td:first-child{color:#5A3D8A;}
 .bar-fill.c{background:#9CA3AF;}
 
 /* TCO SAVINGS CARD */
-.tco-card{background:#FFCD00;border-radius:28px;padding:14px 22px;display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 12px 40px rgba(255,205,0,.50);}
+.tco-card{background:#FFCD00;border-radius:28px;padding:14px 22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:0 12px 40px rgba(255,205,0,.50);}
 .tco-card::before,.tco-card::after{display:none;}
-.tco-card-headline{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative;z-index:1;text-align:center;}
-.tco-card-label{font-size:clamp(14px,1.8vw,28px);font-weight:900;color:rgba(0,0,0,.75);letter-spacing:-.3px;line-height:1.2;}
-.tco-card-pct-group{display:flex;flex-direction:row;align-items:baseline;gap:10px;white-space:nowrap;}
-.tco-card-pct{font-size:clamp(20px,2.4vw,36px);font-weight:900;color:#000;letter-spacing:-.5px;line-height:1;}
-.tco-card-amt{font-size:clamp(14px,1.6vw,24px);font-weight:600;color:rgba(0,0,0,.65);letter-spacing:-.2px;}
-.tco-headline-col{flex-direction:column;gap:6px;}
-.tco-headline-col .tco-card-pct-group{flex-direction:row;}
+.tco-card-label{font-size:clamp(13px,1.6vw,24px);font-weight:900;color:rgba(0,0,0,.7);letter-spacing:-.3px;line-height:1.2;}
+.tco-card-pct{font-size:clamp(28px,3.2vw,52px);font-weight:900;color:#000;letter-spacing:-.5px;line-height:1.1;margin-top:4px;}
+.tco-card-amt{font-size:clamp(13px,1.6vw,24px);font-weight:700;color:rgba(0,0,0,.75);letter-spacing:-.2px;margin-top:2px;}
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width:1024px){
@@ -260,20 +256,18 @@ tr.total td:first-child{color:#5A3D8A;}
   th{font-size:13px;padding:6px 8px;}
   td{font-size:13px;padding:5px 8px;}
 
-  .tco-card-label{font-size:15px;}
-  .tco-card-pct{font-size:20px;}
-  .tco-card-amt{font-size:13px;}
-  .tco-card-pct-group{gap:7px;}
+  .tco-card-label{font-size:14px;}
+  .tco-card-pct{font-size:24px;}
+  .tco-card-amt{font-size:14px;}
 }
 
 @media (max-width:480px){
   .metrics-row{grid-template-columns:1fr;}
   .mcard-top{grid-template-columns:1fr;}
   .cmp-wrapper{grid-template-columns:1fr;}
-  .tco-card-label{font-size:13px;}
-  .tco-card-pct{font-size:17px;}
+  .tco-card-label{font-size:12px;}
+  .tco-card-pct{font-size:20px;}
   .tco-card-amt{font-size:12px;}
-  .tco-card-pct-group{gap:6px;}
   table{font-size:12px;}
   th,td{padding:4px 6px;}
 }
@@ -354,13 +348,9 @@ tr.total td:first-child{color:#5A3D8A;}
           </div>
         </div>
         <div class="tco-card">
-          <div class="tco-card-headline">
-            <span class="tco-card-label">5-Yr TCO Savings</span>
-            <div class="tco-card-pct-group">
-              <span class="tco-card-pct"><span id="s1-tco-pct">80%</span></span>
-              <span class="tco-card-amt"><span id="s1-save">$77,763</span>▼</span>
-            </div>
-          </div>
+          <span class="tco-card-label">5-Yr TCO Savings</span>
+          <span class="tco-card-pct"><span id="s1-tco-pct">80%</span></span>
+          <span class="tco-card-amt"><span id="s1-save">€77,763</span>▼</span>
         </div>
       </div>
       <div class="metrics-row">
@@ -461,13 +451,9 @@ tr.total td:first-child{color:#5A3D8A;}
           </div>
         </div>
         <div class="tco-card">
-          <div class="tco-card-headline">
-            <span class="tco-card-label">5-Yr TCO Savings</span>
-            <div class="tco-card-pct-group">
-              <span class="tco-card-pct"><span id="s2-tco-pct">73%</span></span>
-              <span class="tco-card-amt"><span id="s2-save">$628,485</span>▼</span>
-            </div>
-          </div>
+          <span class="tco-card-label">5-Yr TCO Savings</span>
+          <span class="tco-card-pct"><span id="s2-tco-pct">73%</span></span>
+          <span class="tco-card-amt"><span id="s2-save">€628,485</span>▼</span>
         </div>
       </div>
       <div class="metrics-row">
@@ -568,10 +554,8 @@ tr.total td:first-child{color:#5A3D8A;}
           </div>
         </div>
         <div class="tco-card">
-          <div class="tco-card-headline">
-            <span class="tco-card-label">5-Yr Net Value</span>
-            <span class="tco-card-pct"><span id="s3-save">$59,147</span>▲</span>
-          </div>
+          <span class="tco-card-label">5-Yr Net Value</span>
+          <span class="tco-card-pct"><span id="s3-save">€59,147</span>▲</span>
         </div>
       </div>
       <div class="metrics-row">
