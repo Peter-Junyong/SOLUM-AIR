@@ -483,6 +483,7 @@ tr.total td:first-child{color:#5A3D8A;}
           <div id="s2-i-opx-sub" class="mcard-detail" style="display:none">
             <div class="mrow mrow-sub"><span class="mrow-lbl">OOS Opportunity Cost</span><span class="mrow-val" id="s2-i-oos">$37,091</span></div>
             <div class="mrow mrow-sub"><span class="mrow-lbl">Replenishment Labor Cost</span><span class="mrow-val" id="s2-i-labor">$5,592</span></div>
+            <div class="mrow mrow-sub"><span class="mrow-lbl">Battery Replacement Cost</span><span class="mrow-val" id="s2-i-battery">€10,913</span></div>
           </div>
           <div class="mcard-tco">
             <span class="mcard-tco-lbl">5-Year TCO</span>
@@ -639,7 +640,7 @@ const BASE = 10000;
 const H_HW=430, H_INST=285.95, H_AP_UNIT=3295.95, H_MAINT=294.12;
 const B_HW=258, B_INST=285.95, B_AP_UNIT=1318.38, B_MAINT=294.12;
 const IM_HW=869, IM_POWERRAIL=301, IM_CAM=52, IM_LOADCELL=516;
-const IM_OOS_BASE=31898.26, IM_LABOR_BASE=6185.81;
+const IM_OOS_BASE=31898.26, IM_LABOR_BASE=6185.81, IM_BATTERY_BASE=10913;
 const CAM_HW=2236, CAM_OOS_BASE=103200, CAM_LABOR_BASE=17182.8;
 const POP_UNIT=602, POP_SLOTS_SD=4, POP_SLOTS_ND=3, POP_BASE_QTY=30, POP_SLOT_REV=258;
 
@@ -691,9 +692,9 @@ function calc(a){
   set('s1-bar-h-amt',fmt(h_tco5)); set('s1-bar-b-amt',fmt(b_tco5));
   setW('s1-bar-h',(h_tco5/mx1*100)+'%'); setW('s1-bar-b',(b_tco5/mx1*100)+'%');
   [1,2,3,4,5].forEach(y=>{set('s1-hy'+y,fmt(hY[y-1]));set('s1-by'+y,fmt(bY[y-1]));set('s1-dy'+y,fmt(bY[y-1]-hY[y-1]));});
-  const im_oos=IM_OOS_BASE*Math.pow(r,1.0), im_labor=IM_LABOR_BASE*Math.pow(r,1.0);
+  const im_oos=IM_OOS_BASE*Math.pow(r,1.0), im_labor=IM_LABOR_BASE*Math.pow(r,1.0), im_battery=IM_BATTERY_BASE*r;
   const cam_oos=CAM_OOS_BASE*Math.pow(r,1.5), cam_labor=CAM_LABOR_BASE*Math.pow(r,1.3);
-  const im_capex=IM_HW*gondola, im_opex=im_oos+im_labor, im_tco5=im_capex+im_opex*5;
+  const im_capex=IM_HW*gondola, im_opex=im_oos+im_labor+im_battery, im_tco5=im_capex+im_opex*5;
   const cam_capex=CAM_HW*gondola, cam_opex=cam_oos+cam_labor, cam_tco5=cam_capex+cam_opex*5;
   const imY=[1,2,3,4,5].map(y=>im_capex+im_opex*y);
   const camY=[1,2,3,4,5].map(y=>cam_capex+cam_opex*y);
@@ -701,7 +702,7 @@ function calc(a){
 
   set('s2-i-shelf',gondola+' units');
   set('s2-i-powerrail',fmt(IM_POWERRAIL*gondola)); set('s2-i-cam',fmt(IM_CAM*gondola)); set('s2-i-loadcell',fmt(IM_LOADCELL*gondola));
-  set('s2-i-capex',fmt(im_capex)); set('s2-i-oos',fmt(im_oos)); set('s2-i-labor',fmt(im_labor));
+  set('s2-i-capex',fmt(im_capex)); set('s2-i-oos',fmt(im_oos)); set('s2-i-labor',fmt(im_labor)); set('s2-i-battery',fmt(im_battery));
   set('s2-i-opex',fmt(im_opex)); set('s2-i-tco',fmt(im_tco5));
   set('s2-c-shelf',gondola+' units');
   set('s2-c-cam',fmt(CAM_HW*gondola));
